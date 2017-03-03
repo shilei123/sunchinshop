@@ -3,7 +3,7 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-	<display-name>pointsManager</display-name>
+	<display-name>SunChinShop</display-name>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>

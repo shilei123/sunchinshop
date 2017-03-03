@@ -99,9 +99,9 @@
 		-->
 	
 	<!-- myBatis 插件分页拦截器 -->
-	<bean id="mySqlDialect" class="cn.sqhl.shop.core.OracleDialect"></bean>
+	<bean id="OracleDialect" class="cn.sqhl.shop.core.OracleDialect"></bean>
 	<bean id="paginationInterceptor" class="cn.sqhl.shop.core.PaginationInterceptor">
-		<property name="dialect" ref="mySqlDialect"></property>
+		<property name="dialect" ref="OracleDialect"></property>
 	</bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
