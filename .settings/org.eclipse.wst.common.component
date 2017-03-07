@@ -4,7 +4,8 @@
         <wb-resource deploy-path="/" source-path="/target/m2e-jee/web-resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/config/log4j2"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/config/mybatis"/>
         <property name="context-root" value="SunChinShop"/>
         <property name="java-output-path" value="/SunChinShop/WebRoot/WEB-INF/classes"/>
     </wb-module>
