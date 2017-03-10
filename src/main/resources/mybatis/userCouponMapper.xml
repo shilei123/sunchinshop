@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sqhl.shop.mapper.userCouponMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.vo.userCoupon">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="COUPON_ID" jdbcType="VARCHAR" property="couponId" />
+    <result column="COUPON_NAME" jdbcType="VARCHAR" property="couponName" />
+    <result column="COUPON_BLANCE" jdbcType="DECIMAL" property="couponBlance" />
+    <result column="COUPON_XF_BALANCE" jdbcType="DECIMAL" property="couponXfBalance" />
+    <result column="COUPON_CREATDATE" jdbcType="TIMESTAMP" property="couponCreatdate" />
+    <result column="COUPON_EXPIRYDATE" jdbcType="TIMESTAMP" property="couponExpirydate" />
+    <result column="ORDER_SN" jdbcType="VARCHAR" property="orderSn" />
+    <result column="COUPON_STATUS" jdbcType="CHAR" property="couponStatus" />
+    <result column="OPTION_TIME" jdbcType="TIMESTAMP" property="optionTime" />
+    <result column="OPTION_ADMINID" jdbcType="VARCHAR" property="optionAdminid" />
+    <result column="OPTION_REMARK" jdbcType="VARCHAR" property="optionRemark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USER_ID, USER_NAME, COUPON_ID, COUPON_NAME, COUPON_BLANCE, COUPON_XF_BALANCE, 
+    COUPON_CREATDATE, COUPON_EXPIRYDATE, ORDER_SN, COUPON_STATUS, OPTION_TIME, OPTION_ADMINID, 
+    OPTION_REMARK
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SC_USER_COUPON
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SC_USER_COUPON
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.sqhl.shop.vo.userCoupon">
+    insert into SC_USER_COUPON (ID, USER_ID, USER_NAME, 
+      COUPON_ID, COUPON_NAME, COUPON_BLANCE, 
+      COUPON_XF_BALANCE, COUPON_CREATDATE, COUPON_EXPIRYDATE, 
+      ORDER_SN, COUPON_STATUS, OPTION_TIME, 
+      OPTION_ADMINID, OPTION_REMARK)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{couponId,jdbcType=VARCHAR}, #{couponName,jdbcType=VARCHAR}, #{couponBlance,jdbcType=DECIMAL}, 
+      #{couponXfBalance,jdbcType=DECIMAL}, #{couponCreatdate,jdbcType=TIMESTAMP}, #{couponExpirydate,jdbcType=TIMESTAMP}, 
+      #{orderSn,jdbcType=VARCHAR}, #{couponStatus,jdbcType=CHAR}, #{optionTime,jdbcType=TIMESTAMP}, 
+      #{optionAdminid,jdbcType=VARCHAR}, #{optionRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.sqhl.shop.vo.userCoupon">
+    insert into SC_USER_COUPON
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="couponId != null">
+        COUPON_ID,
+      </if>
+      <if test="couponName != null">
+        COUPON_NAME,
+      </if>
+      <if test="couponBlance != null">
+        COUPON_BLANCE,
+      </if>
+      <if test="couponXfBalance != null">
+        COUPON_XF_BALANCE,
+      </if>
+      <if test="couponCreatdate != null">
+        COUPON_CREATDATE,
+      </if>
+      <if test="couponExpirydate != null">
+        COUPON_EXPIRYDATE,
+      </if>
+      <if test="orderSn != null">
+        ORDER_SN,
+      </if>
+      <if test="couponStatus != null">
+        COUPON_STATUS,
+      </if>
+      <if test="optionTime != null">
+        OPTION_TIME,
+      </if>
+      <if test="optionAdminid != null">
+        OPTION_ADMINID,
+      </if>
+      <if test="optionRemark != null">
+        OPTION_REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="couponId != null">
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+      <if test="couponName != null">
+        #{couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="couponBlance != null">
+        #{couponBlance,jdbcType=DECIMAL},
+      </if>
+      <if test="couponXfBalance != null">
+        #{couponXfBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="couponCreatdate != null">
+        #{couponCreatdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="couponExpirydate != null">
+        #{couponExpirydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderSn != null">
+        #{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="couponStatus != null">
+        #{couponStatus,jdbcType=CHAR},
+      </if>
+      <if test="optionTime != null">
+        #{optionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="optionAdminid != null">
+        #{optionAdminid,jdbcType=VARCHAR},
+      </if>
+      <if test="optionRemark != null">
+        #{optionRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.vo.userCoupon">
+    update SC_USER_COUPON
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="couponId != null">
+        COUPON_ID = #{couponId,jdbcType=VARCHAR},
+      </if>
+      <if test="couponName != null">
+        COUPON_NAME = #{couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="couponBlance != null">
+        COUPON_BLANCE = #{couponBlance,jdbcType=DECIMAL},
+      </if>
+      <if test="couponXfBalance != null">
+        COUPON_XF_BALANCE = #{couponXfBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="couponCreatdate != null">
+        COUPON_CREATDATE = #{couponCreatdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="couponExpirydate != null">
+        COUPON_EXPIRYDATE = #{couponExpirydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderSn != null">
+        ORDER_SN = #{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="couponStatus != null">
+        COUPON_STATUS = #{couponStatus,jdbcType=CHAR},
+      </if>
+      <if test="optionTime != null">
+        OPTION_TIME = #{optionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="optionAdminid != null">
+        OPTION_ADMINID = #{optionAdminid,jdbcType=VARCHAR},
+      </if>
+      <if test="optionRemark != null">
+        OPTION_REMARK = #{optionRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.vo.userCoupon">
+    update SC_USER_COUPON
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      COUPON_ID = #{couponId,jdbcType=VARCHAR},
+      COUPON_NAME = #{couponName,jdbcType=VARCHAR},
+      COUPON_BLANCE = #{couponBlance,jdbcType=DECIMAL},
+      COUPON_XF_BALANCE = #{couponXfBalance,jdbcType=DECIMAL},
+      COUPON_CREATDATE = #{couponCreatdate,jdbcType=TIMESTAMP},
+      COUPON_EXPIRYDATE = #{couponExpirydate,jdbcType=TIMESTAMP},
+      ORDER_SN = #{orderSn,jdbcType=VARCHAR},
+      COUPON_STATUS = #{couponStatus,jdbcType=CHAR},
+      OPTION_TIME = #{optionTime,jdbcType=TIMESTAMP},
+      OPTION_ADMINID = #{optionAdminid,jdbcType=VARCHAR},
+      OPTION_REMARK = #{optionRemark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
