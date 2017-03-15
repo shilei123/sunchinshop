@@ -1,33 +1,55 @@
-package cn.sqhl.shop.controller;
+package cn.sqhl.shop.restfulapi;
 
 import java.beans.PropertyDescriptor;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ResourceBundle;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
 
 import cn.sqhl.shop.utils.DateHelper;
+import cn.sqhl.shop.utils.FormatUtils;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
-@Configuration
+
 public class ContextInfo {
-	private Logger logger = LogManager.getLogger(ContextInfo.class);
+	private Logger logger = LogManager.getLogger(this.getClass());
 	public static final Level ERROR = Level.ERROR;
 	public static final Level INFO = Level.INFO;
 	public static final Level DEBUG = Level.DEBUG;
+	
+	protected ResourceBundle interfacelist = ResourceBundle.getBundle("config");
+	protected String ver=interfacelist.getString("ns.version");
+	protected String result;
+	protected String message;
+	protected Object data;
+	
+	protected Map getRequestMap(HttpServletRequest request) throws Exception {
+		InputStream requestjson = request.getInputStream();
+		String encoding = request.getCharacterEncoding(); 
+		String locationsJSONString=IOUtils.toString(requestjson,encoding);
+		logger.log(INFO,"request Decrypt info :  "+locationsJSONString);
+		//JSONObject requestString=JSONObject.parseObject(locationsJSONString);
+		if(locationsJSONString!=null && locationsJSONString.length() >0){
+			return FormatUtils.convertJsonStrToMap(locationsJSONString);
+		}else{
+			return null;
+		}
+	}
 
-	 protected String ver;
-	 protected String result;
-	 protected String message;
-	 protected Object data;
-	 
-	 
 	/***
 	 * restr 为空 json不为空 则从json对象中获取 str的值 类型需要自行转换
 	 * 
@@ -144,16 +166,15 @@ public class ContextInfo {
 		} catch (Exception e) {
 			logger.log(ERROR, e.getMessage());
 			e.printStackTrace();
-		}finally{
-			if(inf){
+		} finally {
+			if (inf) {
 				return obj;
-			}else{
+			} else {
 				return null;
 			}
 		}
 	}
-	
-	
+
 	protected Object autoLoad(Object obj, String str, JSONObject json) {
 		boolean inf = true;
 		boolean status = false;
@@ -169,11 +190,11 @@ public class ContextInfo {
 				}
 
 			} else {
-				if(json != null && json.size() >0){
+				if (json != null && json.size() > 0) {
 					obj = obj.getClass().newInstance();
 					status = true;
-				}else{
-					obj=null;
+				} else {
+					obj = null;
 				}
 			}
 
@@ -186,119 +207,132 @@ public class ContextInfo {
 					}// 获取字段数据类型
 					String type = fieldname.getGenericType().toString();
 					// 获取参数描述
-					
+
 					// 调用写入插入值
 					Object now = null;
 					if (type.equals("class java.util.Date")) {
-						setFieldValue(obj, str, adds,type);
+						setFieldValue(obj, str, adds, type);
 					} else {
 						if (type.equals("class java.lang.Integer")) {
-							setFieldValue(obj, str, adds,type);
+							setFieldValue(obj, str, adds, type);
 						} else if (type.equals("class java.lang.Short")) {
-							setFieldValue(obj, str, adds,type);
+							setFieldValue(obj, str, adds, type);
 						} else if (type.equals("class java.lang.Double")) {
-							setFieldValue(obj, str, adds,type);
+							setFieldValue(obj, str, adds, type);
 						} else if (type.equals("class java.lang.Boolean")) {
-							setFieldValue(obj, str, adds,type);
-						}else if (type.equals("class java.lang.Long")) {
-							setFieldValue(obj, str, adds,type);
-						}else if (type.equals("class java.math.BigDecimal")) {
-							setFieldValue(obj, str, adds,type);
-						}else{
-							setFieldValue(obj, str, adds,type);
+							setFieldValue(obj, str, adds, type);
+						} else if (type.equals("class java.lang.Long")) {
+							setFieldValue(obj, str, adds, type);
+						} else if (type.equals("class java.math.BigDecimal")) {
+							setFieldValue(obj, str, adds, type);
+						} else {
+							setFieldValue(obj, str, adds, type);
 						}
 					}
 
 				}
-			}else{
-				obj=null;
+			} else {
+				obj = null;
 			}
 		} catch (Exception e) {
 			logger.log(ERROR, e.getMessage());
 			e.printStackTrace();
-		}finally{
+		} finally {
 			return obj;
 		}
 	}
-	 /** 
-     * 利用反射获取指定对象里面的指定属性 
-     * @param obj 目标对象 
-     * @param fieldName 目标属性 
-     * @return 目标字段 
-     */  
-    private static Field getField(Object obj, String fieldName) {  
-        Field field = null;  
-        for (Class<?> clazz = obj.getClass(); clazz != Object.class; clazz = clazz  
-                .getSuperclass()) {  
-            try {  
-                field = clazz.getDeclaredField(fieldName);  
-                break;  
-            } catch (NoSuchFieldException e) {  
-                // 这里不用做处理，子类没有该字段可能对应的父类有，都没有就返回null。  
-            }  
-        }  
-        return field;  
-    }  
 
-    /** 
-     * 利用反射设置指定对象的指定属性为指定的值 
-     * @param obj 目标对象 
-     * @param fieldName 目标属性 
-     * @param fieldValue 目标值 
-     */  
-    public static void setFieldValue(Object obj, String fieldName,String fieldValue,String typename) {  
-        Field field = ContextInfo.getField(obj, fieldName);
-        if (field != null) {  
-            try {  
-                field.setAccessible(true);
-                System.out.println("this is sysType:"+typename);
-                if (typename.equals("class java.lang.Integer") ) {
-                	field.set(obj, Integer.parseInt(fieldValue)); 
+	/**
+	 * 利用反射获取指定对象里面的指定属性
+	 * 
+	 * @param obj
+	 *            目标对象
+	 * @param fieldName
+	 *            目标属性
+	 * @return 目标字段
+	 */
+	private static Field getField(Object obj, String fieldName) {
+		Field field = null;
+		for (Class<?> clazz = obj.getClass(); clazz != Object.class; clazz = clazz
+				.getSuperclass()) {
+			try {
+				field = clazz.getDeclaredField(fieldName);
+				break;
+			} catch (NoSuchFieldException e) {
+				// 这里不用做处理，子类没有该字段可能对应的父类有，都没有就返回null。
+			}
+		}
+		return field;
+	}
+
+	/**
+	 * 利用反射设置指定对象的指定属性为指定的值
+	 * 
+	 * @param obj
+	 *            目标对象
+	 * @param fieldName
+	 *            目标属性
+	 * @param fieldValue
+	 *            目标值
+	 */
+	public static void setFieldValue(Object obj, String fieldName,
+			String fieldValue, String typename) {
+		Field field = ContextInfo.getField(obj, fieldName);
+		if (field != null) {
+			try {
+				field.setAccessible(true);
+				System.out.println("this is sysType:" + typename);
+				if (typename.equals("class java.lang.Integer")) {
+					field.set(obj, Integer.parseInt(fieldValue));
 				} else if (typename.equals("class java.lang.Short")) {
-					field.set(obj,Short.parseShort(fieldValue));
+					field.set(obj, Short.parseShort(fieldValue));
 				} else if (typename.equals("class java.lang.Double")) {
-					field.set(obj,Double.parseDouble(fieldValue));
+					field.set(obj, Double.parseDouble(fieldValue));
 				} else if (typename.equals("class java.lang.Boolean")) {
-					field.set(obj,Boolean.parseBoolean(fieldValue));
-				}else if (typename.equals("class java.lang.Long")) {
-					field.set(obj,Long.parseLong(fieldValue));
-				}else if (typename.equals("class java.math.BigDecimal")) {
-					field.set(obj,BigDecimal.valueOf(Double.parseDouble(fieldValue)));
-				}else{
-					field.set(obj,fieldValue);
+					field.set(obj, Boolean.parseBoolean(fieldValue));
+				} else if (typename.equals("class java.lang.Long")) {
+					field.set(obj, Long.parseLong(fieldValue));
+				} else if (typename.equals("class java.math.BigDecimal")) {
+					field.set(obj,
+							BigDecimal.valueOf(Double.parseDouble(fieldValue)));
+				} else {
+					field.set(obj, fieldValue);
 				}
-            } catch (IllegalArgumentException e) {  
-                // TODO Auto-generated catch block  
-                e.printStackTrace();  
-            } catch (IllegalAccessException e) {  
-                // TODO Auto-generated catch block  
-                e.printStackTrace();  
-            }  
-        }  
-    }  
-    
-    /** 
-     * 利用反射获取指定对象的指定属性 
-     * @param obj 目标对象 
-     * @param fieldName 目标属性 
-     * @return 目标属性的值 
-     */  
-    public static Object getFieldValue(Object obj, String fieldName) {  
-        Object result = null;  
-        Field field = ContextInfo.getField(obj, fieldName);  
-        if (field != null) {  
-            field.setAccessible(true);  
-            try {  
-                result = field.get(obj);  
-            } catch (IllegalArgumentException e) {  
-                // TODO Auto-generated catch block  
-                e.printStackTrace();  
-            } catch (IllegalAccessException e) {  
-                // TODO Auto-generated catch block  
-                e.printStackTrace();  
-            }  
-        }  
-        return result;  
-    }  
-    
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * 利用反射获取指定对象的指定属性
+	 * 
+	 * @param obj
+	 *            目标对象
+	 * @param fieldName
+	 *            目标属性
+	 * @return 目标属性的值
+	 */
+	public static Object getFieldValue(Object obj, String fieldName) {
+		Object result = null;
+		Field field = ContextInfo.getField(obj, fieldName);
+		if (field != null) {
+			field.setAccessible(true);
+			try {
+				result = field.get(obj);
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
 }

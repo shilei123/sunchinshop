@@ -1,4 +1,4 @@
-package cn.sqhl.shop.vo;
+package cn.sqhl.shop.po;
 
 import java.util.Date;
 

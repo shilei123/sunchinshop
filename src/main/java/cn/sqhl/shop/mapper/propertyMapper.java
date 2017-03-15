@@ -1,6 +1,6 @@
 package cn.sqhl.shop.mapper;
 
-import cn.sqhl.shop.vo.property;
+import cn.sqhl.shop.po.property;
 
 public interface propertyMapper {
     int deleteByPrimaryKey(String id);

@@ -9,180 +9,26 @@
     <result column="LEVELS" jdbcType="CHAR" property="levels" />
     <result column="LOGO" jdbcType="VARCHAR" property="logo" />
     <result column="URL" jdbcType="VARCHAR" property="url" />
-    <result column="ISUSE" jdbcType="CHAR" property="isuse" />
     <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
     <result column="CATE_CODE" jdbcType="VARCHAR" property="cateCode" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="FLAG" jdbcType="CHAR" property="flag" />
+    <result column="ISBRAND" jdbcType="CHAR" property="isbrand" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, CATE_NAME, MEMO, CATE_ORDER, LEVELS, LOGO, URL, ISUSE, PARENT_ID, CATE_CODE, 
-    CREATE_TIME, UPDATE_TIME, FLAG
+    ID, CATE_NAME, MEMO, CATE_ORDER, LEVELS, LOGO, URL, PARENT_ID, CATE_CODE, 
+    CREATE_TIME, UPDATE_TIME, ISBRAND
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="queryList" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from SC_CATEGORY
-    where ID = #{id,jdbcType=VARCHAR}
+    where isuse='1' and flag='1'
+    <if test="map.parent_id != null" >
+    	and PARENT_ID=#{map.parent_id,jdbcType=VARCHAR}
+    </if>
+    <if test="map.level != null" >
+    	and PARENT_ID=#{map.level,jdbcType=VARCHAR}
+    </if>
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from SC_CATEGORY
-    where ID = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="cn.sqhl.shop.vo.category">
-    insert into SC_CATEGORY (ID, CATE_NAME, MEMO, 
-      CATE_ORDER, LEVELS, LOGO, 
-      URL, ISUSE, PARENT_ID, 
-      CATE_CODE, CREATE_TIME, UPDATE_TIME, 
-      FLAG)
-    values (#{id,jdbcType=VARCHAR}, #{cateName,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
-      #{cateOrder,jdbcType=CHAR}, #{levels,jdbcType=CHAR}, #{logo,jdbcType=VARCHAR}, 
-      #{url,jdbcType=VARCHAR}, #{isuse,jdbcType=CHAR}, #{parentId,jdbcType=VARCHAR}, 
-      #{cateCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{flag,jdbcType=CHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="cn.sqhl.shop.vo.category">
-    insert into SC_CATEGORY
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        ID,
-      </if>
-      <if test="cateName != null">
-        CATE_NAME,
-      </if>
-      <if test="memo != null">
-        MEMO,
-      </if>
-      <if test="cateOrder != null">
-        CATE_ORDER,
-      </if>
-      <if test="levels != null">
-        LEVELS,
-      </if>
-      <if test="logo != null">
-        LOGO,
-      </if>
-      <if test="url != null">
-        URL,
-      </if>
-      <if test="isuse != null">
-        ISUSE,
-      </if>
-      <if test="parentId != null">
-        PARENT_ID,
-      </if>
-      <if test="cateCode != null">
-        CATE_CODE,
-      </if>
-      <if test="createTime != null">
-        CREATE_TIME,
-      </if>
-      <if test="updateTime != null">
-        UPDATE_TIME,
-      </if>
-      <if test="flag != null">
-        FLAG,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="cateName != null">
-        #{cateName,jdbcType=VARCHAR},
-      </if>
-      <if test="memo != null">
-        #{memo,jdbcType=VARCHAR},
-      </if>
-      <if test="cateOrder != null">
-        #{cateOrder,jdbcType=CHAR},
-      </if>
-      <if test="levels != null">
-        #{levels,jdbcType=CHAR},
-      </if>
-      <if test="logo != null">
-        #{logo,jdbcType=VARCHAR},
-      </if>
-      <if test="url != null">
-        #{url,jdbcType=VARCHAR},
-      </if>
-      <if test="isuse != null">
-        #{isuse,jdbcType=CHAR},
-      </if>
-      <if test="parentId != null">
-        #{parentId,jdbcType=VARCHAR},
-      </if>
-      <if test="cateCode != null">
-        #{cateCode,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="flag != null">
-        #{flag,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.vo.category">
-    update SC_CATEGORY
-    <set>
-      <if test="cateName != null">
-        CATE_NAME = #{cateName,jdbcType=VARCHAR},
-      </if>
-      <if test="memo != null">
-        MEMO = #{memo,jdbcType=VARCHAR},
-      </if>
-      <if test="cateOrder != null">
-        CATE_ORDER = #{cateOrder,jdbcType=CHAR},
-      </if>
-      <if test="levels != null">
-        LEVELS = #{levels,jdbcType=CHAR},
-      </if>
-      <if test="logo != null">
-        LOGO = #{logo,jdbcType=VARCHAR},
-      </if>
-      <if test="url != null">
-        URL = #{url,jdbcType=VARCHAR},
-      </if>
-      <if test="isuse != null">
-        ISUSE = #{isuse,jdbcType=CHAR},
-      </if>
-      <if test="parentId != null">
-        PARENT_ID = #{parentId,jdbcType=VARCHAR},
-      </if>
-      <if test="cateCode != null">
-        CATE_CODE = #{cateCode,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="flag != null">
-        FLAG = #{flag,jdbcType=CHAR},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.vo.category">
-    update SC_CATEGORY
-    set CATE_NAME = #{cateName,jdbcType=VARCHAR},
-      MEMO = #{memo,jdbcType=VARCHAR},
-      CATE_ORDER = #{cateOrder,jdbcType=CHAR},
-      LEVELS = #{levels,jdbcType=CHAR},
-      LOGO = #{logo,jdbcType=VARCHAR},
-      URL = #{url,jdbcType=VARCHAR},
-      ISUSE = #{isuse,jdbcType=CHAR},
-      PARENT_ID = #{parentId,jdbcType=VARCHAR},
-      CATE_CODE = #{cateCode,jdbcType=VARCHAR},
-      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
-      FLAG = #{flag,jdbcType=CHAR}
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
 </mapper>

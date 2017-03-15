@@ -10,7 +10,7 @@ import java.util.Properties;
 /**
  * Prop. Prop can load properties file from CLASSPATH or File object.
  */
-public class Prop {
+public class PropertiesHelper {
 	
 	private Properties properties = null;
 	
@@ -18,7 +18,7 @@ public class Prop {
 	 * Prop constructor.
 	 * @see #Prop(String, String)
 	 */
-	public Prop(String fileName) {
+	public PropertiesHelper(String fileName) {
 		this(fileName, "utf-8");
 	}
 	
@@ -35,7 +35,7 @@ public class Prop {
 	 * @param fileName the properties file's name in classpath or the sub directory of classpath
 	 * @param encoding the encoding
 	 */
-	public Prop(String fileName, String encoding) {
+	public PropertiesHelper(String fileName, String encoding) {
 		InputStream inputStream = null;
 		try {
 			inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName);		// properties.load(Prop.class.getResourceAsStream(fileName));
@@ -55,7 +55,7 @@ public class Prop {
 	 * Prop constructor.
 	 * @see #Prop(File, String)
 	 */
-	public Prop(File file) {
+	public PropertiesHelper(File file) {
 		this(file, "utf-8");
 	}
 	
@@ -69,7 +69,7 @@ public class Prop {
 	 * @param file the properties File object
 	 * @param encoding the encoding
 	 */
-	public Prop(File file, String encoding) {
+	public PropertiesHelper(File file, String encoding) {
 		if (file == null)
 			throw new IllegalArgumentException("File can not be null.");
 		if (file.isFile() == false)

@@ -1,15 +1,15 @@
 package cn.sqhl.shop.mapper;
 
-import cn.sqhl.shop.vo.eventsInfo;
+import cn.sqhl.shop.po.eventsInfo;
 
 public interface eventsInfoMapper {
-    int deleteByPrimaryKey(String vId);
+    int deleteByPrimaryKey(String id);
 
     int insert(eventsInfo record);
 
     int insertSelective(eventsInfo record);
 
-    eventsInfo selectByPrimaryKey(String vId);
+    eventsInfo selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(eventsInfo record);
 

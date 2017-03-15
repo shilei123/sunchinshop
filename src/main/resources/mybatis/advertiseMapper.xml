@@ -1,199 +1,199 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.sqhl.shop.mapper.advertiseMapper">
-  <resultMap id="BaseResultMap" type="cn.sqhl.shop.vo.advertise">
-    <id column="V_ID" jdbcType="VARCHAR" property="vId" />
-    <result column="V_NAME" jdbcType="VARCHAR" property="vName" />
-    <result column="V_MEMO" jdbcType="VARCHAR" property="vMemo" />
-    <result column="V_LINKKIND" jdbcType="VARCHAR" property="vLinkkind" />
-    <result column="V_IMGLINK" jdbcType="VARCHAR" property="vImglink" />
-    <result column="V_ORDERNUMB" jdbcType="VARCHAR" property="vOrdernumb" />
-    <result column="V_TYPE" jdbcType="VARCHAR" property="vType" />
-    <result column="V_ISUSE" jdbcType="CHAR" property="vIsuse" />
-    <result column="V_KIND" jdbcType="VARCHAR" property="vKind" />
-    <result column="V_START_TIME" jdbcType="TIMESTAMP" property="vStartTime" />
-    <result column="V_END_TIME" jdbcType="TIMESTAMP" property="vEndTime" />
-    <result column="V_CREATE_TIME" jdbcType="TIMESTAMP" property="vCreateTime" />
-    <result column="V_UPDATE_TIME" jdbcType="TIMESTAMP" property="vUpdateTime" />
-    <result column="V_FLAG" jdbcType="CHAR" property="vFlag" />
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.advertise">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    <result column="LINKKIND" jdbcType="VARCHAR" property="linkkind" />
+    <result column="IMGLINK" jdbcType="VARCHAR" property="imglink" />
+    <result column="ORDERNUMB" jdbcType="VARCHAR" property="ordernumb" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="ISUSE" jdbcType="CHAR" property="isuse" />
+    <result column="KIND" jdbcType="VARCHAR" property="kind" />
+    <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="FLAG" jdbcType="CHAR" property="flag" />
   </resultMap>
   <sql id="Base_Column_List">
-    V_ID, V_NAME, V_MEMO, V_LINKKIND, V_IMGLINK, V_ORDERNUMB, V_TYPE, V_ISUSE, V_KIND, 
-    V_START_TIME, V_END_TIME, V_CREATE_TIME, V_UPDATE_TIME, V_FLAG
+    ID, NAME, MEMO, LINKKIND, IMGLINK, ORDERNUMB, TYPE, ISUSE, KIND, START_TIME, END_TIME, 
+    CREATE_TIME, UPDATE_TIME, FLAG
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from SC_ADVERTISE
-    where V_ID = #{vId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from SC_ADVERTISE
-    where V_ID = #{vId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="cn.sqhl.shop.vo.advertise">
-    insert into SC_ADVERTISE (V_ID, V_NAME, V_MEMO, 
-      V_LINKKIND, V_IMGLINK, V_ORDERNUMB, 
-      V_TYPE, V_ISUSE, V_KIND, 
-      V_START_TIME, V_END_TIME, V_CREATE_TIME, 
-      V_UPDATE_TIME, V_FLAG)
-    values (#{vId,jdbcType=VARCHAR}, #{vName,jdbcType=VARCHAR}, #{vMemo,jdbcType=VARCHAR}, 
-      #{vLinkkind,jdbcType=VARCHAR}, #{vImglink,jdbcType=VARCHAR}, #{vOrdernumb,jdbcType=VARCHAR}, 
-      #{vType,jdbcType=VARCHAR}, #{vIsuse,jdbcType=CHAR}, #{vKind,jdbcType=VARCHAR}, 
-      #{vStartTime,jdbcType=TIMESTAMP}, #{vEndTime,jdbcType=TIMESTAMP}, #{vCreateTime,jdbcType=TIMESTAMP}, 
-      #{vUpdateTime,jdbcType=TIMESTAMP}, #{vFlag,jdbcType=CHAR})
+  <insert id="insert" parameterType="cn.sqhl.shop.po.advertise">
+    insert into SC_ADVERTISE (ID, NAME, MEMO, 
+      LINKKIND, IMGLINK, ORDERNUMB, 
+      TYPE, ISUSE, KIND, START_TIME, 
+      END_TIME, CREATE_TIME, UPDATE_TIME, 
+      FLAG)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
+      #{linkkind,jdbcType=VARCHAR}, #{imglink,jdbcType=VARCHAR}, #{ordernumb,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{isuse,jdbcType=CHAR}, #{kind,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{flag,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="cn.sqhl.shop.vo.advertise">
+  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.advertise">
     insert into SC_ADVERTISE
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="vId != null">
-        V_ID,
+      <if test="id != null">
+        ID,
       </if>
-      <if test="vName != null">
-        V_NAME,
+      <if test="name != null">
+        NAME,
       </if>
-      <if test="vMemo != null">
-        V_MEMO,
+      <if test="memo != null">
+        MEMO,
       </if>
-      <if test="vLinkkind != null">
-        V_LINKKIND,
+      <if test="linkkind != null">
+        LINKKIND,
       </if>
-      <if test="vImglink != null">
-        V_IMGLINK,
+      <if test="imglink != null">
+        IMGLINK,
       </if>
-      <if test="vOrdernumb != null">
-        V_ORDERNUMB,
+      <if test="ordernumb != null">
+        ORDERNUMB,
       </if>
-      <if test="vType != null">
-        V_TYPE,
+      <if test="type != null">
+        TYPE,
       </if>
-      <if test="vIsuse != null">
-        V_ISUSE,
+      <if test="isuse != null">
+        ISUSE,
       </if>
-      <if test="vKind != null">
-        V_KIND,
+      <if test="kind != null">
+        KIND,
       </if>
-      <if test="vStartTime != null">
-        V_START_TIME,
+      <if test="startTime != null">
+        START_TIME,
       </if>
-      <if test="vEndTime != null">
-        V_END_TIME,
+      <if test="endTime != null">
+        END_TIME,
       </if>
-      <if test="vCreateTime != null">
-        V_CREATE_TIME,
+      <if test="createTime != null">
+        CREATE_TIME,
       </if>
-      <if test="vUpdateTime != null">
-        V_UPDATE_TIME,
+      <if test="updateTime != null">
+        UPDATE_TIME,
       </if>
-      <if test="vFlag != null">
-        V_FLAG,
+      <if test="flag != null">
+        FLAG,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="vId != null">
-        #{vId,jdbcType=VARCHAR},
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
       </if>
-      <if test="vName != null">
-        #{vName,jdbcType=VARCHAR},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="vMemo != null">
-        #{vMemo,jdbcType=VARCHAR},
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
       </if>
-      <if test="vLinkkind != null">
-        #{vLinkkind,jdbcType=VARCHAR},
+      <if test="linkkind != null">
+        #{linkkind,jdbcType=VARCHAR},
       </if>
-      <if test="vImglink != null">
-        #{vImglink,jdbcType=VARCHAR},
+      <if test="imglink != null">
+        #{imglink,jdbcType=VARCHAR},
       </if>
-      <if test="vOrdernumb != null">
-        #{vOrdernumb,jdbcType=VARCHAR},
+      <if test="ordernumb != null">
+        #{ordernumb,jdbcType=VARCHAR},
       </if>
-      <if test="vType != null">
-        #{vType,jdbcType=VARCHAR},
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
       </if>
-      <if test="vIsuse != null">
-        #{vIsuse,jdbcType=CHAR},
+      <if test="isuse != null">
+        #{isuse,jdbcType=CHAR},
       </if>
-      <if test="vKind != null">
-        #{vKind,jdbcType=VARCHAR},
+      <if test="kind != null">
+        #{kind,jdbcType=VARCHAR},
       </if>
-      <if test="vStartTime != null">
-        #{vStartTime,jdbcType=TIMESTAMP},
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="vEndTime != null">
-        #{vEndTime,jdbcType=TIMESTAMP},
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="vCreateTime != null">
-        #{vCreateTime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="vUpdateTime != null">
-        #{vUpdateTime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="vFlag != null">
-        #{vFlag,jdbcType=CHAR},
+      <if test="flag != null">
+        #{flag,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.vo.advertise">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.advertise">
     update SC_ADVERTISE
     <set>
-      <if test="vName != null">
-        V_NAME = #{vName,jdbcType=VARCHAR},
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="vMemo != null">
-        V_MEMO = #{vMemo,jdbcType=VARCHAR},
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=VARCHAR},
       </if>
-      <if test="vLinkkind != null">
-        V_LINKKIND = #{vLinkkind,jdbcType=VARCHAR},
+      <if test="linkkind != null">
+        LINKKIND = #{linkkind,jdbcType=VARCHAR},
       </if>
-      <if test="vImglink != null">
-        V_IMGLINK = #{vImglink,jdbcType=VARCHAR},
+      <if test="imglink != null">
+        IMGLINK = #{imglink,jdbcType=VARCHAR},
       </if>
-      <if test="vOrdernumb != null">
-        V_ORDERNUMB = #{vOrdernumb,jdbcType=VARCHAR},
+      <if test="ordernumb != null">
+        ORDERNUMB = #{ordernumb,jdbcType=VARCHAR},
       </if>
-      <if test="vType != null">
-        V_TYPE = #{vType,jdbcType=VARCHAR},
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
       </if>
-      <if test="vIsuse != null">
-        V_ISUSE = #{vIsuse,jdbcType=CHAR},
+      <if test="isuse != null">
+        ISUSE = #{isuse,jdbcType=CHAR},
       </if>
-      <if test="vKind != null">
-        V_KIND = #{vKind,jdbcType=VARCHAR},
+      <if test="kind != null">
+        KIND = #{kind,jdbcType=VARCHAR},
       </if>
-      <if test="vStartTime != null">
-        V_START_TIME = #{vStartTime,jdbcType=TIMESTAMP},
+      <if test="startTime != null">
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="vEndTime != null">
-        V_END_TIME = #{vEndTime,jdbcType=TIMESTAMP},
+      <if test="endTime != null">
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="vCreateTime != null">
-        V_CREATE_TIME = #{vCreateTime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="vUpdateTime != null">
-        V_UPDATE_TIME = #{vUpdateTime,jdbcType=TIMESTAMP},
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="vFlag != null">
-        V_FLAG = #{vFlag,jdbcType=CHAR},
+      <if test="flag != null">
+        FLAG = #{flag,jdbcType=CHAR},
       </if>
     </set>
-    where V_ID = #{vId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.vo.advertise">
+  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.advertise">
     update SC_ADVERTISE
-    set V_NAME = #{vName,jdbcType=VARCHAR},
-      V_MEMO = #{vMemo,jdbcType=VARCHAR},
-      V_LINKKIND = #{vLinkkind,jdbcType=VARCHAR},
-      V_IMGLINK = #{vImglink,jdbcType=VARCHAR},
-      V_ORDERNUMB = #{vOrdernumb,jdbcType=VARCHAR},
-      V_TYPE = #{vType,jdbcType=VARCHAR},
-      V_ISUSE = #{vIsuse,jdbcType=CHAR},
-      V_KIND = #{vKind,jdbcType=VARCHAR},
-      V_START_TIME = #{vStartTime,jdbcType=TIMESTAMP},
-      V_END_TIME = #{vEndTime,jdbcType=TIMESTAMP},
-      V_CREATE_TIME = #{vCreateTime,jdbcType=TIMESTAMP},
-      V_UPDATE_TIME = #{vUpdateTime,jdbcType=TIMESTAMP},
-      V_FLAG = #{vFlag,jdbcType=CHAR}
-    where V_ID = #{vId,jdbcType=VARCHAR}
+    set NAME = #{name,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      LINKKIND = #{linkkind,jdbcType=VARCHAR},
+      IMGLINK = #{imglink,jdbcType=VARCHAR},
+      ORDERNUMB = #{ordernumb,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      ISUSE = #{isuse,jdbcType=CHAR},
+      KIND = #{kind,jdbcType=VARCHAR},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      FLAG = #{flag,jdbcType=CHAR}
+    where ID = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

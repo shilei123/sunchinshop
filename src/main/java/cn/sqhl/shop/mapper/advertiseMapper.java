@@ -1,15 +1,15 @@
 package cn.sqhl.shop.mapper;
 
-import cn.sqhl.shop.vo.advertise;
+import cn.sqhl.shop.po.advertise;
 
 public interface advertiseMapper {
-    int deleteByPrimaryKey(String vId);
+    int deleteByPrimaryKey(String id);
 
     int insert(advertise record);
 
     int insertSelective(advertise record);
 
-    advertise selectByPrimaryKey(String vId);
+    advertise selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(advertise record);
 

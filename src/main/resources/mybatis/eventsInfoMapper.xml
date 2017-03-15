@@ -1,142 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.sqhl.shop.mapper.eventsInfoMapper">
-  <resultMap id="BaseResultMap" type="cn.sqhl.shop.vo.eventsInfo">
-    <id column="V_ID" jdbcType="VARCHAR" property="vId" />
-    <result column="V_NAME" jdbcType="VARCHAR" property="vName" />
-    <result column="V_ISUSE" jdbcType="CHAR" property="vIsuse" />
-    <result column="V_MEMO" jdbcType="VARCHAR" property="vMemo" />
-    <result column="V_STARTTIME" jdbcType="TIMESTAMP" property="vStarttime" />
-    <result column="V_ENDTIME" jdbcType="TIMESTAMP" property="vEndtime" />
-    <result column="V_CREATETIME" jdbcType="TIMESTAMP" property="vCreatetime" />
-    <result column="V_UPDATETIME" jdbcType="TIMESTAMP" property="vUpdatetime" />
-    <result column="V_FLAG" jdbcType="CHAR" property="vFlag" />
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.eventsInfo">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="ISUSE" jdbcType="CHAR" property="isuse" />
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    <result column="STARTTIME" jdbcType="TIMESTAMP" property="starttime" />
+    <result column="ENDTIME" jdbcType="TIMESTAMP" property="endtime" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="UPDATETIME" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="FLAG" jdbcType="CHAR" property="flag" />
   </resultMap>
   <sql id="Base_Column_List">
-    V_ID, V_NAME, V_ISUSE, V_MEMO, V_STARTTIME, V_ENDTIME, V_CREATETIME, V_UPDATETIME, 
-    V_FLAG
+    ID, NAME, ISUSE, MEMO, STARTTIME, ENDTIME, CREATETIME, UPDATETIME, FLAG
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from SC_EVENTSINFO
-    where V_ID = #{vId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from SC_EVENTSINFO
-    where V_ID = #{vId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="cn.sqhl.shop.vo.eventsInfo">
-    insert into SC_EVENTSINFO (V_ID, V_NAME, V_ISUSE, 
-      V_MEMO, V_STARTTIME, V_ENDTIME, 
-      V_CREATETIME, V_UPDATETIME, V_FLAG
+  <insert id="insert" parameterType="cn.sqhl.shop.po.eventsInfo">
+    insert into SC_EVENTSINFO (ID, NAME, ISUSE, 
+      MEMO, STARTTIME, ENDTIME, 
+      CREATETIME, UPDATETIME, FLAG
       )
-    values (#{vId,jdbcType=VARCHAR}, #{vName,jdbcType=VARCHAR}, #{vIsuse,jdbcType=CHAR}, 
-      #{vMemo,jdbcType=VARCHAR}, #{vStarttime,jdbcType=TIMESTAMP}, #{vEndtime,jdbcType=TIMESTAMP}, 
-      #{vCreatetime,jdbcType=TIMESTAMP}, #{vUpdatetime,jdbcType=TIMESTAMP}, #{vFlag,jdbcType=CHAR}
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{isuse,jdbcType=CHAR}, 
+      #{memo,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{flag,jdbcType=CHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="cn.sqhl.shop.vo.eventsInfo">
+  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.eventsInfo">
     insert into SC_EVENTSINFO
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="vId != null">
-        V_ID,
+      <if test="id != null">
+        ID,
       </if>
-      <if test="vName != null">
-        V_NAME,
+      <if test="name != null">
+        NAME,
       </if>
-      <if test="vIsuse != null">
-        V_ISUSE,
+      <if test="isuse != null">
+        ISUSE,
       </if>
-      <if test="vMemo != null">
-        V_MEMO,
+      <if test="memo != null">
+        MEMO,
       </if>
-      <if test="vStarttime != null">
-        V_STARTTIME,
+      <if test="starttime != null">
+        STARTTIME,
       </if>
-      <if test="vEndtime != null">
-        V_ENDTIME,
+      <if test="endtime != null">
+        ENDTIME,
       </if>
-      <if test="vCreatetime != null">
-        V_CREATETIME,
+      <if test="createtime != null">
+        CREATETIME,
       </if>
-      <if test="vUpdatetime != null">
-        V_UPDATETIME,
+      <if test="updatetime != null">
+        UPDATETIME,
       </if>
-      <if test="vFlag != null">
-        V_FLAG,
+      <if test="flag != null">
+        FLAG,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="vId != null">
-        #{vId,jdbcType=VARCHAR},
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
       </if>
-      <if test="vName != null">
-        #{vName,jdbcType=VARCHAR},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="vIsuse != null">
-        #{vIsuse,jdbcType=CHAR},
+      <if test="isuse != null">
+        #{isuse,jdbcType=CHAR},
       </if>
-      <if test="vMemo != null">
-        #{vMemo,jdbcType=VARCHAR},
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
       </if>
-      <if test="vStarttime != null">
-        #{vStarttime,jdbcType=TIMESTAMP},
+      <if test="starttime != null">
+        #{starttime,jdbcType=TIMESTAMP},
       </if>
-      <if test="vEndtime != null">
-        #{vEndtime,jdbcType=TIMESTAMP},
+      <if test="endtime != null">
+        #{endtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="vCreatetime != null">
-        #{vCreatetime,jdbcType=TIMESTAMP},
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="vUpdatetime != null">
-        #{vUpdatetime,jdbcType=TIMESTAMP},
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
       </if>
-      <if test="vFlag != null">
-        #{vFlag,jdbcType=CHAR},
+      <if test="flag != null">
+        #{flag,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.vo.eventsInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.eventsInfo">
     update SC_EVENTSINFO
     <set>
-      <if test="vName != null">
-        V_NAME = #{vName,jdbcType=VARCHAR},
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="vIsuse != null">
-        V_ISUSE = #{vIsuse,jdbcType=CHAR},
+      <if test="isuse != null">
+        ISUSE = #{isuse,jdbcType=CHAR},
       </if>
-      <if test="vMemo != null">
-        V_MEMO = #{vMemo,jdbcType=VARCHAR},
+      <if test="memo != null">
+        MEMO = #{memo,jdbcType=VARCHAR},
       </if>
-      <if test="vStarttime != null">
-        V_STARTTIME = #{vStarttime,jdbcType=TIMESTAMP},
+      <if test="starttime != null">
+        STARTTIME = #{starttime,jdbcType=TIMESTAMP},
       </if>
-      <if test="vEndtime != null">
-        V_ENDTIME = #{vEndtime,jdbcType=TIMESTAMP},
+      <if test="endtime != null">
+        ENDTIME = #{endtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="vCreatetime != null">
-        V_CREATETIME = #{vCreatetime,jdbcType=TIMESTAMP},
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="vUpdatetime != null">
-        V_UPDATETIME = #{vUpdatetime,jdbcType=TIMESTAMP},
+      <if test="updatetime != null">
+        UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
       </if>
-      <if test="vFlag != null">
-        V_FLAG = #{vFlag,jdbcType=CHAR},
+      <if test="flag != null">
+        FLAG = #{flag,jdbcType=CHAR},
       </if>
     </set>
-    where V_ID = #{vId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.vo.eventsInfo">
+  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.eventsInfo">
     update SC_EVENTSINFO
-    set V_NAME = #{vName,jdbcType=VARCHAR},
-      V_ISUSE = #{vIsuse,jdbcType=CHAR},
-      V_MEMO = #{vMemo,jdbcType=VARCHAR},
-      V_STARTTIME = #{vStarttime,jdbcType=TIMESTAMP},
-      V_ENDTIME = #{vEndtime,jdbcType=TIMESTAMP},
-      V_CREATETIME = #{vCreatetime,jdbcType=TIMESTAMP},
-      V_UPDATETIME = #{vUpdatetime,jdbcType=TIMESTAMP},
-      V_FLAG = #{vFlag,jdbcType=CHAR}
-    where V_ID = #{vId,jdbcType=VARCHAR}
+    set NAME = #{name,jdbcType=VARCHAR},
+      ISUSE = #{isuse,jdbcType=CHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      STARTTIME = #{starttime,jdbcType=TIMESTAMP},
+      ENDTIME = #{endtime,jdbcType=TIMESTAMP},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
+      FLAG = #{flag,jdbcType=CHAR}
+    where ID = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

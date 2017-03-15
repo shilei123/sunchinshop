@@ -1,4 +1,4 @@
-package cn.sqhl.shop.vo;
+package cn.sqhl.shop.po;
 
 import java.math.BigDecimal;
 import java.util.Date;

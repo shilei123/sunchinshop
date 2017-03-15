@@ -1,6 +1,6 @@
 package cn.sqhl.shop.mapper;
 
-import cn.sqhl.shop.vo.coupon;
+import cn.sqhl.shop.po.coupon;
 
 public interface couponMapper {
     int deleteByPrimaryKey(String id);

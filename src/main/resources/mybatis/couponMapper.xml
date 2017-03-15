@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.sqhl.shop.mapper.couponMapper">
-  <resultMap id="BaseResultMap" type="cn.sqhl.shop.vo.coupon">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.coupon">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="COUPON_NAME" jdbcType="VARCHAR" property="couponName" />
     <result column="COUPON_TYPE" jdbcType="VARCHAR" property="couponType" />
@@ -31,7 +31,7 @@
     delete from SC_COUPON
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="cn.sqhl.shop.vo.coupon">
+  <insert id="insert" parameterType="cn.sqhl.shop.po.coupon">
     insert into SC_COUPON (ID, COUPON_NAME, COUPON_TYPE, 
       COUPON_ZS_BALANCE, COUPON_BLANCE, COUPON_XF_BALANCE, 
       COUPON_EXPIRY_DATE, COUPON_REMARK, COUPON_STATUS, 
@@ -43,7 +43,7 @@
       #{couponFlag,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{optionAdminid,jdbcType=VARCHAR}, 
       #{optionTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="cn.sqhl.shop.vo.coupon">
+  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.coupon">
     insert into SC_COUPON
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -128,7 +128,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.vo.coupon">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.coupon">
     update SC_COUPON
     <set>
       <if test="couponName != null">
@@ -170,7 +170,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.vo.coupon">
+  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.coupon">
     update SC_COUPON
     set COUPON_NAME = #{couponName,jdbcType=VARCHAR},
       COUPON_TYPE = #{couponType,jdbcType=VARCHAR},

@@ -1,4 +1,4 @@
-package cn.sqhl.shop.vo;
+package cn.sqhl.shop.po;
 
 import java.util.Date;
 
@@ -17,6 +17,8 @@ public class category {
 
     private String url;
 
+    private String isuse;
+
     private String parentId;
 
     private String cateCode;
@@ -24,6 +26,8 @@ public class category {
     private Date createTime;
 
     private Date updateTime;
+
+    private String flag;
 
     private String isbrand;
 
@@ -83,6 +87,14 @@ public class category {
         this.url = url == null ? null : url.trim();
     }
 
+    public String getIsuse() {
+        return isuse;
+    }
+
+    public void setIsuse(String isuse) {
+        this.isuse = isuse == null ? null : isuse.trim();
+    }
+
     public String getParentId() {
         return parentId;
     }
@@ -113,6 +125,14 @@ public class category {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag == null ? null : flag.trim();
     }
 
     public String getIsbrand() {

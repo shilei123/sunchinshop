@@ -1,6 +1,6 @@
 package cn.sqhl.shop.mapper;
 
-import cn.sqhl.shop.vo.dictionary;
+import cn.sqhl.shop.po.dictionary;
 
 public interface dictionaryMapper {
     int deleteByPrimaryKey(String id);
