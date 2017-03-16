@@ -1,17 +1,14 @@
 package cn.sqhl.shop.mapper;
 
-import cn.sqhl.shop.po.dictionary;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
+import cn.sqhl.shop.core.PageCond;
+import cn.sqhl.shop.vo.dictionary;
+import cn.sqhl.shop.core.PaginationInterceptor;
 
 public interface dictionaryMapper {
-    int deleteByPrimaryKey(String id);
-
-    int insert(dictionary record);
-
-    int insertSelective(dictionary record);
-
-    dictionary selectByPrimaryKey(String id);
-
-    int updateByPrimaryKeySelective(dictionary record);
-
-    int updateByPrimaryKey(dictionary record);
+    List<dictionary> queryDictionary(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
 }

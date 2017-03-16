@@ -30,5 +30,6 @@
     <if test="map.level != null" >
     	and PARENT_ID=#{map.level,jdbcType=VARCHAR}
     </if>
+    order by CATE_ORDER desc
   </select>
 </mapper>
