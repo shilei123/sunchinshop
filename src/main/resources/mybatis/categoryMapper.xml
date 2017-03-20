@@ -11,8 +11,8 @@
     <result column="URL" jdbcType="VARCHAR" property="url" />
     <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
     <result column="CATE_CODE" jdbcType="VARCHAR" property="cateCode" />
-    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
     <result column="ISBRAND" jdbcType="CHAR" property="isbrand" />
   </resultMap>
   <sql id="Base_Column_List">

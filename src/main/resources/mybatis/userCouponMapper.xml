@@ -13,7 +13,7 @@
     <result column="COUPON_EXPIRYDATE" jdbcType="TIMESTAMP" property="couponExpirydate" />
     <result column="ORDER_SN" jdbcType="VARCHAR" property="orderSn" />
     <result column="COUPON_STATUS" jdbcType="CHAR" property="couponStatus" />
-    <result column="OPTION_TIME" jdbcType="TIMESTAMP" property="optionTime" />
+    <result column="OPTION_TIME" jdbcType="TIMESTAMP" property="optionTime"/>
     <result column="OPTION_ADMINID" jdbcType="VARCHAR" property="optionAdminid" />
     <result column="OPTION_REMARK" jdbcType="VARCHAR" property="optionRemark" />
   </resultMap>
@@ -34,7 +34,7 @@
   </delete>
   <insert id="insert" parameterType="cn.sqhl.shop.po.userCoupon">
     insert into SC_USER_COUPON (ID, USER_ID, USER_NAME, 
-      COUPON_ID, COUPON_NAME, COUPON_BLANCE, 
+      COUPON_ID, COUPON_NAME, COUPON_BLANCE,  
       COUPON_XF_BALANCE, COUPON_CREATDATE, COUPON_EXPIRYDATE, 
       ORDER_SN, COUPON_STATUS, OPTION_TIME, 
       OPTION_ADMINID, OPTION_REMARK)
@@ -197,4 +197,30 @@
       OPTION_REMARK = #{optionRemark,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+ 
+  
+  <resultMap id="UserCouponMap" type="cn.sqhl.shop.vo.userCoupon">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="COUPON_ID" jdbcType="VARCHAR" property="couponId" />
+    <result column="COUPON_NAME" jdbcType="VARCHAR" property="couponName" />
+    <result column="COUPON_BLANCE" jdbcType="DECIMAL" property="couponBlance" />
+    <result column="COUPON_XF_BALANCE" jdbcType="DECIMAL" property="couponXfBalance" />
+    <result column="COUPON_CREATDATE" jdbcType="TIMESTAMP" property="couponCreatdate" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="COUPON_EXPIRYDATE" jdbcType="TIMESTAMP" property="couponExpirydate" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="ORDER_SN" jdbcType="VARCHAR" property="orderSn" />
+    <result column="COUPON_STATUS" jdbcType="CHAR" property="couponStatus" />
+    <result column="OPTION_TIME" jdbcType="TIMESTAMP" property="optionTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+  </resultMap>
+  <sql id="UserCoupon_List">
+    ID, USER_ID, USER_NAME, COUPON_ID, COUPON_NAME, COUPON_BLANCE, COUPON_XF_BALANCE, 
+    COUPON_CREATDATE, COUPON_EXPIRYDATE, ORDER_SN, COUPON_STATUS, OPTION_TIME,
+  </sql>
+  <select id="queryUserCouponList" parameterType="java.lang.String" resultMap="UserCouponMap">
+    select 
+    <include refid="UserCoupon_List" />
+    from SC_USER_COUPON
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
 </mapper>

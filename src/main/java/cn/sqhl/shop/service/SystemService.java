@@ -1,4 +1,4 @@
-package cn.sqhl.shop.filter.service;
+package cn.sqhl.shop.service;
 
 import java.util.List;
 

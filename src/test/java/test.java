@@ -1,3 +1,4 @@
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -26,8 +27,15 @@ public class test {
 		param.put("parent_id", "");
 		param.put("pagesize", "10");
 		param.put("nowpage", "1");
+		basemap.put("servicecode", "3620170315045");
 		
-		basemap.put("servicecode", "3620170315021");
+//		param.put("type", "ATTACH_TYPE");
+//		param.put("pcode", "");
+//		param.put("pagesize", "");
+//		param.put("nowpage", "");
+//		basemap.put("servicecode", "3620170315045");
+		
+		
 		basemap.put("data", JSON.toJSONString(param));
 		
 		Map signvalue=SecurityCore.buildRequestPara(basemap);

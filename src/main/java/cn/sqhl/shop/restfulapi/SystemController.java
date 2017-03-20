@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.sqhl.shop.core.PageCond;
-import cn.sqhl.shop.filter.service.SystemService;
+import cn.sqhl.shop.service.SystemService;
 import cn.sqhl.shop.utils.security.SecurityCore;
 import cn.sqhl.shop.vo.category;
 import cn.sqhl.shop.vo.dictionary;
@@ -115,9 +115,9 @@ public class SystemController extends ContextInfo {
 						queryparam.put("pcode", pcode);
 					}
 					
-					List<dictionary> categorylist=systemService.queryDictionaryList(page, queryparam);
-					if(categorylist!=null && categorylist.size()>0){
-						data=JSON.toJSONString(categorylist);
+					List<dictionary> dictionarylist=systemService.queryDictionaryList(page, queryparam);
+					if(dictionarylist!=null && dictionarylist.size()>0){
+						data=JSON.toJSONString(dictionarylist);
 						message="查询成功";//
 					}else{
 						data=null;

@@ -1,7 +1,5 @@
 package cn.sqhl.shop.vo;
 
-import java.util.Date;
-
 public class category {
     private String id;
 
@@ -21,9 +19,9 @@ public class category {
 
     private String cateCode;
 
-    private Date createTime;
+    private String createTime;
 
-    private Date updateTime;
+    private String updateTime;
 
     private String isbrand;
 
@@ -99,19 +97,19 @@ public class category {
         this.cateCode = cateCode == null ? null : cateCode.trim();
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 

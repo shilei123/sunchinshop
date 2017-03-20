@@ -67,7 +67,7 @@
 				additivity="true">
 				<AppenderRef ref="Console" />
 			</logger>
-			<logger name="cn.sqhl.neig.pointsmanager.mapper" level="debug"
+			<logger name="cn.sqhl.neig.pointsmanager.mapper" level="info"
 				additivity="false">
 				<AppenderRef ref="Console" />
 			</logger>

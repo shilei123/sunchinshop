@@ -1,5 +1,12 @@
 package cn.sqhl.shop.mapper;
 
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
+import cn.sqhl.shop.core.PageCond;
+import cn.sqhl.shop.core.PaginationInterceptor;
 import cn.sqhl.shop.po.userCoupon;
 
 public interface userCouponMapper {
@@ -14,4 +21,6 @@ public interface userCouponMapper {
     int updateByPrimaryKeySelective(userCoupon record);
 
     int updateByPrimaryKey(userCoupon record);
+    
+    List<cn.sqhl.shop.vo.userCoupon> queryUserCouponList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
 }
