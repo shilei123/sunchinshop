@@ -23,17 +23,25 @@ public class test {
 		Map basemap=new HashMap();
 		
 		Map param=new HashMap();
-		param.put("level", "");
-		param.put("parent_id", "");
-		param.put("pagesize", "10");
-		param.put("nowpage", "1");
-		basemap.put("servicecode", "3620170315045");
+//		param.put("level", "");
+//		param.put("parent_id", "");
+//		param.put("pagesize", "10");
+//		param.put("nowpage", "1");
+//		basemap.put("servicecode", "3620170315045");
 		
 //		param.put("type", "ATTACH_TYPE");
 //		param.put("pcode", "");
 //		param.put("pagesize", "");
 //		param.put("nowpage", "");
 //		basemap.put("servicecode", "3620170315045");
+		
+//		param.put("user_id", "");
+//		param.put("user_name", "13213213");
+//		param.put("coupon_status", "");
+//		param.put("pagesize", "10");
+//		param.put("nowpage", "0");
+//		basemap.put("servicecode", "3620170315035");
+		
 		
 		
 		basemap.put("data", JSON.toJSONString(param));

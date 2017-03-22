@@ -8,8 +8,6 @@ public class userCoupon {
 
     private String userId;
 
-    private String userName;
-
     private String couponId;
 
     private String couponName;
@@ -46,14 +44,6 @@ public class userCoupon {
 
     public void setUserId(String userId) {
         this.userId = userId == null ? null : userId.trim();
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getCouponId() {

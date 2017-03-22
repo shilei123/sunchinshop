@@ -18,7 +18,7 @@ public class DateTypeHandler implements TypeHandler<Object>{
 
 	@Override
 	public Object getResult(ResultSet arg0, String arg1) throws SQLException {
-		if(arg0.getDate(arg1)!=null && StringUtils.isNotEmpty(arg0.getDate(arg1)+"")){
+		if(arg0.getDate(arg1)!=null){
 			Date dateval =new Date(arg0.getDate(arg1).getTime());//从resultset中获取该列值.由sql。date转为 util。date
 			return DateHelper.timeToString(dateval);//调用帮助方法 将 util。date 转为 string
 		}else{
@@ -28,7 +28,7 @@ public class DateTypeHandler implements TypeHandler<Object>{
 
 	@Override
 	public Object getResult(ResultSet arg0, int arg1) throws SQLException {
-		if(arg0.getDate(arg1)!=null && StringUtils.isNotEmpty(arg0.getDate(arg1)+"")){
+		if(arg0.getDate(arg1)!=null){
 			Date dateval =new Date(arg0.getDate(arg1).getTime());//从resultset中获取该列值.由sql。date转为 util。date
 			return DateHelper.timeToString(dateval);//调用帮助方法 将 util。date 转为 string
 		}else{

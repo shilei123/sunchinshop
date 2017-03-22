@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.service.UserService;
 import cn.sqhl.shop.utils.security.SecurityCore;
-import cn.sqhl.shop.vo.dictionary;
 import cn.sqhl.shop.vo.userCoupon;
 
 import com.alibaba.fastjson.JSON;

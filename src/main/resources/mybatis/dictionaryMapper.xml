@@ -12,7 +12,7 @@
   <sql id="Base_Column_List">
      TYPE, CODE, NAME, ENAME, REMARK, SORT
   </sql>
-  <select id="queryDictionary" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="queryDictionary" parameterType="java.util.Map" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from SC_DICTIONARY

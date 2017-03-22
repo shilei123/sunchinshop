@@ -4,7 +4,6 @@
   <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.userCoupon">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
-    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
     <result column="COUPON_ID" jdbcType="VARCHAR" property="couponId" />
     <result column="COUPON_NAME" jdbcType="VARCHAR" property="couponName" />
     <result column="COUPON_BLANCE" jdbcType="DECIMAL" property="couponBlance" />
@@ -13,14 +12,13 @@
     <result column="COUPON_EXPIRYDATE" jdbcType="TIMESTAMP" property="couponExpirydate" />
     <result column="ORDER_SN" jdbcType="VARCHAR" property="orderSn" />
     <result column="COUPON_STATUS" jdbcType="CHAR" property="couponStatus" />
-    <result column="OPTION_TIME" jdbcType="TIMESTAMP" property="optionTime"/>
+    <result column="OPTION_TIME" jdbcType="TIMESTAMP" property="optionTime" />
     <result column="OPTION_ADMINID" jdbcType="VARCHAR" property="optionAdminid" />
     <result column="OPTION_REMARK" jdbcType="VARCHAR" property="optionRemark" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, USER_ID, USER_NAME, COUPON_ID, COUPON_NAME, COUPON_BLANCE, COUPON_XF_BALANCE, 
-    COUPON_CREATDATE, COUPON_EXPIRYDATE, ORDER_SN, COUPON_STATUS, OPTION_TIME, OPTION_ADMINID, 
-    OPTION_REMARK
+    ID, USER_ID, COUPON_ID, COUPON_NAME, COUPON_BLANCE, COUPON_XF_BALANCE, COUPON_CREATDATE, 
+    COUPON_EXPIRYDATE, ORDER_SN, COUPON_STATUS, OPTION_TIME, OPTION_ADMINID, OPTION_REMARK
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -33,14 +31,14 @@
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="cn.sqhl.shop.po.userCoupon">
-    insert into SC_USER_COUPON (ID, USER_ID, USER_NAME, 
-      COUPON_ID, COUPON_NAME, COUPON_BLANCE,  
-      COUPON_XF_BALANCE, COUPON_CREATDATE, COUPON_EXPIRYDATE, 
+    insert into SC_USER_COUPON (ID, USER_ID, COUPON_ID, 
+      COUPON_NAME, COUPON_BLANCE, COUPON_XF_BALANCE, 
+      COUPON_CREATDATE, COUPON_EXPIRYDATE, 
       ORDER_SN, COUPON_STATUS, OPTION_TIME, 
       OPTION_ADMINID, OPTION_REMARK)
-    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
-      #{couponId,jdbcType=VARCHAR}, #{couponName,jdbcType=VARCHAR}, #{couponBlance,jdbcType=DECIMAL}, 
-      #{couponXfBalance,jdbcType=DECIMAL}, #{couponCreatdate,jdbcType=TIMESTAMP}, #{couponExpirydate,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{couponId,jdbcType=VARCHAR}, 
+      #{couponName,jdbcType=VARCHAR}, #{couponBlance,jdbcType=DECIMAL}, #{couponXfBalance,jdbcType=DECIMAL}, 
+      #{couponCreatdate,jdbcType=TIMESTAMP}, #{couponExpirydate,jdbcType=TIMESTAMP}, 
       #{orderSn,jdbcType=VARCHAR}, #{couponStatus,jdbcType=CHAR}, #{optionTime,jdbcType=TIMESTAMP}, 
       #{optionAdminid,jdbcType=VARCHAR}, #{optionRemark,jdbcType=VARCHAR})
   </insert>
@@ -52,9 +50,6 @@
       </if>
       <if test="userId != null">
         USER_ID,
-      </if>
-      <if test="userName != null">
-        USER_NAME,
       </if>
       <if test="couponId != null">
         COUPON_ID,
@@ -97,9 +92,6 @@
       <if test="userId != null">
         #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="userName != null">
-        #{userName,jdbcType=VARCHAR},
-      </if>
       <if test="couponId != null">
         #{couponId,jdbcType=VARCHAR},
       </if>
@@ -141,9 +133,6 @@
       <if test="userId != null">
         USER_ID = #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="userName != null">
-        USER_NAME = #{userName,jdbcType=VARCHAR},
-      </if>
       <if test="couponId != null">
         COUPON_ID = #{couponId,jdbcType=VARCHAR},
       </if>
@@ -183,7 +172,6 @@
   <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.userCoupon">
     update SC_USER_COUPON
     set USER_ID = #{userId,jdbcType=VARCHAR},
-      USER_NAME = #{userName,jdbcType=VARCHAR},
       COUPON_ID = #{couponId,jdbcType=VARCHAR},
       COUPON_NAME = #{couponName,jdbcType=VARCHAR},
       COUPON_BLANCE = #{couponBlance,jdbcType=DECIMAL},
@@ -197,7 +185,6 @@
       OPTION_REMARK = #{optionRemark,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
- 
   
   <resultMap id="UserCouponMap" type="cn.sqhl.shop.vo.userCoupon">
     <id column="ID" jdbcType="VARCHAR" property="id" />
@@ -214,13 +201,22 @@
     <result column="OPTION_TIME" jdbcType="TIMESTAMP" property="optionTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
   </resultMap>
   <sql id="UserCoupon_List">
-    ID, USER_ID, USER_NAME, COUPON_ID, COUPON_NAME, COUPON_BLANCE, COUPON_XF_BALANCE, 
-    COUPON_CREATDATE, COUPON_EXPIRYDATE, ORDER_SN, COUPON_STATUS, OPTION_TIME,
+    a.ID, USER_ID, USER_NAME, COUPON_ID, COUPON_NAME, COUPON_BLANCE, COUPON_XF_BALANCE, 
+    COUPON_CREATDATE, COUPON_EXPIRYDATE, ORDER_SN, COUPON_STATUS, a.OPTION_TIME
   </sql>
-  <select id="queryUserCouponList" parameterType="java.lang.String" resultMap="UserCouponMap">
+  <select id="queryUserCouponList" resultMap="UserCouponMap" parameterType="java.util.Map">
     select 
     <include refid="UserCoupon_List" />
-    from SC_USER_COUPON
-    where ID = #{id,jdbcType=VARCHAR}
+    from SC_USER_COUPON  a,sc_user b 
+    where a.user_id = b.id
+    	<if test="map.user_id != null">
+    		and USER_ID= ${map.user_id}
+    	</if>
+    	<if test="map.user_name != null">
+    		and b.USER_NAME= ${map.user_name}
+    	</if>
+    	<if test="map.coupon_status != null">
+    		and COUPON_STATUS= ${map.coupon_status}
+    	</if>
   </select>
 </mapper>

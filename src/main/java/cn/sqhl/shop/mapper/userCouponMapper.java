@@ -5,9 +5,9 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
+import cn.sqhl.shop.po.userCoupon;
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.core.PaginationInterceptor;
-import cn.sqhl.shop.po.userCoupon;
 
 public interface userCouponMapper {
     int deleteByPrimaryKey(String id);
@@ -23,4 +23,5 @@ public interface userCouponMapper {
     int updateByPrimaryKey(userCoupon record);
     
     List<cn.sqhl.shop.vo.userCoupon> queryUserCouponList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
+
 }

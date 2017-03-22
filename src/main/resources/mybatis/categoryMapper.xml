@@ -19,7 +19,7 @@
     ID, CATE_NAME, MEMO, CATE_ORDER, LEVELS, LOGO, URL, PARENT_ID, CATE_CODE, 
     CREATE_TIME, UPDATE_TIME, ISBRAND
   </sql>
-  <select id="queryList" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="queryList" parameterType="java.util.Map" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from SC_CATEGORY
@@ -28,7 +28,7 @@
     	and PARENT_ID=#{map.parent_id,jdbcType=VARCHAR}
     </if>
     <if test="map.level != null" >
-    	and PARENT_ID=#{map.level,jdbcType=VARCHAR}
+    	and LEVELS=#{map.level,jdbcType=VARCHAR}
     </if>
     order by CATE_ORDER desc
   </select>
