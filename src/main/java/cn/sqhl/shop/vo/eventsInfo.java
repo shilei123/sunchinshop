@@ -1,25 +1,19 @@
-package cn.sqhl.shop.po;
-
-import java.util.Date;
+package cn.sqhl.shop.vo;
 
 public class eventsInfo {
     private String id;
 
     private String name;
 
-    private String isuse;
-
     private String memo;
 
-    private Date starttime;
+    private String starttime;
 
-    private Date endtime;
+    private String endtime;
 
-    private Date createTime;
+    private String createTime;
 
-    private Date updateTime;
-
-    private String flag;
+    private String updateTime;
 
     private String belong;
 
@@ -39,14 +33,6 @@ public class eventsInfo {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getIsuse() {
-        return isuse;
-    }
-
-    public void setIsuse(String isuse) {
-        this.isuse = isuse == null ? null : isuse.trim();
-    }
-
     public String getMemo() {
         return memo;
     }
@@ -55,44 +41,36 @@ public class eventsInfo {
         this.memo = memo == null ? null : memo.trim();
     }
 
-    public Date getStarttime() {
+    public String getStarttime() {
         return starttime;
     }
 
-    public void setStarttime(Date starttime) {
+    public void setStarttime(String starttime) {
         this.starttime = starttime;
     }
 
-    public Date getEndtime() {
+    public String getEndtime() {
         return endtime;
     }
 
-    public void setEndtime(Date endtime) {
+    public void setEndtime(String endtime) {
         this.endtime = endtime;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public String getFlag() {
-        return flag;
-    }
-
-    public void setFlag(String flag) {
-        this.flag = flag == null ? null : flag.trim();
     }
 
     public String getBelong() {

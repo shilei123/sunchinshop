@@ -69,7 +69,7 @@
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
 		 -->
-		<table tableName="sc_user_coupon" domainObjectName="userCoupon"
+		<table tableName="sc_eventsinfo" domainObjectName="eventsInfo"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>

@@ -1,17 +1,14 @@
 package cn.sqhl.shop.mapper;
 
-import cn.sqhl.shop.po.advertise;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
+import cn.sqhl.shop.core.PageCond;
+import cn.sqhl.shop.core.PaginationInterceptor;
+import cn.sqhl.shop.vo.advertise;
 
 public interface advertiseMapper {
-    int deleteByPrimaryKey(String id);
-
-    int insert(advertise record);
-
-    int insertSelective(advertise record);
-
-    advertise selectByPrimaryKey(String id);
-
-    int updateByPrimaryKeySelective(advertise record);
-
-    int updateByPrimaryKey(advertise record);
+	List<advertise> queryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
 }

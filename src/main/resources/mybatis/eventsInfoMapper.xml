@@ -1,141 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.sqhl.shop.mapper.eventsInfoMapper">
-  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.eventsInfo">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.vo.eventsInfo">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
-    <result column="ISUSE" jdbcType="CHAR" property="isuse" />
     <result column="MEMO" jdbcType="VARCHAR" property="memo" />
-    <result column="STARTTIME" jdbcType="TIMESTAMP" property="starttime" />
-    <result column="ENDTIME" jdbcType="TIMESTAMP" property="endtime" />
-    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="UPDATETIME" jdbcType="TIMESTAMP" property="updatetime" />
-    <result column="FLAG" jdbcType="CHAR" property="flag" />
+    <result column="STARTTIME" jdbcType="TIMESTAMP" property="starttime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="ENDTIME" jdbcType="TIMESTAMP" property="endtime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="BELONG" jdbcType="VARCHAR" property="belong" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, NAME, ISUSE, MEMO, STARTTIME, ENDTIME, CREATETIME, UPDATETIME, FLAG
+    ID, NAME, MEMO, STARTTIME, ENDTIME, CREATE_TIME, UPDATE_TIME, BELONG
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="queryList" parameterType="java.util.Map" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from SC_EVENTSINFO
-    where ID = #{id,jdbcType=VARCHAR}
+    from (
+	select * from SC_EVENTSINFO where isuse=1 and flag=1
+	union
+	select * from SC_EVENTSINFO where isuse is null and starttime is not null and endtime is not null and flag=1
+	)
+    where 1=1
+    <if test="map.event_name !=null">
+    	and NAME=#{map.event_name,jdbcType=VARCHAR}
+    </if>
+    <if test="map.event_id !=null">
+    	and ID=#{map.event_id,jdbcType=VARCHAR}
+    </if>
+    <if test="map.start_time !=null">
+    	<![CDATA[and ENDTIME>=#{map.start_time,jdbcType=TIMESTAMP,typeHandler=cn.sqhl.shop.core.DateTypeHandler}]]>
+    </if>
+    <if test="map.end_time !=null">
+    	<![CDATA[and STARTTIME<=#{map.end_time,jdbcType=TIMESTAMP,typeHandler=cn.sqhl.shop.core.DateTypeHandler}]]>
+    </if>
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from SC_EVENTSINFO
-    where ID = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="cn.sqhl.shop.po.eventsInfo">
-    insert into SC_EVENTSINFO (ID, NAME, ISUSE, 
-      MEMO, STARTTIME, ENDTIME, 
-      CREATETIME, UPDATETIME, FLAG
-      )
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{isuse,jdbcType=CHAR}, 
-      #{memo,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{flag,jdbcType=CHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.eventsInfo">
-    insert into SC_EVENTSINFO
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        ID,
-      </if>
-      <if test="name != null">
-        NAME,
-      </if>
-      <if test="isuse != null">
-        ISUSE,
-      </if>
-      <if test="memo != null">
-        MEMO,
-      </if>
-      <if test="starttime != null">
-        STARTTIME,
-      </if>
-      <if test="endtime != null">
-        ENDTIME,
-      </if>
-      <if test="createtime != null">
-        CREATETIME,
-      </if>
-      <if test="updatetime != null">
-        UPDATETIME,
-      </if>
-      <if test="flag != null">
-        FLAG,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="isuse != null">
-        #{isuse,jdbcType=CHAR},
-      </if>
-      <if test="memo != null">
-        #{memo,jdbcType=VARCHAR},
-      </if>
-      <if test="starttime != null">
-        #{starttime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endtime != null">
-        #{endtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatetime != null">
-        #{updatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="flag != null">
-        #{flag,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.eventsInfo">
-    update SC_EVENTSINFO
-    <set>
-      <if test="name != null">
-        NAME = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="isuse != null">
-        ISUSE = #{isuse,jdbcType=CHAR},
-      </if>
-      <if test="memo != null">
-        MEMO = #{memo,jdbcType=VARCHAR},
-      </if>
-      <if test="starttime != null">
-        STARTTIME = #{starttime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endtime != null">
-        ENDTIME = #{endtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createtime != null">
-        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatetime != null">
-        UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="flag != null">
-        FLAG = #{flag,jdbcType=CHAR},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.eventsInfo">
-    update SC_EVENTSINFO
-    set NAME = #{name,jdbcType=VARCHAR},
-      ISUSE = #{isuse,jdbcType=CHAR},
-      MEMO = #{memo,jdbcType=VARCHAR},
-      STARTTIME = #{starttime,jdbcType=TIMESTAMP},
-      ENDTIME = #{endtime,jdbcType=TIMESTAMP},
-      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
-      UPDATETIME = #{updatetime,jdbcType=TIMESTAMP},
-      FLAG = #{flag,jdbcType=CHAR}
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
 </mapper>

@@ -26,21 +26,38 @@ public class test {
 //		param.put("level", "");
 //		param.put("parent_id", "");
 //		param.put("pagesize", "10");
-//		param.put("nowpage", "1");
-//		basemap.put("servicecode", "3620170315045");
+//		param.put("nowpage", "0");
+//		basemap.put("servicecode", "3620170315045");//商品分类查询
 		
 //		param.put("type", "ATTACH_TYPE");
 //		param.put("pcode", "");
 //		param.put("pagesize", "");
 //		param.put("nowpage", "");
-//		basemap.put("servicecode", "3620170315045");
+//		basemap.put("servicecode", "3620170315045");//字典查询
 		
 //		param.put("user_id", "");
 //		param.put("user_name", "13213213");
 //		param.put("coupon_status", "");
 //		param.put("pagesize", "10");
 //		param.put("nowpage", "0");
-//		basemap.put("servicecode", "3620170315035");
+//		basemap.put("servicecode", "3620170315035");//会员优惠券查询
+		
+//		param.put("kind", "0");
+//		param.put("location", "0");
+//		param.put("type", "50");
+//		param.put("start_time", "2017-3-2 00:00:01");
+//		param.put("end_time", "2017-7-28 23:59:59");
+//		param.put("pagesize", "10");
+//		param.put("nowpage", "0");
+//		basemap.put("servicecode", "3620170315003");//广告查询
+		
+		param.put("event_name", "优惠活动");
+		param.put("event_id", "2");
+		param.put("start_time", "2017-3-1 00:00:01");
+		param.put("end_time", "2017-3-10 23:59:59");
+		param.put("pagesize", "10");
+		param.put("nowpage", "0");
+		basemap.put("servicecode", "3620170315004");//活动查询
 		
 		
 		

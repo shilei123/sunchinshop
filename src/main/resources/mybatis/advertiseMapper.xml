@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.sqhl.shop.mapper.advertiseMapper">
-  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.advertise">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.vo.advertise">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="MEMO" jdbcType="VARCHAR" property="memo" />
@@ -9,191 +9,40 @@
     <result column="IMGLINK" jdbcType="VARCHAR" property="imglink" />
     <result column="ORDERNUMB" jdbcType="VARCHAR" property="ordernumb" />
     <result column="TYPE" jdbcType="VARCHAR" property="type" />
-    <result column="ISUSE" jdbcType="CHAR" property="isuse" />
     <result column="KIND" jdbcType="VARCHAR" property="kind" />
-    <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
-    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
-    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="FLAG" jdbcType="CHAR" property="flag" />
+    <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
   </resultMap>
   <sql id="Base_Column_List">
-    ID, NAME, MEMO, LINKKIND, IMGLINK, ORDERNUMB, TYPE, ISUSE, KIND, START_TIME, END_TIME, 
-    CREATE_TIME, UPDATE_TIME, FLAG
+    ID, NAME, MEMO, LINKKIND, IMGLINK, ORDERNUMB, TYPE, KIND, START_TIME, END_TIME, 
+    CREATE_TIME, UPDATE_TIME
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="queryList" parameterType="java.util.Map" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from SC_ADVERTISE
-    where ID = #{id,jdbcType=VARCHAR}
+    from 
+	(
+	select * from SC_ADVERTISE where isuse=1 and flag=1
+  	union
+ 	select * from SC_ADVERTISE where isuse is null and start_time is not null and end_time is not null and flag=1
+	)
+    where 1=1
+    <if test="map.kind !=null">
+    	and LINKKIND=#{map.kind,jdbcType=VARCHAR}
+    </if>
+    <if test="map.location !=null">
+    	and TYPE=#{map.location,jdbcType=VARCHAR}
+    </if>
+    <if test="map.type !=null ">
+   		and kind=#{map.type,jdbcType=VARCHAR}
+    </if>
+    <if test="map.start_time !=null">
+    	<![CDATA[and END_TIME>=#{map.start_time,jdbcType=TIMESTAMP,typeHandler=cn.sqhl.shop.core.DateTypeHandler}]]>
+    </if>
+    <if test="map.end_time !=null">
+    	<![CDATA[and START_TIME<=#{map.end_time,jdbcType=TIMESTAMP,typeHandler=cn.sqhl.shop.core.DateTypeHandler}]]>
+    </if>
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from SC_ADVERTISE
-    where ID = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="cn.sqhl.shop.po.advertise">
-    insert into SC_ADVERTISE (ID, NAME, MEMO, 
-      LINKKIND, IMGLINK, ORDERNUMB, 
-      TYPE, ISUSE, KIND, START_TIME, 
-      END_TIME, CREATE_TIME, UPDATE_TIME, 
-      FLAG)
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
-      #{linkkind,jdbcType=VARCHAR}, #{imglink,jdbcType=VARCHAR}, #{ordernumb,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{isuse,jdbcType=CHAR}, #{kind,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
-      #{endTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{flag,jdbcType=CHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.advertise">
-    insert into SC_ADVERTISE
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        ID,
-      </if>
-      <if test="name != null">
-        NAME,
-      </if>
-      <if test="memo != null">
-        MEMO,
-      </if>
-      <if test="linkkind != null">
-        LINKKIND,
-      </if>
-      <if test="imglink != null">
-        IMGLINK,
-      </if>
-      <if test="ordernumb != null">
-        ORDERNUMB,
-      </if>
-      <if test="type != null">
-        TYPE,
-      </if>
-      <if test="isuse != null">
-        ISUSE,
-      </if>
-      <if test="kind != null">
-        KIND,
-      </if>
-      <if test="startTime != null">
-        START_TIME,
-      </if>
-      <if test="endTime != null">
-        END_TIME,
-      </if>
-      <if test="createTime != null">
-        CREATE_TIME,
-      </if>
-      <if test="updateTime != null">
-        UPDATE_TIME,
-      </if>
-      <if test="flag != null">
-        FLAG,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="memo != null">
-        #{memo,jdbcType=VARCHAR},
-      </if>
-      <if test="linkkind != null">
-        #{linkkind,jdbcType=VARCHAR},
-      </if>
-      <if test="imglink != null">
-        #{imglink,jdbcType=VARCHAR},
-      </if>
-      <if test="ordernumb != null">
-        #{ordernumb,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="isuse != null">
-        #{isuse,jdbcType=CHAR},
-      </if>
-      <if test="kind != null">
-        #{kind,jdbcType=VARCHAR},
-      </if>
-      <if test="startTime != null">
-        #{startTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endTime != null">
-        #{endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="flag != null">
-        #{flag,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.advertise">
-    update SC_ADVERTISE
-    <set>
-      <if test="name != null">
-        NAME = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="memo != null">
-        MEMO = #{memo,jdbcType=VARCHAR},
-      </if>
-      <if test="linkkind != null">
-        LINKKIND = #{linkkind,jdbcType=VARCHAR},
-      </if>
-      <if test="imglink != null">
-        IMGLINK = #{imglink,jdbcType=VARCHAR},
-      </if>
-      <if test="ordernumb != null">
-        ORDERNUMB = #{ordernumb,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null">
-        TYPE = #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="isuse != null">
-        ISUSE = #{isuse,jdbcType=CHAR},
-      </if>
-      <if test="kind != null">
-        KIND = #{kind,jdbcType=VARCHAR},
-      </if>
-      <if test="startTime != null">
-        START_TIME = #{startTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endTime != null">
-        END_TIME = #{endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createTime != null">
-        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="flag != null">
-        FLAG = #{flag,jdbcType=CHAR},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.advertise">
-    update SC_ADVERTISE
-    set NAME = #{name,jdbcType=VARCHAR},
-      MEMO = #{memo,jdbcType=VARCHAR},
-      LINKKIND = #{linkkind,jdbcType=VARCHAR},
-      IMGLINK = #{imglink,jdbcType=VARCHAR},
-      ORDERNUMB = #{ordernumb,jdbcType=VARCHAR},
-      TYPE = #{type,jdbcType=VARCHAR},
-      ISUSE = #{isuse,jdbcType=CHAR},
-      KIND = #{kind,jdbcType=VARCHAR},
-      START_TIME = #{startTime,jdbcType=TIMESTAMP},
-      END_TIME = #{endTime,jdbcType=TIMESTAMP},
-      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
-      FLAG = #{flag,jdbcType=CHAR}
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
 </mapper>

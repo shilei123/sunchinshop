@@ -1,17 +1,14 @@
 package cn.sqhl.shop.mapper;
 
-import cn.sqhl.shop.po.eventsInfo;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
+import cn.sqhl.shop.core.PageCond;
+import cn.sqhl.shop.core.PaginationInterceptor;
+import cn.sqhl.shop.vo.eventsInfo;
 
 public interface eventsInfoMapper {
-    int deleteByPrimaryKey(String id);
-
-    int insert(eventsInfo record);
-
-    int insertSelective(eventsInfo record);
-
-    eventsInfo selectByPrimaryKey(String id);
-
-    int updateByPrimaryKeySelective(eventsInfo record);
-
-    int updateByPrimaryKey(eventsInfo record);
+	List<eventsInfo> queryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
 }
