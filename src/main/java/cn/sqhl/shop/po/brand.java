@@ -2,20 +2,22 @@ package cn.sqhl.shop.po;
 
 import java.util.Date;
 
-public class property {
+public class brand {
     private String id;
 
-    private String propCode;
+    private String brandName;
 
-    private String propName;
-
-    private String propOrder;
+    private String brandLogo;
 
     private String flag;
 
     private Date createTime;
 
     private String createPeople;
+
+    private String brandCode;
+
+    private String brandDesc;
 
     public String getId() {
         return id;
@@ -25,28 +27,20 @@ public class property {
         this.id = id == null ? null : id.trim();
     }
 
-    public String getPropCode() {
-        return propCode;
+    public String getBrandName() {
+        return brandName;
     }
 
-    public void setPropCode(String propCode) {
-        this.propCode = propCode == null ? null : propCode.trim();
+    public void setBrandName(String brandName) {
+        this.brandName = brandName == null ? null : brandName.trim();
     }
 
-    public String getPropName() {
-        return propName;
+    public String getBrandLogo() {
+        return brandLogo;
     }
 
-    public void setPropName(String propName) {
-        this.propName = propName == null ? null : propName.trim();
-    }
-
-    public String getPropOrder() {
-        return propOrder;
-    }
-
-    public void setPropOrder(String propOrder) {
-        this.propOrder = propOrder == null ? null : propOrder.trim();
+    public void setBrandLogo(String brandLogo) {
+        this.brandLogo = brandLogo == null ? null : brandLogo.trim();
     }
 
     public String getFlag() {
@@ -71,5 +65,21 @@ public class property {
 
     public void setCreatePeople(String createPeople) {
         this.createPeople = createPeople == null ? null : createPeople.trim();
+    }
+
+    public String getBrandCode() {
+        return brandCode;
+    }
+
+    public void setBrandCode(String brandCode) {
+        this.brandCode = brandCode == null ? null : brandCode.trim();
+    }
+
+    public String getBrandDesc() {
+        return brandDesc;
+    }
+
+    public void setBrandDesc(String brandDesc) {
+        this.brandDesc = brandDesc == null ? null : brandDesc.trim();
     }
 }

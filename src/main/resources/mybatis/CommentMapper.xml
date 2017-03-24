@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sqhl.shop.mapper.CommentMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.Comment">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="TYPE" jdbcType="CHAR" property="type" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="CONTENT_TIME" jdbcType="TIMESTAMP" property="contentTime" />
+    <result column="SCORE" jdbcType="DECIMAL" property="score" />
+    <result column="ISHIDDEN" jdbcType="CHAR" property="ishidden" />
+    <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
+    <result column="COMMENT_PEOPLE" jdbcType="VARCHAR" property="commentPeople" />
+    <result column="FLAG" jdbcType="CHAR" property="flag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, TYPE, CONTENT, CONTENT_TIME, SCORE, ISHIDDEN, PARENT_ID, COMMENT_PEOPLE, FLAG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SC_COMMENT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SC_COMMENT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.sqhl.shop.po.Comment">
+    insert into SC_COMMENT (ID, TYPE, CONTENT, 
+      CONTENT_TIME, SCORE, ISHIDDEN, 
+      PARENT_ID, COMMENT_PEOPLE, FLAG
+      )
+    values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, #{content,jdbcType=VARCHAR}, 
+      #{contentTime,jdbcType=TIMESTAMP}, #{score,jdbcType=DECIMAL}, #{ishidden,jdbcType=CHAR}, 
+      #{parentId,jdbcType=VARCHAR}, #{commentPeople,jdbcType=VARCHAR}, #{flag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.Comment">
+    insert into SC_COMMENT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+      <if test="contentTime != null">
+        CONTENT_TIME,
+      </if>
+      <if test="score != null">
+        SCORE,
+      </if>
+      <if test="ishidden != null">
+        ISHIDDEN,
+      </if>
+      <if test="parentId != null">
+        PARENT_ID,
+      </if>
+      <if test="commentPeople != null">
+        COMMENT_PEOPLE,
+      </if>
+      <if test="flag != null">
+        FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="contentTime != null">
+        #{contentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="ishidden != null">
+        #{ishidden,jdbcType=CHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="commentPeople != null">
+        #{commentPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.Comment">
+    update SC_COMMENT
+    <set>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=CHAR},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="contentTime != null">
+        CONTENT_TIME = #{contentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="score != null">
+        SCORE = #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="ishidden != null">
+        ISHIDDEN = #{ishidden,jdbcType=CHAR},
+      </if>
+      <if test="parentId != null">
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="commentPeople != null">
+        COMMENT_PEOPLE = #{commentPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        FLAG = #{flag,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.Comment">
+    update SC_COMMENT
+    set TYPE = #{type,jdbcType=CHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      CONTENT_TIME = #{contentTime,jdbcType=TIMESTAMP},
+      SCORE = #{score,jdbcType=DECIMAL},
+      ISHIDDEN = #{ishidden,jdbcType=CHAR},
+      PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      COMMENT_PEOPLE = #{commentPeople,jdbcType=VARCHAR},
+      FLAG = #{flag,jdbcType=CHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+  
+  <resultMap id="commentResultMap" type="cn.sqhl.shop.vo.Comment">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="TYPE" jdbcType="CHAR" property="type" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="CONTENT_TIME" jdbcType="TIMESTAMP" property="contentTime" />
+    <result column="SCORE" jdbcType="DECIMAL" property="score" />
+    <result column="ISHIDDEN" jdbcType="CHAR" property="ishidden" />
+    <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
+    <result column="COMMENT_PEOPLE" jdbcType="VARCHAR" property="commentPeople" />
+    <result column="FLAG" jdbcType="CHAR" property="flag" />
+  </resultMap>
+  <sql id="comment_Column_List">
+    a.ID, a.TYPE, a.CONTENT, a.CONTENT_TIME, a.SCORE, a.ISHIDDEN, a.PARENT_ID, a.COMMENT_PEOPLE
+  </sql>
+  <select id="queryList" parameterType="java.util.Map" resultMap="commentResultMap">
+    select 
+    <include refid="comment_Column_List" />
+    from sc_comment a,sc_comments_relation b where a.id=b.comments_id
+    where a.flag=1 and b.flag=a.flag
+	<if test="map.contactid !=null">
+		b.ref_id=#{map.contactid,jdbcType=VARCHAR}
+	</if>
+	<if test="map.userid !=null">
+		a.COMMENT_PEOPLE=#{map.userid,jdbcType=VARCHAR}
+	</if>
+	<if test="map.type !=null">
+		b.type=#{map.type,jdbcType=VARCHAR}
+	</if>
+  </select>
+</mapper>
