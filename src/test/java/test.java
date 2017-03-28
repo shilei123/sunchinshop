@@ -51,13 +51,36 @@ public class test {
 //		param.put("nowpage", "0");
 //		basemap.put("servicecode", "3620170315003");//广告查询
 		
-		param.put("event_name", "优惠活动");
-		param.put("event_id", "2");
-		param.put("start_time", "2017-3-1 00:00:01");
-		param.put("end_time", "2017-3-10 23:59:59");
+//		param.put("event_name", "优惠活动");
+//		param.put("event_id", "2");
+//		param.put("start_time", "2017-3-1 00:00:01");
+//		param.put("end_time", "2017-3-10 23:59:59");
+//		param.put("pagesize", "10");
+//		param.put("nowpage", "0");
+//		basemap.put("servicecode", "3620170315004");//活动查询
+		
+//		param.put("category_id", "0b3874d6-ff0a-4637-99b8-e50b2dd937c7");
+//		basemap.put("servicecode", "3620170315023");//分类属性-属性值接口
+		
+		
+//		param.put("goods_id", "1112");
+//		basemap.put("servicecode", "3620170315022");//商品属性-属性值接口
+		
+//		param.put("brand_id", "");
+//		param.put("brand_name", "");
+//		param.put("cate_id", "197246e8-a89d-4468-8356-f30577427058");
+//		param.put("pagesize", "10");
+//		param.put("nowpage", "0");
+//		basemap.put("servicecode", "3620170315047");//分类品牌查询
+
+
+		param.put("contactid", "");
+		param.put("userid", "");
+		param.put("type", "1");
 		param.put("pagesize", "10");
 		param.put("nowpage", "0");
-		basemap.put("servicecode", "3620170315004");//活动查询
+		basemap.put("servicecode", "3620170315013");//评论查询接口
+		
 		
 		
 		

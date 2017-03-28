@@ -1,5 +1,6 @@
 package cn.sqhl.shop.restfulapi;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.service.SystemService;
 import cn.sqhl.shop.utils.security.SecurityCore;
+import cn.sqhl.shop.vo.CategoryPropertyValue;
+import cn.sqhl.shop.vo.GoodsPropertyValue;
 import cn.sqhl.shop.vo.brand;
 import cn.sqhl.shop.vo.category;
 import cn.sqhl.shop.vo.dictionary;
@@ -177,6 +180,242 @@ public class SystemController extends ContextInfo {
 					List<brand> brandlist=systemService.queryBrandList(page, queryparam);
 					if(brandlist!=null && brandlist.size()>0){
 						data=JSON.toJSONString(brandlist);
+						message="查询成功";//
+					}else{
+						data=null;
+						message="无对应数据";//
+					}
+					result="0";//成功
+				}
+			}
+		} catch (Exception e) {
+			result = "1";// 失败
+			message = "查询出错 ";// 错误原因
+			data = null;// 错误 data无返回值
+			logger.log(ERROR, "Exception:" + e.getCause().getClass() + ","
+					+ e.getCause().getMessage() + " info:" + e.toString());
+		}
+
+		basemap.put("ver", ver);
+		basemap.put("result", result);
+		basemap.put("message", message);
+		basemap.put("data", data);
+
+		Map signvalue = SecurityCore.buildRequestPara(basemap);
+
+		jreturn.putAll(signvalue);
+		
+		logger.log(INFO,"request Encrypt info :  "+jreturn.toString());
+		return jreturn;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/ga/query")
+	public JSONObject queryGoodsProperty(HttpServletRequest request) {
+		JSONObject jreturn = new JSONObject();
+		Map basemap = new HashMap();
+		Map requestmap=(HashMap)request.getAttribute("map");
+		try {
+			if(StringUtils.isNotEmpty(requestmap.get("data")+"")){
+				JSONObject requestparam=JSON.parseObject(requestmap.get("data").toString());
+				if(requestparam!=null && requestparam.size()>0){
+					String goods_id=requestparam.getString("goods_id");
+					
+					Map<String, Object> queryparam=new HashMap<String, Object>();
+					if(StringUtils.isNotEmpty(goods_id)){
+						queryparam.put("goods_id", goods_id);
+					}
+					
+					List<GoodsPropertyValue> goods_property_value=systemService.queryGoodsPropertyList(queryparam);
+					List listproperty=new ArrayList();
+					if(goods_property_value!=null && goods_property_value.size()>0){
+						Map<String,Object> resultmap=new HashMap<String, Object>();
+						String property_id="";
+						List<Map<String, Object>> arraylist=new ArrayList<Map<String,Object>>();
+						for(int i = 0;i<goods_property_value.size();i++){
+							GoodsPropertyValue cpv=goods_property_value.get(i);
+							
+							if(i+1==goods_property_value.size()){
+								Map map=new HashMap();
+								map.put("id", cpv.getId());
+								map.put("propertyvalue_id", cpv.getPropertyvalue_id());
+								map.put("propertyvalue_code", cpv.getPropertyvalue_code());
+								map.put("propertyvalue", cpv.getPropertyvalue());
+								arraylist.add(map);
+								resultmap.put("propertyvalue", arraylist);
+								listproperty.add(resultmap);
+								arraylist=new ArrayList<Map<String,Object>>();
+								resultmap=new HashMap<String, Object>();
+							}else{
+								if(property_id.equals("")){
+									property_id=cpv.getProperty_id();
+									//Map propertymap=new HashMap();
+									resultmap.put("goods_id", cpv.getGoods_id());
+									resultmap.put("type", cpv.getType());//spu sku 
+									resultmap.put("property_id", cpv.getProperty_id());
+									resultmap.put("property_code", cpv.getProperty_code());
+									resultmap.put("property", cpv.getProperty());
+									
+									Map map=new HashMap();
+									map.put("id", cpv.getId());
+									map.put("propertyvalue_id", cpv.getPropertyvalue_id());
+									map.put("propertyvalue_code", cpv.getPropertyvalue_code());
+									map.put("propertyvalue", cpv.getPropertyvalue());
+									arraylist.add(map);
+									//resultmap.put("property", propertymap);
+								}else{
+									if(property_id.equals(cpv.getProperty_id())){
+										Map map=new HashMap();
+										map.put("id", cpv.getId());
+										map.put("propertyvalue_id", cpv.getPropertyvalue_id());
+										map.put("propertyvalue_code", cpv.getPropertyvalue_code());
+										map.put("propertyvalue", cpv.getPropertyvalue());
+										arraylist.add(map);
+										
+									}else{
+										resultmap.put("propertyvalue", arraylist);
+										listproperty.add(resultmap);
+										arraylist=new ArrayList<Map<String,Object>>();
+										resultmap=new HashMap<String, Object>();
+										resultmap.put("goods_id", cpv.getGoods_id());
+										resultmap.put("type", cpv.getType());//spu sku 
+										resultmap.put("property_id", cpv.getProperty_id());
+										resultmap.put("property_code", cpv.getProperty_code());
+										resultmap.put("property", cpv.getProperty());
+										property_id=cpv.getProperty_id();
+										
+										Map map=new HashMap();
+										map.put("id", cpv.getId());
+										map.put("propertyvalue_id", cpv.getPropertyvalue_id());
+										map.put("propertyvalue_code", cpv.getPropertyvalue_code());
+										map.put("propertyvalue", cpv.getPropertyvalue());
+										arraylist.add(map);
+									}
+								}
+								
+							}
+							
+						}
+						
+						
+						data=JSON.toJSONString(listproperty);
+						message="查询成功";//
+					}else{
+						data=null;
+						message="无对应数据";//
+					}
+					result="0";//成功
+				}
+			}
+		} catch (Exception e) {
+			result = "1";// 失败
+			message = "查询出错 ";// 错误原因
+			data = null;// 错误 data无返回值
+			logger.log(ERROR, "Exception:" + e.getCause().getClass() + ","
+					+ e.getCause().getMessage() + " info:" + e.toString());
+		}
+
+		basemap.put("ver", ver);
+		basemap.put("result", result);
+		basemap.put("message", message);
+		basemap.put("data", data);
+
+		Map signvalue = SecurityCore.buildRequestPara(basemap);
+
+		jreturn.putAll(signvalue);
+		
+		logger.log(INFO,"request Encrypt info :  "+jreturn.toString());
+		return jreturn;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/ca/query")
+	public JSONObject queryCategoryProperty(HttpServletRequest request) {
+		JSONObject jreturn = new JSONObject();
+		Map basemap = new HashMap();
+		Map requestmap=(HashMap)request.getAttribute("map");
+		try {
+			if(StringUtils.isNotEmpty(requestmap.get("data")+"")){
+				JSONObject requestparam=JSON.parseObject(requestmap.get("data").toString());
+				if(requestparam!=null && requestparam.size()>0){
+					String category_id=requestparam.getString("category_id");
+				
+					Map<String, Object> queryparam=new HashMap<String, Object>();
+					if(StringUtils.isNotEmpty(category_id)){
+						queryparam.put("category_id", category_id);
+					}
+					
+					List<CategoryPropertyValue> category_property_value=systemService.queryCategoryPropertyList(queryparam);
+					List listproperty=new ArrayList();
+					if(category_property_value!=null && category_property_value.size()>0){
+						Map<String,Object> resultmap=new HashMap<String, Object>();
+						String property_id="";
+						List<Map<String, Object>> arraylist=new ArrayList<Map<String,Object>>();
+						for(int i = 0;i<category_property_value.size();i++){
+							CategoryPropertyValue cpv=category_property_value.get(i);
+							
+							if(i+1==category_property_value.size()){
+								Map map=new HashMap();
+								map.put("id", cpv.getId());
+								map.put("propertyvalue_id", cpv.getPropertyvalue_id());
+								map.put("propertyvalue_code", cpv.getPropertyvalue_code());
+								map.put("propertyvalue", cpv.getPropertyvalue());
+								arraylist.add(map);
+								resultmap.put("propertyvalue", arraylist);
+								listproperty.add(resultmap);
+								arraylist=new ArrayList<Map<String,Object>>();
+								resultmap=new HashMap<String, Object>();
+							}else{
+								if(property_id.equals("")){
+									property_id=cpv.getProperty_id();
+									//Map propertymap=new HashMap();
+									resultmap.put("category_id", cpv.getCategory_id());
+									resultmap.put("property_id", cpv.getProperty_id());
+									resultmap.put("property_code", cpv.getProperty_code());
+									resultmap.put("property", cpv.getProperty());
+									
+									Map map=new HashMap();
+									map.put("id", cpv.getId());
+									map.put("propertyvalue_id", cpv.getPropertyvalue_id());
+									map.put("propertyvalue_code", cpv.getPropertyvalue_code());
+									map.put("propertyvalue", cpv.getPropertyvalue());
+									arraylist.add(map);
+									//resultmap.put("property", propertymap);
+								}else{
+									if(property_id.equals(cpv.getProperty_id())){
+										Map map=new HashMap();
+										map.put("id", cpv.getId());
+										map.put("propertyvalue_id", cpv.getPropertyvalue_id());
+										map.put("propertyvalue_code", cpv.getPropertyvalue_code());
+										map.put("propertyvalue", cpv.getPropertyvalue());
+										arraylist.add(map);
+										
+									}else{
+										resultmap.put("propertyvalue", arraylist);
+										listproperty.add(resultmap);
+										arraylist=new ArrayList<Map<String,Object>>();
+										resultmap=new HashMap<String, Object>();
+										resultmap.put("category_id", cpv.getCategory_id());
+										resultmap.put("property_id", cpv.getProperty_id());
+										resultmap.put("property_code", cpv.getProperty_code());
+										resultmap.put("property", cpv.getProperty());
+										property_id=cpv.getProperty_id();
+										
+										Map map=new HashMap();
+										map.put("id", cpv.getId());
+										map.put("propertyvalue_id", cpv.getPropertyvalue_id());
+										map.put("propertyvalue_code", cpv.getPropertyvalue_code());
+										map.put("propertyvalue", cpv.getPropertyvalue());
+										arraylist.add(map);
+									}
+								}
+								
+							}
+							
+						}
+						
+						
+						data=JSON.toJSONString(listproperty);
 						message="查询成功";//
 					}else{
 						data=null;

@@ -145,29 +145,31 @@
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="TYPE" jdbcType="CHAR" property="type" />
     <result column="CONTENT" jdbcType="VARCHAR" property="content" />
-    <result column="CONTENT_TIME" jdbcType="TIMESTAMP" property="contentTime" />
+    <result column="comment_TIME" jdbcType="TIMESTAMP" property="commentTime" />
     <result column="SCORE" jdbcType="DECIMAL" property="score" />
     <result column="ISHIDDEN" jdbcType="CHAR" property="ishidden" />
     <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
     <result column="COMMENT_PEOPLE" jdbcType="VARCHAR" property="commentPeople" />
     <result column="FLAG" jdbcType="CHAR" property="flag" />
+    <result column="relationType" jdbcType="VARCHAR" property="relationType" />
   </resultMap>
   <sql id="comment_Column_List">
-    a.ID, a.TYPE, a.CONTENT, a.CONTENT_TIME, a.SCORE, a.ISHIDDEN, a.PARENT_ID, a.COMMENT_PEOPLE
+    a.ID, a.TYPE, a.CONTENT, a.comment_TIME, a.SCORE, a.ISHIDDEN, a.PARENT_ID, a.COMMENT_PEOPLE,b.type as relationType
   </sql>
   <select id="queryList" parameterType="java.util.Map" resultMap="commentResultMap">
     select 
     <include refid="comment_Column_List" />
-    from sc_comment a,sc_comments_relation b where a.id=b.comments_id
-    where a.flag=1 and b.flag=a.flag
+    from sc_comment a,sc_comments_relation b 
+	where a.id=b.comments_id
+    and a.flag=1 and b.flag=a.flag
 	<if test="map.contactid !=null">
-		b.ref_id=#{map.contactid,jdbcType=VARCHAR}
+		and b.ref_id=#{map.contactid,jdbcType=VARCHAR}
 	</if>
 	<if test="map.userid !=null">
-		a.COMMENT_PEOPLE=#{map.userid,jdbcType=VARCHAR}
+		and a.COMMENT_PEOPLE=#{map.userid,jdbcType=VARCHAR}
 	</if>
 	<if test="map.type !=null">
-		b.type=#{map.type,jdbcType=VARCHAR}
+		and b.type=#{map.type,jdbcType=VARCHAR}
 	</if>
   </select>
 </mapper>

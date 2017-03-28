@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sqhl.shop.mapper.GoodsPropertyValueMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.vo.GoodsPropertyValue">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="goods_id" jdbcType="VARCHAR" property="goods_id" />
+	<result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="property_id" jdbcType="VARCHAR" property="property_id" />
+    <result column="property_code" jdbcType="VARCHAR" property="property_code" />
+    <result column="property" jdbcType="VARCHAR" property="property"/>
+    <result column="propertyvalue_id" jdbcType="VARCHAR" property="propertyvalue_id" />
+    <result column="propertyvalue_code" jdbcType="VARCHAR" property="propertyvalue_code" />
+	<result column="propertyvalue" jdbcType="VARCHAR" property="propertyvalue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    a.id as id,
+	a.goods_id,
+	a.type,
+	d.id as property_id,
+	d.prop_code as property_code,
+	d.prop_name as property,
+	e.id as propertyvalue_id,
+	e.val_code as propertyvalue_code,
+	e.val_name as propertyvalue
+  </sql>
+  
+  <select id="selectList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+  from sc_goods_cate_prop_propval a,
+       sc_cate_prop_propval       b,
+       sc_property_propvalue      c,
+       sc_property                d,
+       sc_propvalue               e
+ where e.id = c.val_id
+   and d.id = c.prop_id
+   and b.proppropval_id = c.id
+   and a.cate_prop_propval_id = b.id
+   and a.flag = b.flag
+   and c.flag = d.flag
+   and e.flag = 1
+   and b.flag = c.flag
+   and d.flag = e.flag
+    <if test="map.goods_id !=null">
+    	and a.goods_id=#{map.goods_id,jdbcType=VARCHAR}
+    </if>
+	<if test="map.type !=null">
+    	and a.type=#{map.type,jdbcType=VARCHAR}
+    </if>
+	order by d.id desc
+  </select>
+</mapper>

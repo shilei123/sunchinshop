@@ -5,9 +5,11 @@ public class Comment {
 
     private String type;
 
+    private String relationType;
+    
     private String content;
 
-    private String contentTime;
+    private String commentTime;
 
     private Short score;
 
@@ -33,7 +35,15 @@ public class Comment {
         this.type = type == null ? null : type.trim();
     }
 
-    public String getContent() {
+    public String getRelationType() {
+		return relationType;
+	}
+
+	public void setRelationType(String relationType) {
+		this.relationType = relationType;
+	}
+
+	public String getContent() {
         return content;
     }
 
@@ -41,15 +51,15 @@ public class Comment {
         this.content = content == null ? null : content.trim();
     }
 
-    public String getContentTime() {
-        return contentTime;
-    }
+    public String getCommentTime() {
+		return commentTime;
+	}
 
-    public void setContentTime(String contentTime) {
-        this.contentTime = contentTime;
-    }
+	public void setCommentTime(String commentTime) {
+		this.commentTime = commentTime;
+	}
 
-    public Short getScore() {
+	public Short getScore() {
         return score;
     }
 
