@@ -1,6 +1,6 @@
 package cn.sqhl.shop.vo;
 
-public class eventsInfo {
+public class EventsInfo {
     private String id;
 
     private String name;

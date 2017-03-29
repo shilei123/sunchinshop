@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Param;
 
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.core.PaginationInterceptor;
-import cn.sqhl.shop.vo.eventsInfo;
+import cn.sqhl.shop.vo.Brand;
 
-public interface eventsInfoMapper {
-	List<eventsInfo> queryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
+public interface BrandMapper {
+	List<Brand> queryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
 }

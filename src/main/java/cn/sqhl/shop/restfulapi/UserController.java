@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.service.UserService;
 import cn.sqhl.shop.utils.security.SecurityCore;
-import cn.sqhl.shop.vo.userCoupon;
+import cn.sqhl.shop.vo.UserCoupon;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -57,7 +57,7 @@ public class UserController extends ContextInfo{
 						queryparam.put("coupon_status", coupon_status);
 					}
 					
-					List<userCoupon> usercouponlist=userService.queryUserCouponList(page, queryparam);
+					List<UserCoupon> usercouponlist=userService.queryUserCouponList(page, queryparam);
 					if(usercouponlist!=null && usercouponlist.size()>0){
 						data=JSON.toJSONString(usercouponlist);
 						message="查询成功";//

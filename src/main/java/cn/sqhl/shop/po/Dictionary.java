@@ -3,7 +3,7 @@ package cn.sqhl.shop.po;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class dictionary {
+public class Dictionary {
     private String id;
 
     private String type;

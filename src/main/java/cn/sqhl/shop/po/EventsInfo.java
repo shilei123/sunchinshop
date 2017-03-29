@@ -2,7 +2,7 @@ package cn.sqhl.shop.po;
 
 import java.util.Date;
 
-public class eventsInfo {
+public class EventsInfo {
     private String id;
 
     private String name;

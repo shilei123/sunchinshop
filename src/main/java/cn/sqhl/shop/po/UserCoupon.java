@@ -3,7 +3,7 @@ package cn.sqhl.shop.po;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class userCoupon {
+public class UserCoupon {
     private String id;
 
     private String userId;

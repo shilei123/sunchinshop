@@ -7,18 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.sqhl.shop.core.PageCond;
-import cn.sqhl.shop.mapper.userCouponMapper;
+import cn.sqhl.shop.mapper.UserCouponMapper;
 import cn.sqhl.shop.service.UserService;
-import cn.sqhl.shop.vo.userCoupon;
+import cn.sqhl.shop.vo.UserCoupon;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
 
 	@Autowired
-	private userCouponMapper userCouponMapper;
+	private UserCouponMapper userCouponMapper;
 	
 	@Override
-	public List<userCoupon> queryUserCouponList(PageCond page, Object obj) {
+	public List<UserCoupon> queryUserCouponList(PageCond page, Object obj) {
 		// TODO Auto-generated method stub
 		return userCouponMapper.queryUserCouponList(page, (Map<String,Object>)obj);
 	}

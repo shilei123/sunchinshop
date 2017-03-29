@@ -6,9 +6,9 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import cn.sqhl.shop.core.PageCond;
+import cn.sqhl.shop.vo.Dictionary;
 import cn.sqhl.shop.core.PaginationInterceptor;
-import cn.sqhl.shop.vo.brand;
 
-public interface brandMapper {
-	List<brand> queryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
+public interface DictionaryMapper {
+    List<Dictionary> queryDictionary(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
 }

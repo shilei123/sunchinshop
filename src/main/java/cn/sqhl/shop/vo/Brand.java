@@ -1,6 +1,6 @@
 package cn.sqhl.shop.vo;
 
-public class brand {
+public class Brand {
     private String id;
 
     private String brandName;

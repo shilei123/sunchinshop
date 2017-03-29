@@ -1,8 +1,6 @@
-package cn.sqhl.shop.po;
+package cn.sqhl.shop.vo;
 
-import java.util.Date;
-
-public class category {
+public class Category {
     private String id;
 
     private String cateName;
@@ -17,17 +15,13 @@ public class category {
 
     private String url;
 
-    private String isuse;
-
     private String parentId;
 
     private String cateCode;
 
-    private Date createTime;
+    private String createTime;
 
-    private Date updateTime;
-
-    private String flag;
+    private String updateTime;
 
     private String isbrand;
 
@@ -87,14 +81,6 @@ public class category {
         this.url = url == null ? null : url.trim();
     }
 
-    public String getIsuse() {
-        return isuse;
-    }
-
-    public void setIsuse(String isuse) {
-        this.isuse = isuse == null ? null : isuse.trim();
-    }
-
     public String getParentId() {
         return parentId;
     }
@@ -111,28 +97,20 @@ public class category {
         this.cateCode = cateCode == null ? null : cateCode.trim();
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public String getFlag() {
-        return flag;
-    }
-
-    public void setFlag(String flag) {
-        this.flag = flag == null ? null : flag.trim();
     }
 
     public String getIsbrand() {

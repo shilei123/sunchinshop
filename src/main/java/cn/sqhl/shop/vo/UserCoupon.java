@@ -2,7 +2,7 @@ package cn.sqhl.shop.vo;
 
 import java.math.BigDecimal;
 
-public class userCoupon {
+public class UserCoupon {
     private String id;
 
     private String userId;

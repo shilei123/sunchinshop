@@ -1,8 +1,6 @@
-package cn.sqhl.shop.po;
+package cn.sqhl.shop.vo;
 
-import java.util.Date;
-
-public class advertise {
+public class Advertise {
     private String id;
 
     private String name;
@@ -17,19 +15,15 @@ public class advertise {
 
     private String type;
 
-    private String isuse;
-
     private String kind;
 
-    private Date startTime;
+    private String startTime;
 
-    private Date endTime;
+    private String endTime;
 
-    private Date createTime;
+    private String createTime;
 
-    private Date updateTime;
-
-    private String flag;
+    private String updateTime;
 
     public String getId() {
         return id;
@@ -86,15 +80,7 @@ public class advertise {
     public void setType(String type) {
         this.type = type == null ? null : type.trim();
     }
-
-    public String getIsuse() {
-        return isuse;
-    }
-
-    public void setIsuse(String isuse) {
-        this.isuse = isuse == null ? null : isuse.trim();
-    }
-
+    
     public String getKind() {
         return kind;
     }
@@ -103,43 +89,36 @@ public class advertise {
         this.kind = kind == null ? null : kind.trim();
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 
-    public String getFlag() {
-        return flag;
-    }
-
-    public void setFlag(String flag) {
-        this.flag = flag == null ? null : flag.trim();
-    }
 }

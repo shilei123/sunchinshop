@@ -9,27 +9,27 @@ import org.springframework.stereotype.Service;
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.mapper.CategoryPropertyValueMapper;
 import cn.sqhl.shop.mapper.GoodsPropertyValueMapper;
-import cn.sqhl.shop.mapper.brandMapper;
-import cn.sqhl.shop.mapper.categoryMapper;
-import cn.sqhl.shop.mapper.dictionaryMapper;
+import cn.sqhl.shop.mapper.BrandMapper;
+import cn.sqhl.shop.mapper.CategoryMapper;
+import cn.sqhl.shop.mapper.DictionaryMapper;
 import cn.sqhl.shop.service.SystemService;
 import cn.sqhl.shop.vo.CategoryPropertyValue;
 import cn.sqhl.shop.vo.GoodsPropertyValue;
-import cn.sqhl.shop.vo.brand;
-import cn.sqhl.shop.vo.category;
-import cn.sqhl.shop.vo.dictionary;
+import cn.sqhl.shop.vo.Brand;
+import cn.sqhl.shop.vo.Category;
+import cn.sqhl.shop.vo.Dictionary;
 
 @Service("systemService")
 public class SystemServiceImpl implements SystemService{
 
 	@Autowired
-	private categoryMapper categorymapper;
+	private CategoryMapper categorymapper;
 	
 	@Autowired
-	private dictionaryMapper dictionaryMapper;
+	private DictionaryMapper dictionaryMapper;
 	
 	@Autowired
-	private brandMapper	brandMapper;
+	private BrandMapper	brandMapper;
 	
 	@Autowired
 	private GoodsPropertyValueMapper goodsPropertyValueMapper;
@@ -38,17 +38,17 @@ public class SystemServiceImpl implements SystemService{
 	private CategoryPropertyValueMapper	categoryPropertyValueMapper;
 	
 	@Override
-	public List<category> queryCategoryList(PageCond page, Object obj) {
+	public List<Category> queryCategoryList(PageCond page, Object obj) {
 		return categorymapper.queryList(page, (Map<String, Object>)obj);
 	}
 
 	@Override
-	public List<dictionary> queryDictionaryList(PageCond page, Object obj) {
+	public List<Dictionary> queryDictionaryList(PageCond page, Object obj) {
 		return dictionaryMapper.queryDictionary(page, (Map<String, Object>)obj);
 	}
 
 	@Override
-	public List<brand> queryBrandList(PageCond page, Object obj) {
+	public List<Brand> queryBrandList(PageCond page, Object obj) {
 		return brandMapper.queryList(page, (Map<String, Object>)obj);
 	}
 

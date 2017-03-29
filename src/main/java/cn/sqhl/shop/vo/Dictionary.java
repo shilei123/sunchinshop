@@ -2,7 +2,7 @@ package cn.sqhl.shop.vo;
 
 import java.math.BigDecimal;
 
-public class dictionary {
+public class Dictionary {
     private String type;
 
     private String code;

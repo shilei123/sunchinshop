@@ -2,7 +2,7 @@ package cn.sqhl.shop.po;
 
 import java.util.Date;
 
-public class brand {
+public class Brand {
     private String id;
 
     private String brandName;

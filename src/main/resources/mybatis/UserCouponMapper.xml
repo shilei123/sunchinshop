@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.sqhl.shop.mapper.userCouponMapper">
-  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.userCoupon">
+<mapper namespace="cn.sqhl.shop.mapper.UserCouponMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.UserCoupon">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
     <result column="COUPON_ID" jdbcType="VARCHAR" property="couponId" />
@@ -30,7 +30,7 @@
     delete from SC_USER_COUPON
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="cn.sqhl.shop.po.userCoupon">
+  <insert id="insert" parameterType="cn.sqhl.shop.po.UserCoupon">
     insert into SC_USER_COUPON (ID, USER_ID, COUPON_ID, 
       COUPON_NAME, COUPON_BLANCE, COUPON_XF_BALANCE, 
       COUPON_CREATDATE, COUPON_EXPIRYDATE, 
@@ -42,7 +42,7 @@
       #{orderSn,jdbcType=VARCHAR}, #{couponStatus,jdbcType=CHAR}, #{optionTime,jdbcType=TIMESTAMP}, 
       #{optionAdminid,jdbcType=VARCHAR}, #{optionRemark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.userCoupon">
+  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.UserCoupon">
     insert into SC_USER_COUPON
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -127,7 +127,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.userCoupon">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.UserCoupon">
     update SC_USER_COUPON
     <set>
       <if test="userId != null">
@@ -169,7 +169,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.userCoupon">
+  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.UserCoupon">
     update SC_USER_COUPON
     set USER_ID = #{userId,jdbcType=VARCHAR},
       COUPON_ID = #{couponId,jdbcType=VARCHAR},
@@ -186,7 +186,7 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   
-  <resultMap id="UserCouponMap" type="cn.sqhl.shop.vo.userCoupon">
+  <resultMap id="UserCouponMap" type="cn.sqhl.shop.vo.UserCoupon">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
     <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />

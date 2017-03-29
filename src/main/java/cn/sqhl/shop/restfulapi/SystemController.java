@@ -20,9 +20,9 @@ import cn.sqhl.shop.service.SystemService;
 import cn.sqhl.shop.utils.security.SecurityCore;
 import cn.sqhl.shop.vo.CategoryPropertyValue;
 import cn.sqhl.shop.vo.GoodsPropertyValue;
-import cn.sqhl.shop.vo.brand;
-import cn.sqhl.shop.vo.category;
-import cn.sqhl.shop.vo.dictionary;
+import cn.sqhl.shop.vo.Brand;
+import cn.sqhl.shop.vo.Category;
+import cn.sqhl.shop.vo.Dictionary;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -64,7 +64,7 @@ public class SystemController extends ContextInfo {
 						queryparam.put("parent_id", parent_id);
 					}
 					
-					List<category> categorylist=systemService.queryCategoryList(page, queryparam);
+					List<Category> categorylist=systemService.queryCategoryList(page, queryparam);
 					if(categorylist!=null && categorylist.size()>0){
 						data=JSON.toJSONString(categorylist);
 						message="查询成功";//
@@ -119,7 +119,7 @@ public class SystemController extends ContextInfo {
 						queryparam.put("pcode", pcode);
 					}
 					
-					List<dictionary> dictionarylist=systemService.queryDictionaryList(page, queryparam);
+					List<Dictionary> dictionarylist=systemService.queryDictionaryList(page, queryparam);
 					if(dictionarylist!=null && dictionarylist.size()>0){
 						data=JSON.toJSONString(dictionarylist);
 						message="查询成功";//
@@ -177,7 +177,7 @@ public class SystemController extends ContextInfo {
 						queryparam.put("cate_id", cate_id);
 					}
 					
-					List<brand> brandlist=systemService.queryBrandList(page, queryparam);
+					List<Brand> brandlist=systemService.queryBrandList(page, queryparam);
 					if(brandlist!=null && brandlist.size()>0){
 						data=JSON.toJSONString(brandlist);
 						message="查询成功";//
