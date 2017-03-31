@@ -19,7 +19,6 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public List<UserCoupon> queryUserCouponList(PageCond page, Object obj) {
-		// TODO Auto-generated method stub
 		return userCouponMapper.queryUserCouponList(page, (Map<String,Object>)obj);
 	}
 

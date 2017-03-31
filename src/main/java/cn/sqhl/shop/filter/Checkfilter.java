@@ -36,7 +36,6 @@ public class Checkfilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request,
 			HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String path=request.getRequestURI();
 		if(urllist.contains(path)){//是否接口请求
 			String source=request.getHeader("Referer");

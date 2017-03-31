@@ -19,7 +19,7 @@
     ID, CATE_NAME, MEMO, CATE_ORDER, LEVELS, LOGO, URL, PARENT_ID, CATE_CODE, 
     CREATE_TIME, UPDATE_TIME, ISBRAND
   </sql>
-  <select id="queryList" parameterType="java.util.Map" resultMap="BaseResultMap">
+  <select id="selectList" parameterType="java.util.Map" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from SC_CATEGORY

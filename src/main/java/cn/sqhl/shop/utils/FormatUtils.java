@@ -116,7 +116,6 @@ public class FormatUtils {
 				buffer.append(line);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return buffer.toString();
@@ -137,7 +136,6 @@ public class FormatUtils {
 			}
 
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "";

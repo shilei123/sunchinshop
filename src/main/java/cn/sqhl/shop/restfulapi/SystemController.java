@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.service.SystemService;
 import cn.sqhl.shop.utils.security.SecurityCore;
+import cn.sqhl.shop.vo.AskQuestion;
+import cn.sqhl.shop.vo.AskQuestionType;
 import cn.sqhl.shop.vo.CategoryPropertyValue;
 import cn.sqhl.shop.vo.GoodsPropertyValue;
 import cn.sqhl.shop.vo.Brand;
@@ -64,7 +66,7 @@ public class SystemController extends ContextInfo {
 						queryparam.put("parent_id", parent_id);
 					}
 					
-					List<Category> categorylist=systemService.queryCategoryList(page, queryparam);
+					List<Category> categorylist=systemService.queryCategoryList(queryparam);
 					if(categorylist!=null && categorylist.size()>0){
 						data=JSON.toJSONString(categorylist);
 						message="查询成功";//
@@ -445,4 +447,121 @@ public class SystemController extends ContextInfo {
 		return jreturn;
 	}
 
+	
+	/***
+	 * 常见问题分类查询接口
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/FAQ/kind/query")
+	public JSONObject queryFAQKindQuery(HttpServletRequest request) {
+		//TODO 待补全
+		JSONObject jreturn = new JSONObject();
+		Map basemap = new HashMap();
+		Map requestmap=(HashMap)request.getAttribute("map");
+		try {
+			if(StringUtils.isNotEmpty(requestmap.get("data")+"")){
+				JSONObject requestparam=JSON.parseObject(requestmap.get("data").toString());
+				if(requestparam!=null && requestparam.size()>0){
+					String prentid=requestparam.getString("prentid");
+					
+					Map<String, Object> queryparam=new HashMap<String, Object>();
+					if(StringUtils.isNotEmpty(prentid)){
+						queryparam.put("prentid", prentid);
+					}
+					
+					List<AskQuestionType> faqtypelist=systemService.queryFAQKindList(queryparam);
+					if(faqtypelist!=null && faqtypelist.size()>0){
+						data=JSON.toJSONString(faqtypelist);
+						message="查询成功";//
+					}else{
+						data=null;
+						message="无对应数据";//
+					}
+					result="0";//成功
+				}
+			}
+		} catch (Exception e) {
+			result = "1";// 失败
+			message = "查询出错 ";// 错误原因
+			data = null;// 错误 data无返回值
+			logger.log(ERROR, "Exception:" + e.getCause().getClass() + ","
+					+ e.getCause().getMessage() + " info:" + e.toString());
+		}
+
+		basemap.put("ver", ver);
+		basemap.put("result", result);
+		basemap.put("message", message);
+		basemap.put("data", data);
+
+		Map signvalue = SecurityCore.buildRequestPara(basemap);
+
+		jreturn.putAll(signvalue);
+		
+		logger.log(INFO,"request Encrypt info :  "+jreturn.toString());
+		return jreturn;
+	}
+	
+	/***
+	 * 常见问题查询接口
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/FAQ/query")
+	public JSONObject queryFAQquery(HttpServletRequest request) {
+		//TODO 待补全
+		JSONObject jreturn = new JSONObject();
+		Map basemap = new HashMap();
+		Map requestmap=(HashMap)request.getAttribute("map");
+		try {
+			if(StringUtils.isNotEmpty(requestmap.get("data")+"")){
+				JSONObject requestparam=JSON.parseObject(requestmap.get("data").toString());
+				if(requestparam!=null && requestparam.size()>0){
+					String kindid=requestparam.getString("kindid");
+					String keyvalue=requestparam.getString("keyvalue");
+					
+					Integer pagesize=StringUtils.isNotEmpty(requestparam.getString("pagesize"))?(requestparam.getInteger("pagesize")):10;
+					Integer nowpage=StringUtils.isNotEmpty(requestparam.getString("nowpage"))?(requestparam.getInteger("nowpage")):0;
+				
+					PageCond page=new PageCond(pagesize*nowpage, pagesize);
+					Map<String, Object> queryparam=new HashMap<String, Object>();
+					if(StringUtils.isNotEmpty(kindid)){
+						queryparam.put("kindid", kindid);
+					}if(StringUtils.isNotEmpty(keyvalue)){
+						queryparam.put("keyvalue", keyvalue);
+					}
+					
+					List<AskQuestion> faqlist=systemService.queryFAQList(page, queryparam);
+					if(faqlist!=null && faqlist.size()>0){
+						data=JSON.toJSONString(faqlist);
+						message="查询成功";//
+					}else{
+						data=null;
+						message="无对应数据";//
+					}
+					result="0";//成功
+				}
+			}
+		} catch (Exception e) {
+			result = "1";// 失败
+			message = "查询出错 ";// 错误原因
+			data = null;// 错误 data无返回值
+			logger.log(ERROR, "Exception:" + e.getCause().getClass() + ","
+					+ e.getCause().getMessage() + " info:" + e.toString());
+		}
+
+		basemap.put("ver", ver);
+		basemap.put("result", result);
+		basemap.put("message", message);
+		basemap.put("data", data);
+
+		Map signvalue = SecurityCore.buildRequestPara(basemap);
+
+		jreturn.putAll(signvalue);
+		
+		logger.log(INFO,"request Encrypt info :  "+jreturn.toString());
+		return jreturn;
+	}
 }

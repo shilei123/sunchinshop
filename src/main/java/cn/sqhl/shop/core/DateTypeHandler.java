@@ -49,7 +49,6 @@ public class DateTypeHandler implements TypeHandler<Object>{
 	@Override
 	public void setParameter(PreparedStatement arg0, int arg1, Object arg2,
 			JdbcType arg3) throws SQLException {
-		// TODO Auto-generated method stub
 		String dateval=(String)arg2;
 		if(StringUtils.isNotEmpty(dateval)){
 			java.sql.Date value=new java.sql.Date(DateHelper.stringToTime(dateval).getTime());

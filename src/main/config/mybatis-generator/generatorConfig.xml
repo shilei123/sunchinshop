@@ -69,7 +69,7 @@
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
 		 -->
-		<table tableName="sc_comment" domainObjectName="Comment"
+		<table tableName="SC_FAQ_TYPE" domainObjectName="AskQuestionType"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>

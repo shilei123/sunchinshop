@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sqhl.shop.mapper.PurseMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.Purse">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="TRADE_TYPE" jdbcType="CHAR" property="tradeType" />
+    <result column="TRADE_AMOUNT" jdbcType="DECIMAL" property="tradeAmount" />
+    <result column="TRADE_SN" jdbcType="VARCHAR" property="tradeSn" />
+    <result column="TRADE_STATE" jdbcType="CHAR" property="tradeState" />
+    <result column="ORDER_ID" jdbcType="VARCHAR" property="orderId" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="USER_AMOUNT" jdbcType="DECIMAL" property="userAmount" />
+    <result column="PURSE_TYPE" jdbcType="CHAR" property="purseType" />
+    <result column="PAY_ACCOUNT" jdbcType="VARCHAR" property="payAccount" />
+    <result column="PAY_OPEN_BANK" jdbcType="VARCHAR" property="payOpenBank" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="OPTION_TIME" jdbcType="TIMESTAMP" property="optionTime" />
+    <result column="OPTION_ADMINID" jdbcType="VARCHAR" property="optionAdminid" />
+    <result column="OPTION_ADMINNAME" jdbcType="VARCHAR" property="optionAdminname" />
+    <result column="OPTION_REMARK" jdbcType="VARCHAR" property="optionRemark" />
+    <result column="OPTION_TYPE" jdbcType="CHAR" property="optionType" />
+    <result column="BELONG" jdbcType="VARCHAR" property="belong" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, TRADE_TYPE, TRADE_AMOUNT, TRADE_SN, TRADE_STATE, ORDER_ID, USER_ID, USER_AMOUNT, 
+    PURSE_TYPE, PAY_ACCOUNT, PAY_OPEN_BANK, CREATE_TIME, OPTION_TIME, OPTION_ADMINID, 
+    OPTION_ADMINNAME, OPTION_REMARK, OPTION_TYPE, BELONG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SC_PURSE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SC_PURSE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.sqhl.shop.po.Purse">
+    insert into SC_PURSE (ID, TRADE_TYPE, TRADE_AMOUNT, 
+      TRADE_SN, TRADE_STATE, ORDER_ID, 
+      USER_ID, USER_AMOUNT, PURSE_TYPE, 
+      PAY_ACCOUNT, PAY_OPEN_BANK, CREATE_TIME, 
+      OPTION_TIME, OPTION_ADMINID, OPTION_ADMINNAME, 
+      OPTION_REMARK, OPTION_TYPE, BELONG
+      )
+    values (#{id,jdbcType=VARCHAR}, #{tradeType,jdbcType=CHAR}, #{tradeAmount,jdbcType=DECIMAL}, 
+      #{tradeSn,jdbcType=VARCHAR}, #{tradeState,jdbcType=CHAR}, #{orderId,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{userAmount,jdbcType=DECIMAL}, #{purseType,jdbcType=CHAR}, 
+      #{payAccount,jdbcType=VARCHAR}, #{payOpenBank,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{optionTime,jdbcType=TIMESTAMP}, #{optionAdminid,jdbcType=VARCHAR}, #{optionAdminname,jdbcType=VARCHAR}, 
+      #{optionRemark,jdbcType=VARCHAR}, #{optionType,jdbcType=CHAR}, #{belong,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.Purse">
+    insert into SC_PURSE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="tradeType != null">
+        TRADE_TYPE,
+      </if>
+      <if test="tradeAmount != null">
+        TRADE_AMOUNT,
+      </if>
+      <if test="tradeSn != null">
+        TRADE_SN,
+      </if>
+      <if test="tradeState != null">
+        TRADE_STATE,
+      </if>
+      <if test="orderId != null">
+        ORDER_ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="userAmount != null">
+        USER_AMOUNT,
+      </if>
+      <if test="purseType != null">
+        PURSE_TYPE,
+      </if>
+      <if test="payAccount != null">
+        PAY_ACCOUNT,
+      </if>
+      <if test="payOpenBank != null">
+        PAY_OPEN_BANK,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="optionTime != null">
+        OPTION_TIME,
+      </if>
+      <if test="optionAdminid != null">
+        OPTION_ADMINID,
+      </if>
+      <if test="optionAdminname != null">
+        OPTION_ADMINNAME,
+      </if>
+      <if test="optionRemark != null">
+        OPTION_REMARK,
+      </if>
+      <if test="optionType != null">
+        OPTION_TYPE,
+      </if>
+      <if test="belong != null">
+        BELONG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null">
+        #{tradeType,jdbcType=CHAR},
+      </if>
+      <if test="tradeAmount != null">
+        #{tradeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeSn != null">
+        #{tradeSn,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeState != null">
+        #{tradeState,jdbcType=CHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userAmount != null">
+        #{userAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="purseType != null">
+        #{purseType,jdbcType=CHAR},
+      </if>
+      <if test="payAccount != null">
+        #{payAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="payOpenBank != null">
+        #{payOpenBank,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="optionTime != null">
+        #{optionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="optionAdminid != null">
+        #{optionAdminid,jdbcType=VARCHAR},
+      </if>
+      <if test="optionAdminname != null">
+        #{optionAdminname,jdbcType=VARCHAR},
+      </if>
+      <if test="optionRemark != null">
+        #{optionRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="optionType != null">
+        #{optionType,jdbcType=CHAR},
+      </if>
+      <if test="belong != null">
+        #{belong,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.Purse">
+    update SC_PURSE
+    <set>
+      <if test="tradeType != null">
+        TRADE_TYPE = #{tradeType,jdbcType=CHAR},
+      </if>
+      <if test="tradeAmount != null">
+        TRADE_AMOUNT = #{tradeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeSn != null">
+        TRADE_SN = #{tradeSn,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeState != null">
+        TRADE_STATE = #{tradeState,jdbcType=CHAR},
+      </if>
+      <if test="orderId != null">
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userAmount != null">
+        USER_AMOUNT = #{userAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="purseType != null">
+        PURSE_TYPE = #{purseType,jdbcType=CHAR},
+      </if>
+      <if test="payAccount != null">
+        PAY_ACCOUNT = #{payAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="payOpenBank != null">
+        PAY_OPEN_BANK = #{payOpenBank,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="optionTime != null">
+        OPTION_TIME = #{optionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="optionAdminid != null">
+        OPTION_ADMINID = #{optionAdminid,jdbcType=VARCHAR},
+      </if>
+      <if test="optionAdminname != null">
+        OPTION_ADMINNAME = #{optionAdminname,jdbcType=VARCHAR},
+      </if>
+      <if test="optionRemark != null">
+        OPTION_REMARK = #{optionRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="optionType != null">
+        OPTION_TYPE = #{optionType,jdbcType=CHAR},
+      </if>
+      <if test="belong != null">
+        BELONG = #{belong,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.Purse">
+    update SC_PURSE
+    set TRADE_TYPE = #{tradeType,jdbcType=CHAR},
+      TRADE_AMOUNT = #{tradeAmount,jdbcType=DECIMAL},
+      TRADE_SN = #{tradeSn,jdbcType=VARCHAR},
+      TRADE_STATE = #{tradeState,jdbcType=CHAR},
+      ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      USER_AMOUNT = #{userAmount,jdbcType=DECIMAL},
+      PURSE_TYPE = #{purseType,jdbcType=CHAR},
+      PAY_ACCOUNT = #{payAccount,jdbcType=VARCHAR},
+      PAY_OPEN_BANK = #{payOpenBank,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      OPTION_TIME = #{optionTime,jdbcType=TIMESTAMP},
+      OPTION_ADMINID = #{optionAdminid,jdbcType=VARCHAR},
+      OPTION_ADMINNAME = #{optionAdminname,jdbcType=VARCHAR},
+      OPTION_REMARK = #{optionRemark,jdbcType=VARCHAR},
+      OPTION_TYPE = #{optionType,jdbcType=CHAR},
+      BELONG = #{belong,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <resultMap id="PursResultMap" type="cn.sqhl.shop.vo.Purse">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="TRADE_TYPE" jdbcType="CHAR" property="tradeType" />
+    <result column="TRADE_AMOUNT" jdbcType="DECIMAL" property="tradeAmount" />
+    <result column="TRADE_SN" jdbcType="VARCHAR" property="tradeSn" />
+    <result column="TRADE_STATE" jdbcType="CHAR" property="tradeState" />
+    <result column="ORDER_ID" jdbcType="VARCHAR" property="orderId" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="USER_AMOUNT" jdbcType="DECIMAL" property="userAmount" />
+    <result column="PURSE_TYPE" jdbcType="CHAR" property="purseType" />
+    <result column="PAY_ACCOUNT" jdbcType="VARCHAR" property="payAccount" />
+    <result column="PAY_OPEN_BANK" jdbcType="VARCHAR" property="payOpenBank" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="OPTION_TIME" jdbcType="TIMESTAMP" property="optionTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="OPTION_ADMINID" jdbcType="VARCHAR" property="optionAdminid" />
+    <result column="OPTION_ADMINNAME" jdbcType="VARCHAR" property="optionAdminname" />
+    <result column="OPTION_REMARK" jdbcType="VARCHAR" property="optionRemark" />
+    <result column="OPTION_TYPE" jdbcType="CHAR" property="optionType" />
+    <result column="BELONG" jdbcType="VARCHAR" property="belong" />
+  </resultMap>
+  <sql id="Purs_Column_List">
+    ID, TRADE_TYPE, TRADE_AMOUNT, TRADE_SN, TRADE_STATE, ORDER_ID, USER_ID, USER_AMOUNT, 
+    PURSE_TYPE, PAY_ACCOUNT, PAY_OPEN_BANK, CREATE_TIME, OPTION_TIME, OPTION_ADMINID, 
+    OPTION_ADMINNAME, OPTION_REMARK, OPTION_TYPE, BELONG
+  </sql>
+  <select id="queryList" parameterType="java.util.Map" resultMap="PursResultMap">
+    select 
+    <include refid="Purs_Column_List" />
+    from SC_PURSE 
+    where 1=1
+	<if test="map.Btime !=null">
+    	<![CDATA[and b.CREATE_TIME>=#{map.Btime,jdbcType=VARCHAR,typeHandler="cn.sqhl.shop.core.DateTypeHandler"}]]
+    </if>
+	<if test="map.Etime !=null">
+    	<![CDATA[and b.CREATE_TIME<=#{map.Etime,jdbcType=VARCHAR,typeHandler="cn.sqhl.shop.core.DateTypeHandler"}]]
+    </if>
+	<if test="map.Bamount !=null">
+    	<![CDATA[and b.TRADE_AMOUNT>=#{map.Bamount,jdbcType=VARCHAR}]]
+    </if>
+	<if test="map.Eamount !=null">
+    	<![CDATA[and b.TRADE_AMOUNT<=#{map.Eamount,jdbcType=VARCHAR}]]
+    </if>
+	<if test="map.userid !=null">
+    	and b.USER_ID=#{map.userid,jdbcType=VARCHAR}
+    </if>
+	<if test="map.way !=null">
+    	and b.TRADE_TYPE=#{map.way,jdbcType=VARCHAR}
+    </if>
+	<if test="map.type !=null">
+    	and b.OPTION_TYPE=#{map.type,jdbcType=VARCHAR}
+    </if>
+	<if test="map.kind !=null">
+    	and b.PURSE_TYPE=#{map.kind,jdbcType=VARCHAR}
+    </if>
+	<if test="map.status !=null">
+    	and b.TRADE_STATE=#{map.status,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>
