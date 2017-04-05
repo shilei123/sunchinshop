@@ -1,29 +1,32 @@
-package cn.sqhl.shop.po;
+package cn.sqhl.shop.vo;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
-public class AskQuestion {
+public class Faq {
     private String id;
 
     private String faqTitle;
 
     private String faqTypeId;
 
-    private String type;
+    private String category;
 
-    private String parentId;
+    private String parentFaqId;
 
     private String hotQuestion;
 
-    private String faqOrder;
+    private BigDecimal order;
 
-    private Date createTime;
+    private String createTime;
 
-    private String createPeople;
+    private String createUserId;
 
     private String flag;
 
     private String belong;
+
+    private String faqType;
 
     private String faqContent;
 
@@ -51,20 +54,20 @@ public class AskQuestion {
         this.faqTypeId = faqTypeId == null ? null : faqTypeId.trim();
     }
 
-    public String getType() {
-        return type;
+    public String getCategory() {
+        return category;
     }
 
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
+    public void setCategory(String category) {
+        this.category = category == null ? null : category.trim();
     }
 
-    public String getParentId() {
-        return parentId;
+    public String getParentFaqId() {
+        return parentFaqId;
     }
 
-    public void setParentId(String parentId) {
-        this.parentId = parentId == null ? null : parentId.trim();
+    public void setParentFaqId(String parentFaqId) {
+        this.parentFaqId = parentFaqId == null ? null : parentFaqId.trim();
     }
 
     public String getHotQuestion() {
@@ -75,28 +78,28 @@ public class AskQuestion {
         this.hotQuestion = hotQuestion == null ? null : hotQuestion.trim();
     }
 
-    public String getFaqOrder() {
-        return faqOrder;
+    public BigDecimal getOrder() {
+        return order;
     }
 
-    public void setFaqOrder(String faqOrder) {
-        this.faqOrder = faqOrder == null ? null : faqOrder.trim();
+    public void setOrder(BigDecimal order) {
+        this.order = order;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public String getCreatePeople() {
-        return createPeople;
+    public String getCreateUserId() {
+        return createUserId;
     }
 
-    public void setCreatePeople(String createPeople) {
-        this.createPeople = createPeople == null ? null : createPeople.trim();
+    public void setCreateUserId(String createUserId) {
+        this.createUserId = createUserId == null ? null : createUserId.trim();
     }
 
     public String getFlag() {
@@ -113,6 +116,14 @@ public class AskQuestion {
 
     public void setBelong(String belong) {
         this.belong = belong == null ? null : belong.trim();
+    }
+
+    public String getFaqType() {
+        return faqType;
+    }
+
+    public void setFaqType(String faqType) {
+        this.faqType = faqType == null ? null : faqType.trim();
     }
 
     public String getFaqContent() {

@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.service.SystemService;
 import cn.sqhl.shop.utils.security.SecurityCore;
-import cn.sqhl.shop.vo.AskQuestion;
-import cn.sqhl.shop.vo.AskQuestionType;
 import cn.sqhl.shop.vo.CategoryPropertyValue;
 import cn.sqhl.shop.vo.GoodsPropertyValue;
 import cn.sqhl.shop.vo.Brand;
-import cn.sqhl.shop.vo.Category;
+import cn.sqhl.shop.vo.CateGory;
 import cn.sqhl.shop.vo.Dictionary;
+import cn.sqhl.shop.vo.Faq;
+import cn.sqhl.shop.vo.FaqType;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -66,7 +66,7 @@ public class SystemController extends ContextInfo {
 						queryparam.put("parent_id", parent_id);
 					}
 					
-					List<Category> categorylist=systemService.queryCategoryList(queryparam);
+					List<CateGory> categorylist=systemService.queryCategoryList(queryparam);
 					if(categorylist!=null && categorylist.size()>0){
 						data=JSON.toJSONString(categorylist);
 						message="查询成功";//
@@ -471,7 +471,7 @@ public class SystemController extends ContextInfo {
 						queryparam.put("prentid", prentid);
 					}
 					
-					List<AskQuestionType> faqtypelist=systemService.queryFAQKindList(queryparam);
+					List<FaqType> faqtypelist=systemService.queryFAQKindList(queryparam);
 					if(faqtypelist!=null && faqtypelist.size()>0){
 						data=JSON.toJSONString(faqtypelist);
 						message="查询成功";//
@@ -533,7 +533,7 @@ public class SystemController extends ContextInfo {
 						queryparam.put("keyvalue", keyvalue);
 					}
 					
-					List<AskQuestion> faqlist=systemService.queryFAQList(page, queryparam);
+					List<Faq> faqlist=systemService.queryFAQList(page, queryparam);
 					if(faqlist!=null && faqlist.size()>0){
 						data=JSON.toJSONString(faqlist);
 						message="查询成功";//

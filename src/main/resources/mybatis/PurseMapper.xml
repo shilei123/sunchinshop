@@ -20,11 +20,12 @@
     <result column="OPTION_REMARK" jdbcType="VARCHAR" property="optionRemark" />
     <result column="OPTION_TYPE" jdbcType="CHAR" property="optionType" />
     <result column="BELONG" jdbcType="VARCHAR" property="belong" />
+    <result column="FLAG" jdbcType="CHAR" property="flag" />
   </resultMap>
   <sql id="Base_Column_List">
     ID, TRADE_TYPE, TRADE_AMOUNT, TRADE_SN, TRADE_STATE, ORDER_ID, USER_ID, USER_AMOUNT, 
     PURSE_TYPE, PAY_ACCOUNT, PAY_OPEN_BANK, CREATE_TIME, OPTION_TIME, OPTION_ADMINID, 
-    OPTION_ADMINNAME, OPTION_REMARK, OPTION_TYPE, BELONG
+    OPTION_ADMINNAME, OPTION_REMARK, OPTION_TYPE, BELONG, FLAG
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -42,15 +43,15 @@
       USER_ID, USER_AMOUNT, PURSE_TYPE, 
       PAY_ACCOUNT, PAY_OPEN_BANK, CREATE_TIME, 
       OPTION_TIME, OPTION_ADMINID, OPTION_ADMINNAME, 
-      OPTION_REMARK, OPTION_TYPE, BELONG
-      )
+      OPTION_REMARK, OPTION_TYPE, BELONG, 
+      FLAG)
     values (#{id,jdbcType=VARCHAR}, #{tradeType,jdbcType=CHAR}, #{tradeAmount,jdbcType=DECIMAL}, 
       #{tradeSn,jdbcType=VARCHAR}, #{tradeState,jdbcType=CHAR}, #{orderId,jdbcType=VARCHAR}, 
       #{userId,jdbcType=VARCHAR}, #{userAmount,jdbcType=DECIMAL}, #{purseType,jdbcType=CHAR}, 
       #{payAccount,jdbcType=VARCHAR}, #{payOpenBank,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{optionTime,jdbcType=TIMESTAMP}, #{optionAdminid,jdbcType=VARCHAR}, #{optionAdminname,jdbcType=VARCHAR}, 
-      #{optionRemark,jdbcType=VARCHAR}, #{optionType,jdbcType=CHAR}, #{belong,jdbcType=VARCHAR}
-      )
+      #{optionRemark,jdbcType=VARCHAR}, #{optionType,jdbcType=CHAR}, #{belong,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.sqhl.shop.po.Purse">
     insert into SC_PURSE
@@ -109,6 +110,9 @@
       <if test="belong != null">
         BELONG,
       </if>
+      <if test="flag != null">
+        FLAG,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -164,6 +168,9 @@
       </if>
       <if test="belong != null">
         #{belong,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -221,6 +228,9 @@
       <if test="belong != null">
         BELONG = #{belong,jdbcType=VARCHAR},
       </if>
+      <if test="flag != null">
+        FLAG = #{flag,jdbcType=CHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
@@ -242,7 +252,8 @@
       OPTION_ADMINNAME = #{optionAdminname,jdbcType=VARCHAR},
       OPTION_REMARK = #{optionRemark,jdbcType=VARCHAR},
       OPTION_TYPE = #{optionType,jdbcType=CHAR},
-      BELONG = #{belong,jdbcType=VARCHAR}
+      BELONG = #{belong,jdbcType=VARCHAR},
+      FLAG = #{flag,jdbcType=CHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   
@@ -265,11 +276,12 @@
     <result column="OPTION_REMARK" jdbcType="VARCHAR" property="optionRemark" />
     <result column="OPTION_TYPE" jdbcType="CHAR" property="optionType" />
     <result column="BELONG" jdbcType="VARCHAR" property="belong" />
+    <result column="FLAG" jdbcType="CHAR" property="flag" />
   </resultMap>
   <sql id="Purs_Column_List">
     ID, TRADE_TYPE, TRADE_AMOUNT, TRADE_SN, TRADE_STATE, ORDER_ID, USER_ID, USER_AMOUNT, 
     PURSE_TYPE, PAY_ACCOUNT, PAY_OPEN_BANK, CREATE_TIME, OPTION_TIME, OPTION_ADMINID, 
-    OPTION_ADMINNAME, OPTION_REMARK, OPTION_TYPE, BELONG
+    OPTION_ADMINNAME, OPTION_REMARK, OPTION_TYPE, BELONG, FLAG
   </sql>
   <select id="queryList" parameterType="java.util.Map" resultMap="PursResultMap">
     select 
@@ -277,16 +289,16 @@
     from SC_PURSE 
     where 1=1
 	<if test="map.Btime !=null">
-    	<![CDATA[and b.CREATE_TIME>=#{map.Btime,jdbcType=VARCHAR,typeHandler="cn.sqhl.shop.core.DateTypeHandler"}]]
+    	<![CDATA[and b.CREATE_TIME>=#{map.Btime,jdbcType=VARCHAR,typeHandler=cn.sqhl.shop.core.DateTypeHandler}]]>
     </if>
 	<if test="map.Etime !=null">
-    	<![CDATA[and b.CREATE_TIME<=#{map.Etime,jdbcType=VARCHAR,typeHandler="cn.sqhl.shop.core.DateTypeHandler"}]]
+    	<![CDATA[and b.CREATE_TIME<=#{map.Etime,jdbcType=VARCHAR,typeHandler=cn.sqhl.shop.core.DateTypeHandler}]]>
     </if>
 	<if test="map.Bamount !=null">
-    	<![CDATA[and b.TRADE_AMOUNT>=#{map.Bamount,jdbcType=VARCHAR}]]
+    	<![CDATA[and b.TRADE_AMOUNT>=#{map.Bamount,jdbcType=VARCHAR}]]>
     </if>
 	<if test="map.Eamount !=null">
-    	<![CDATA[and b.TRADE_AMOUNT<=#{map.Eamount,jdbcType=VARCHAR}]]
+    	<![CDATA[and b.TRADE_AMOUNT<=#{map.Eamount,jdbcType=VARCHAR}]]>
     </if>
 	<if test="map.userid !=null">
     	and b.USER_ID=#{map.userid,jdbcType=VARCHAR}

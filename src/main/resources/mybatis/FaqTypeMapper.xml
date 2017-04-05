@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.sqhl.shop.mapper.AskQuestionTypeMapper">
-  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.AskQuestionType">
+<mapper namespace="cn.sqhl.shop.mapper.FaqTypeMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.FaqType">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="TYPE_NAME" jdbcType="VARCHAR" property="typeName" />
     <result column="TYPE_DESC" jdbcType="VARCHAR" property="typeDesc" />
     <result column="TYPE_CODE" jdbcType="VARCHAR" property="typeCode" />
-    <result column="TYPE_ORDER" jdbcType="VARCHAR" property="typeOrder" />
-    <result column="TYPE_LEVEL" jdbcType="CHAR" property="typeLevel" />
+    <result column="ORDER_" jdbcType="DECIMAL" property="order" />
     <result column="PARENT_TYPE_ID" jdbcType="VARCHAR" property="parentTypeId" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="FLAG" jdbcType="CHAR" property="flag" />
     <result column="BELONG" jdbcType="VARCHAR" property="belong" />
+    <result column="LEVEL_" jdbcType="CHAR" property="level" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, TYPE_NAME, TYPE_DESC, TYPE_CODE, TYPE_ORDER, TYPE_LEVEL, PARENT_TYPE_ID, CREATE_TIME, 
-    FLAG, BELONG
+    ID, TYPE_NAME, TYPE_DESC, TYPE_CODE, ORDER_, PARENT_TYPE_ID, CREATE_TIME, FLAG, BELONG, 
+    LEVEL_
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -27,17 +27,17 @@
     delete from SC_FAQ_TYPE
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="cn.sqhl.shop.po.AskQuestionType">
+  <insert id="insert" parameterType="cn.sqhl.shop.po.FaqType">
     insert into SC_FAQ_TYPE (ID, TYPE_NAME, TYPE_DESC, 
-      TYPE_CODE, TYPE_ORDER, TYPE_LEVEL, 
-      PARENT_TYPE_ID, CREATE_TIME, FLAG, 
-      BELONG)
+      TYPE_CODE, ORDER_, PARENT_TYPE_ID, 
+      CREATE_TIME, FLAG, BELONG, 
+      LEVEL_)
     values (#{id,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}, #{typeDesc,jdbcType=VARCHAR}, 
-      #{typeCode,jdbcType=VARCHAR}, #{typeOrder,jdbcType=VARCHAR}, #{typeLevel,jdbcType=CHAR}, 
-      #{parentTypeId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{flag,jdbcType=CHAR}, 
-      #{belong,jdbcType=VARCHAR})
+      #{typeCode,jdbcType=VARCHAR}, #{order,jdbcType=DECIMAL}, #{parentTypeId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{flag,jdbcType=CHAR}, #{belong,jdbcType=VARCHAR}, 
+      #{level,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.AskQuestionType">
+  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.FaqType">
     insert into SC_FAQ_TYPE
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -52,11 +52,8 @@
       <if test="typeCode != null">
         TYPE_CODE,
       </if>
-      <if test="typeOrder != null">
-        TYPE_ORDER,
-      </if>
-      <if test="typeLevel != null">
-        TYPE_LEVEL,
+      <if test="order != null">
+        ORDER_,
       </if>
       <if test="parentTypeId != null">
         PARENT_TYPE_ID,
@@ -69,6 +66,9 @@
       </if>
       <if test="belong != null">
         BELONG,
+      </if>
+      <if test="level != null">
+        LEVEL_,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -84,11 +84,8 @@
       <if test="typeCode != null">
         #{typeCode,jdbcType=VARCHAR},
       </if>
-      <if test="typeOrder != null">
-        #{typeOrder,jdbcType=VARCHAR},
-      </if>
-      <if test="typeLevel != null">
-        #{typeLevel,jdbcType=CHAR},
+      <if test="order != null">
+        #{order,jdbcType=DECIMAL},
       </if>
       <if test="parentTypeId != null">
         #{parentTypeId,jdbcType=VARCHAR},
@@ -102,9 +99,12 @@
       <if test="belong != null">
         #{belong,jdbcType=VARCHAR},
       </if>
+      <if test="level != null">
+        #{level,jdbcType=CHAR},
+      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.AskQuestionType">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.FaqType">
     update SC_FAQ_TYPE
     <set>
       <if test="typeName != null">
@@ -116,11 +116,8 @@
       <if test="typeCode != null">
         TYPE_CODE = #{typeCode,jdbcType=VARCHAR},
       </if>
-      <if test="typeOrder != null">
-        TYPE_ORDER = #{typeOrder,jdbcType=VARCHAR},
-      </if>
-      <if test="typeLevel != null">
-        TYPE_LEVEL = #{typeLevel,jdbcType=CHAR},
+      <if test="order != null">
+        ORDER_ = #{order,jdbcType=DECIMAL},
       </if>
       <if test="parentTypeId != null">
         PARENT_TYPE_ID = #{parentTypeId,jdbcType=VARCHAR},
@@ -134,63 +131,41 @@
       <if test="belong != null">
         BELONG = #{belong,jdbcType=VARCHAR},
       </if>
+      <if test="level != null">
+        LEVEL_ = #{level,jdbcType=CHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.AskQuestionType">
+  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.FaqType">
     update SC_FAQ_TYPE
     set TYPE_NAME = #{typeName,jdbcType=VARCHAR},
       TYPE_DESC = #{typeDesc,jdbcType=VARCHAR},
       TYPE_CODE = #{typeCode,jdbcType=VARCHAR},
-      TYPE_ORDER = #{typeOrder,jdbcType=VARCHAR},
-      TYPE_LEVEL = #{typeLevel,jdbcType=CHAR},
+      ORDER_ = #{order,jdbcType=DECIMAL},
       PARENT_TYPE_ID = #{parentTypeId,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       FLAG = #{flag,jdbcType=CHAR},
-      BELONG = #{belong,jdbcType=VARCHAR}
+      BELONG = #{belong,jdbcType=VARCHAR},
+      LEVEL_ = #{level,jdbcType=CHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-
-
-  <resultMap id="AQTResultMap" type="cn.sqhl.shop.vo.AskQuestionType">
+  
+  <resultMap id="FAQTypeResultMap" type="cn.sqhl.shop.vo.FaqType">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="TYPE_NAME" jdbcType="VARCHAR" property="typeName" />
     <result column="TYPE_DESC" jdbcType="VARCHAR" property="typeDesc" />
     <result column="TYPE_CODE" jdbcType="VARCHAR" property="typeCode" />
-    <result column="TYPE_ORDER" jdbcType="VARCHAR" property="typeOrder" />
-    <result column="TYPE_LEVEL" jdbcType="CHAR" property="typeLevel" />
-    <result column="PARENT_TYPE_ID" jdbcType="VARCHAR" property="parentTypeId" />
-    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
-    <result column="BELONG" jdbcType="VARCHAR" property="belong" />
-  </resultMap>
-  <sql id="AQT_Column_List">
-    ID, TYPE_NAME, TYPE_DESC, TYPE_CODE, TYPE_ORDER, TYPE_LEVEL, PARENT_TYPE_ID, CREATE_TIME, 
-     BELONG
-  </sql>
-  <select id="queryList" parameterType="java.util.Map" resultMap="AQTResultMap">
-    select 
-    <include refid="AQT_Column_List" />
-    from SC_FAQ_TYPE
-    where  flag=1
-	and ID = #{id,jdbcType=VARCHAR}
-  </select>
-
-
-
-  <resultMap id="FAQTypeResultMap" type="cn.sqhl.shop.vo.AskQuestionType">
-    <id column="ID" jdbcType="VARCHAR" property="id" />
-    <result column="TYPE_NAME" jdbcType="VARCHAR" property="typeName" />
-    <result column="TYPE_DESC" jdbcType="VARCHAR" property="typeDesc" />
-    <result column="TYPE_CODE" jdbcType="VARCHAR" property="typeCode" />
-    <result column="TYPE_ORDER" jdbcType="VARCHAR" property="typeOrder" />
-    <result column="TYPE_LEVEL" jdbcType="CHAR" property="typeLevel" />
+    <result column="ORDER_" jdbcType="DECIMAL" property="order" />
     <result column="PARENT_TYPE_ID" jdbcType="VARCHAR" property="parentTypeId" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="FLAG" jdbcType="CHAR" property="flag" />
     <result column="BELONG" jdbcType="VARCHAR" property="belong" />
+    <result column="LEVEL_" jdbcType="CHAR" property="level" />
   </resultMap>
   <sql id="FAQType_Column_List">
-    ID, TYPE_NAME, TYPE_DESC, TYPE_CODE, TYPE_ORDER, TYPE_LEVEL, PARENT_TYPE_ID, CREATE_TIME, 
-    BELONG
+    ID, TYPE_NAME, TYPE_DESC, TYPE_CODE, ORDER_, PARENT_TYPE_ID, CREATE_TIME, FLAG, BELONG, 
+    LEVEL_
   </sql>
   <select id="selectList" parameterType="java.util.Map" resultMap="FAQTypeResultMap">
     select 

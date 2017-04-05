@@ -23,4 +23,5 @@ public interface CommentMapper {
     int updateByPrimaryKey(Comment record);
     
     List<cn.sqhl.shop.vo.Comment> queryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
+
 }

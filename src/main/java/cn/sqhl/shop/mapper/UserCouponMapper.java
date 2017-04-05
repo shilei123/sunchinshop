@@ -5,9 +5,9 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import cn.sqhl.shop.po.UserCoupon;
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.core.PaginationInterceptor;
+import cn.sqhl.shop.po.UserCoupon;
 
 public interface UserCouponMapper {
     int deleteByPrimaryKey(String id);

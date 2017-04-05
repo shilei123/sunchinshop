@@ -36,31 +36,43 @@
 		</javaClientGenerator>
 		<!--生成对应表及类名 -->
 		<!-- 
-		<table tableName="sc_dictionary" domainObjectName="dictionary"
+		<table tableName="SC_DICTIONARY" domainObjectName="dictionary"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
-		<table tableName="sc_category" domainObjectName="category"
+		<table tableName="SC_ADVERTISE" domainObjectName="category"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
-		<table tableName="sc_coupon" domainObjectName="coupon"
+		<table tableName="SC_EVENTS" domainObjectName="coupon"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
-		<table tableName="sc_advertise" domainObjectName="advertise"
+		<table tableName="SC_EVENTS_GOODS" domainObjectName="advertise"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
-		<table tableName="sc_eventsinfo" domainObjectName="eventsInfo"
+		<table tableName="SC_CATEGORY" domainObjectName="eventsInfo"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
-		<table tableName="sc_property" domainObjectName="property"
+		<table tableName="SC_COMMENT" domainObjectName="property"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
-		<table tableName="sc_user_coupon" domainObjectName="userCoupon"
+		<table tableName="SC_PURSE" domainObjectName="userCoupon"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+		<table tableName="SC_USER_COUPON" domainObjectName=""
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+			<table tableName="SC_FAQ" domainObjectName="dictionary"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+		<table tableName="SC_FAQ_TYPE" domainObjectName="category"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
@@ -69,10 +81,11 @@
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
 		 -->
-		<table tableName="SC_FAQ_TYPE" domainObjectName="AskQuestionType"
+		<table tableName="SC_BRAND" domainObjectName="Brand"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
+		
 		 
 	</context>
 </generatorConfiguration>

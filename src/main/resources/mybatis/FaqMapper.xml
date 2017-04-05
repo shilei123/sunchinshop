@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.sqhl.shop.mapper.AskQuestionMapper">
-  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.AskQuestion">
+<mapper namespace="cn.sqhl.shop.mapper.FaqMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.Faq">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="FAQ_TITLE" jdbcType="VARCHAR" property="faqTitle" />
     <result column="FAQ_TYPE_ID" jdbcType="VARCHAR" property="faqTypeId" />
-    <result column="TYPE" jdbcType="CHAR" property="type" />
-    <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
+    <result column="CATEGORY" jdbcType="CHAR" property="category" />
+    <result column="PARENT_FAQ_ID" jdbcType="VARCHAR" property="parentFaqId" />
     <result column="HOT_QUESTION" jdbcType="CHAR" property="hotQuestion" />
-    <result column="FAQ_ORDER" jdbcType="VARCHAR" property="faqOrder" />
+    <result column="ORDER_" jdbcType="DECIMAL" property="order" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="CREATE_PEOPLE" jdbcType="VARCHAR" property="createPeople" />
+    <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
     <result column="FLAG" jdbcType="CHAR" property="flag" />
     <result column="BELONG" jdbcType="VARCHAR" property="belong" />
+    <result column="FAQ_TYPE" jdbcType="CHAR" property="faqType" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.sqhl.shop.po.AskQuestion">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.sqhl.shop.po.Faq">
     <result column="FAQ_CONTENT" jdbcType="CLOB" property="faqContent" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, FAQ_TITLE, FAQ_TYPE_ID, TYPE, PARENT_ID, HOT_QUESTION, FAQ_ORDER, CREATE_TIME, 
-    CREATE_PEOPLE, FLAG, BELONG
+    ID, FAQ_TITLE, FAQ_TYPE_ID, CATEGORY, PARENT_FAQ_ID, HOT_QUESTION, ORDER_, CREATE_TIME, 
+    CREATE_USER_ID, FLAG, BELONG, FAQ_TYPE
   </sql>
   <sql id="Blob_Column_List">
     FAQ_CONTENT
@@ -36,17 +37,19 @@
     delete from SC_FAQ
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="cn.sqhl.shop.po.AskQuestion">
+  <insert id="insert" parameterType="cn.sqhl.shop.po.Faq">
     insert into SC_FAQ (ID, FAQ_TITLE, FAQ_TYPE_ID, 
-      TYPE, PARENT_ID, HOT_QUESTION, 
-      FAQ_ORDER, CREATE_TIME, CREATE_PEOPLE, 
-      FLAG, BELONG, FAQ_CONTENT)
+      CATEGORY, PARENT_FAQ_ID, HOT_QUESTION, 
+      ORDER_, CREATE_TIME, CREATE_USER_ID, 
+      FLAG, BELONG, FAQ_TYPE, FAQ_CONTENT
+      )
     values (#{id,jdbcType=VARCHAR}, #{faqTitle,jdbcType=VARCHAR}, #{faqTypeId,jdbcType=VARCHAR}, 
-      #{type,jdbcType=CHAR}, #{parentId,jdbcType=VARCHAR}, #{hotQuestion,jdbcType=CHAR}, 
-      #{faqOrder,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createPeople,jdbcType=VARCHAR}, 
-      #{flag,jdbcType=CHAR}, #{belong,jdbcType=VARCHAR}, #{faqContent,jdbcType=CLOB})
+      #{category,jdbcType=CHAR}, #{parentFaqId,jdbcType=VARCHAR}, #{hotQuestion,jdbcType=CHAR}, 
+      #{order,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=CHAR}, #{belong,jdbcType=VARCHAR}, #{faqType,jdbcType=CHAR}, #{faqContent,jdbcType=CLOB}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.AskQuestion">
+  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.Faq">
     insert into SC_FAQ
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -58,29 +61,32 @@
       <if test="faqTypeId != null">
         FAQ_TYPE_ID,
       </if>
-      <if test="type != null">
-        TYPE,
+      <if test="category != null">
+        CATEGORY,
       </if>
-      <if test="parentId != null">
-        PARENT_ID,
+      <if test="parentFaqId != null">
+        PARENT_FAQ_ID,
       </if>
       <if test="hotQuestion != null">
         HOT_QUESTION,
       </if>
-      <if test="faqOrder != null">
-        FAQ_ORDER,
+      <if test="order != null">
+        ORDER_,
       </if>
       <if test="createTime != null">
         CREATE_TIME,
       </if>
-      <if test="createPeople != null">
-        CREATE_PEOPLE,
+      <if test="createUserId != null">
+        CREATE_USER_ID,
       </if>
       <if test="flag != null">
         FLAG,
       </if>
       <if test="belong != null">
         BELONG,
+      </if>
+      <if test="faqType != null">
+        FAQ_TYPE,
       </if>
       <if test="faqContent != null">
         FAQ_CONTENT,
@@ -96,23 +102,23 @@
       <if test="faqTypeId != null">
         #{faqTypeId,jdbcType=VARCHAR},
       </if>
-      <if test="type != null">
-        #{type,jdbcType=CHAR},
+      <if test="category != null">
+        #{category,jdbcType=CHAR},
       </if>
-      <if test="parentId != null">
-        #{parentId,jdbcType=VARCHAR},
+      <if test="parentFaqId != null">
+        #{parentFaqId,jdbcType=VARCHAR},
       </if>
       <if test="hotQuestion != null">
         #{hotQuestion,jdbcType=CHAR},
       </if>
-      <if test="faqOrder != null">
-        #{faqOrder,jdbcType=VARCHAR},
+      <if test="order != null">
+        #{order,jdbcType=DECIMAL},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createPeople != null">
-        #{createPeople,jdbcType=VARCHAR},
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=VARCHAR},
       </if>
       <if test="flag != null">
         #{flag,jdbcType=CHAR},
@@ -120,12 +126,15 @@
       <if test="belong != null">
         #{belong,jdbcType=VARCHAR},
       </if>
+      <if test="faqType != null">
+        #{faqType,jdbcType=CHAR},
+      </if>
       <if test="faqContent != null">
         #{faqContent,jdbcType=CLOB},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.AskQuestion">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.Faq">
     update SC_FAQ
     <set>
       <if test="faqTitle != null">
@@ -134,23 +143,23 @@
       <if test="faqTypeId != null">
         FAQ_TYPE_ID = #{faqTypeId,jdbcType=VARCHAR},
       </if>
-      <if test="type != null">
-        TYPE = #{type,jdbcType=CHAR},
+      <if test="category != null">
+        CATEGORY = #{category,jdbcType=CHAR},
       </if>
-      <if test="parentId != null">
-        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      <if test="parentFaqId != null">
+        PARENT_FAQ_ID = #{parentFaqId,jdbcType=VARCHAR},
       </if>
       <if test="hotQuestion != null">
         HOT_QUESTION = #{hotQuestion,jdbcType=CHAR},
       </if>
-      <if test="faqOrder != null">
-        FAQ_ORDER = #{faqOrder,jdbcType=VARCHAR},
+      <if test="order != null">
+        ORDER_ = #{order,jdbcType=DECIMAL},
       </if>
       <if test="createTime != null">
         CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createPeople != null">
-        CREATE_PEOPLE = #{createPeople,jdbcType=VARCHAR},
+      <if test="createUserId != null">
+        CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
       </if>
       <if test="flag != null">
         FLAG = #{flag,jdbcType=CHAR},
@@ -158,94 +167,67 @@
       <if test="belong != null">
         BELONG = #{belong,jdbcType=VARCHAR},
       </if>
+      <if test="faqType != null">
+        FAQ_TYPE = #{faqType,jdbcType=CHAR},
+      </if>
       <if test="faqContent != null">
         FAQ_CONTENT = #{faqContent,jdbcType=CLOB},
       </if>
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.sqhl.shop.po.AskQuestion">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.sqhl.shop.po.Faq">
     update SC_FAQ
     set FAQ_TITLE = #{faqTitle,jdbcType=VARCHAR},
       FAQ_TYPE_ID = #{faqTypeId,jdbcType=VARCHAR},
-      TYPE = #{type,jdbcType=CHAR},
-      PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      CATEGORY = #{category,jdbcType=CHAR},
+      PARENT_FAQ_ID = #{parentFaqId,jdbcType=VARCHAR},
       HOT_QUESTION = #{hotQuestion,jdbcType=CHAR},
-      FAQ_ORDER = #{faqOrder,jdbcType=VARCHAR},
+      ORDER_ = #{order,jdbcType=DECIMAL},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      CREATE_PEOPLE = #{createPeople,jdbcType=VARCHAR},
+      CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
       FLAG = #{flag,jdbcType=CHAR},
       BELONG = #{belong,jdbcType=VARCHAR},
+      FAQ_TYPE = #{faqType,jdbcType=CHAR},
       FAQ_CONTENT = #{faqContent,jdbcType=CLOB}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.AskQuestion">
+  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.Faq">
     update SC_FAQ
     set FAQ_TITLE = #{faqTitle,jdbcType=VARCHAR},
       FAQ_TYPE_ID = #{faqTypeId,jdbcType=VARCHAR},
-      TYPE = #{type,jdbcType=CHAR},
-      PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      CATEGORY = #{category,jdbcType=CHAR},
+      PARENT_FAQ_ID = #{parentFaqId,jdbcType=VARCHAR},
       HOT_QUESTION = #{hotQuestion,jdbcType=CHAR},
-      FAQ_ORDER = #{faqOrder,jdbcType=VARCHAR},
+      ORDER_ = #{order,jdbcType=DECIMAL},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      CREATE_PEOPLE = #{createPeople,jdbcType=VARCHAR},
+      CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
       FLAG = #{flag,jdbcType=CHAR},
-      BELONG = #{belong,jdbcType=VARCHAR}
+      BELONG = #{belong,jdbcType=VARCHAR},
+      FAQ_TYPE = #{faqType,jdbcType=CHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-
-
-  <resultMap id="AQResultMap" type="cn.sqhl.shop.vo.AskQuestion">
+  
+  <resultMap id="faqResultMap" type="cn.sqhl.shop.vo.Faq">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="FAQ_TITLE" jdbcType="VARCHAR" property="faqTitle" />
     <result column="FAQ_TYPE_ID" jdbcType="VARCHAR" property="faqTypeId" />
-    <result column="TYPE" jdbcType="CHAR" property="type" />
-    <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
+    <result column="CATEGORY" jdbcType="CHAR" property="category" />
+    <result column="PARENT_FAQ_ID" jdbcType="VARCHAR" property="parentFaqId" />
     <result column="HOT_QUESTION" jdbcType="CHAR" property="hotQuestion" />
-    <result column="FAQ_ORDER" jdbcType="VARCHAR" property="faqOrder" />
-    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
-    <result column="CREATE_PEOPLE" jdbcType="VARCHAR" property="createPeople" />
+    <result column="ORDER_" jdbcType="DECIMAL" property="order" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
     <result column="FLAG" jdbcType="CHAR" property="flag" />
     <result column="BELONG" jdbcType="VARCHAR" property="belong" />
+    <result column="FAQ_TYPE" jdbcType="CHAR" property="faqType" />
   </resultMap>
-  <resultMap extends="AQResultMap" id="AQResultMapWithBLOBs" type="cn.sqhl.shop.vo.AskQuestion">
-    <result column="FAQ_CONTENT" jdbcType="CLOB" property="faqContent" />
-  </resultMap>
-  <sql id="AQ_Column_List">
-    ID, FAQ_TITLE, FAQ_TYPE_ID, TYPE, PARENT_ID, HOT_QUESTION, FAQ_ORDER, CREATE_TIME, 
-    CREATE_PEOPLE,  BELONG
-  </sql>
-  <sql id="AQ_Blob_Column_List">
-    FAQ_CONTENT
-  </sql>
-  <select id="queryList" parameterType="java.util.Map" resultMap="AQResultMapWithBLOBs">
-    select 
-    <include refid="AQ_Column_List" />
-    ,
-    <include refid="AQ_Blob_Column_List" />
-    from SC_FAQ
-    where  flag=1 
-	and ID = #{id,jdbcType=VARCHAR}
-  </select>
-
-  <resultMap id="faqResultMap" type="cn.sqhl.shop.po.AskQuestion">
-    <id column="ID" jdbcType="VARCHAR" property="id" />
-    <result column="FAQ_TITLE" jdbcType="VARCHAR" property="faqTitle" />
-    <result column="FAQ_TYPE_ID" jdbcType="VARCHAR" property="faqTypeId" />
-    <result column="TYPE" jdbcType="CHAR" property="type" />
-    <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
-    <result column="HOT_QUESTION" jdbcType="CHAR" property="hotQuestion" />
-    <result column="FAQ_ORDER" jdbcType="VARCHAR" property="faqOrder" />
-    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="CREATE_PEOPLE" jdbcType="VARCHAR" property="createPeople" />
-    <result column="BELONG" jdbcType="VARCHAR" property="belong" />
-  </resultMap>
-  <resultMap extends="faqResultMap" id="faqWithBLOBs" type="cn.sqhl.shop.po.AskQuestion">
+  <resultMap extends="faqResultMap" id="faqWithBLOBs" type="cn.sqhl.shop.vo.Faq">
     <result column="FAQ_CONTENT" jdbcType="CLOB" property="faqContent" />
   </resultMap>
   <sql id="faq_Column_List">
-    ID, FAQ_TITLE, FAQ_TYPE_ID, TYPE, PARENT_ID, HOT_QUESTION, FAQ_ORDER, CREATE_TIME, 
-    CREATE_PEOPLE,  BELONG
+    ID, FAQ_TITLE, FAQ_TYPE_ID, CATEGORY, PARENT_FAQ_ID, HOT_QUESTION, ORDER_, CREATE_TIME, 
+    CREATE_USER_ID, FLAG, BELONG, FAQ_TYPE
   </sql>
   <sql id="faqBlob_Column_List">
     FAQ_CONTENT

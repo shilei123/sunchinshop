@@ -13,7 +13,7 @@ public class Brand {
 
     private Date createTime;
 
-    private String createPeople;
+    private String createUserId;
 
     private String brandCode;
 
@@ -59,12 +59,12 @@ public class Brand {
         this.createTime = createTime;
     }
 
-    public String getCreatePeople() {
-        return createPeople;
+    public String getCreateUserId() {
+        return createUserId;
     }
 
-    public void setCreatePeople(String createPeople) {
-        this.createPeople = createPeople == null ? null : createPeople.trim();
+    public void setCreateUserId(String createUserId) {
+        this.createUserId = createUserId == null ? null : createUserId.trim();
     }
 
     public String getBrandCode() {

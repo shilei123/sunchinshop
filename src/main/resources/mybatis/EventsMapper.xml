@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.sqhl.shop.mapper.EventsInfoMapper">
-  <resultMap id="BaseResultMap" type="cn.sqhl.shop.vo.EventsInfo">
+<mapper namespace="cn.sqhl.shop.mapper.EventsMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.vo.Events">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="ISUSE" jdbcType="CHAR" property="isuse" />
     <result column="MEMO" jdbcType="VARCHAR" property="memo" />
-    <result column="STARTTIME" jdbcType="TIMESTAMP" property="starttime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
-    <result column="ENDTIME" jdbcType="TIMESTAMP" property="endtime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="FLAG" jdbcType="CHAR" property="flag" />
     <result column="BELONG" jdbcType="VARCHAR" property="belong" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, NAME, MEMO, STARTTIME, ENDTIME, CREATE_TIME, UPDATE_TIME, BELONG
+    ID, NAME, ISUSE, MEMO, START_TIME, END_TIME, CREATE_TIME, UPDATE_TIME, FLAG, BELONG
   </sql>
   <select id="queryList" parameterType="java.util.Map" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from (
-	select * from SC_EVENTSINFO where isuse=1 and flag=1
+	select * from SC_EVENTS where isuse=1 and flag=1
 	union
-	select * from SC_EVENTSINFO where isuse is null and starttime is not null and endtime is not null and flag=1
+	select * from SC_EVENTS where isuse is null and starttime is not null and endtime is not null and flag=1
 	)
     where 1=1
     <if test="map.event_name !=null">

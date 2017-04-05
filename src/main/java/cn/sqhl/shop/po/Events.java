@@ -2,7 +2,7 @@ package cn.sqhl.shop.po;
 
 import java.util.Date;
 
-public class EventsInfo {
+public class Events {
     private String id;
 
     private String name;
@@ -11,9 +11,9 @@ public class EventsInfo {
 
     private String memo;
 
-    private Date starttime;
+    private Date startTime;
 
-    private Date endtime;
+    private Date endTime;
 
     private Date createTime;
 
@@ -55,20 +55,20 @@ public class EventsInfo {
         this.memo = memo == null ? null : memo.trim();
     }
 
-    public Date getStarttime() {
-        return starttime;
+    public Date getStartTime() {
+        return startTime;
     }
 
-    public void setStarttime(Date starttime) {
-        this.starttime = starttime;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
     }
 
-    public Date getEndtime() {
-        return endtime;
+    public Date getEndTime() {
+        return endTime;
     }
 
-    public void setEndtime(Date endtime) {
-        this.endtime = endtime;
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     public Date getCreateTime() {

@@ -5,15 +5,15 @@
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="TYPE" jdbcType="CHAR" property="type" />
     <result column="CONTENT" jdbcType="VARCHAR" property="content" />
-    <result column="CONTENT_TIME" jdbcType="TIMESTAMP" property="contentTime" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="SCORE" jdbcType="DECIMAL" property="score" />
     <result column="ISHIDDEN" jdbcType="CHAR" property="ishidden" />
     <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
-    <result column="COMMENT_PEOPLE" jdbcType="VARCHAR" property="commentPeople" />
+    <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
     <result column="FLAG" jdbcType="CHAR" property="flag" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, TYPE, CONTENT, CONTENT_TIME, SCORE, ISHIDDEN, PARENT_ID, COMMENT_PEOPLE, FLAG
+    ID, TYPE, CONTENT, CREATE_TIME, SCORE, ISHIDDEN, PARENT_ID, CREATE_USER_ID, FLAG
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -27,12 +27,12 @@
   </delete>
   <insert id="insert" parameterType="cn.sqhl.shop.po.Comment">
     insert into SC_COMMENT (ID, TYPE, CONTENT, 
-      CONTENT_TIME, SCORE, ISHIDDEN, 
-      PARENT_ID, COMMENT_PEOPLE, FLAG
+      CREATE_TIME, SCORE, ISHIDDEN, 
+      PARENT_ID, CREATE_USER_ID, FLAG
       )
     values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, #{content,jdbcType=VARCHAR}, 
-      #{contentTime,jdbcType=TIMESTAMP}, #{score,jdbcType=DECIMAL}, #{ishidden,jdbcType=CHAR}, 
-      #{parentId,jdbcType=VARCHAR}, #{commentPeople,jdbcType=VARCHAR}, #{flag,jdbcType=CHAR}
+      #{createTime,jdbcType=TIMESTAMP}, #{score,jdbcType=DECIMAL}, #{ishidden,jdbcType=CHAR}, 
+      #{parentId,jdbcType=VARCHAR}, #{createUserId,jdbcType=VARCHAR}, #{flag,jdbcType=CHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.sqhl.shop.po.Comment">
@@ -47,8 +47,8 @@
       <if test="content != null">
         CONTENT,
       </if>
-      <if test="contentTime != null">
-        CONTENT_TIME,
+      <if test="createTime != null">
+        CREATE_TIME,
       </if>
       <if test="score != null">
         SCORE,
@@ -59,8 +59,8 @@
       <if test="parentId != null">
         PARENT_ID,
       </if>
-      <if test="commentPeople != null">
-        COMMENT_PEOPLE,
+      <if test="createUserId != null">
+        CREATE_USER_ID,
       </if>
       <if test="flag != null">
         FLAG,
@@ -76,8 +76,8 @@
       <if test="content != null">
         #{content,jdbcType=VARCHAR},
       </if>
-      <if test="contentTime != null">
-        #{contentTime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="score != null">
         #{score,jdbcType=DECIMAL},
@@ -88,8 +88,8 @@
       <if test="parentId != null">
         #{parentId,jdbcType=VARCHAR},
       </if>
-      <if test="commentPeople != null">
-        #{commentPeople,jdbcType=VARCHAR},
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=VARCHAR},
       </if>
       <if test="flag != null">
         #{flag,jdbcType=CHAR},
@@ -105,8 +105,8 @@
       <if test="content != null">
         CONTENT = #{content,jdbcType=VARCHAR},
       </if>
-      <if test="contentTime != null">
-        CONTENT_TIME = #{contentTime,jdbcType=TIMESTAMP},
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="score != null">
         SCORE = #{score,jdbcType=DECIMAL},
@@ -117,8 +117,8 @@
       <if test="parentId != null">
         PARENT_ID = #{parentId,jdbcType=VARCHAR},
       </if>
-      <if test="commentPeople != null">
-        COMMENT_PEOPLE = #{commentPeople,jdbcType=VARCHAR},
+      <if test="createUserId != null">
+        CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
       </if>
       <if test="flag != null">
         FLAG = #{flag,jdbcType=CHAR},
@@ -130,31 +130,29 @@
     update SC_COMMENT
     set TYPE = #{type,jdbcType=CHAR},
       CONTENT = #{content,jdbcType=VARCHAR},
-      CONTENT_TIME = #{contentTime,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       SCORE = #{score,jdbcType=DECIMAL},
       ISHIDDEN = #{ishidden,jdbcType=CHAR},
       PARENT_ID = #{parentId,jdbcType=VARCHAR},
-      COMMENT_PEOPLE = #{commentPeople,jdbcType=VARCHAR},
+      CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
       FLAG = #{flag,jdbcType=CHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  
-  
   
   <resultMap id="commentResultMap" type="cn.sqhl.shop.vo.Comment">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="TYPE" jdbcType="CHAR" property="type" />
     <result column="CONTENT" jdbcType="VARCHAR" property="content" />
-    <result column="comment_TIME" jdbcType="TIMESTAMP" property="commentTime" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="SCORE" jdbcType="DECIMAL" property="score" />
     <result column="ISHIDDEN" jdbcType="CHAR" property="ishidden" />
     <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
-    <result column="COMMENT_PEOPLE" jdbcType="VARCHAR" property="commentPeople" />
+    <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
     <result column="FLAG" jdbcType="CHAR" property="flag" />
     <result column="relationType" jdbcType="VARCHAR" property="relationType" />
   </resultMap>
   <sql id="comment_Column_List">
-    a.ID, a.TYPE, a.CONTENT, a.comment_TIME, a.SCORE, a.ISHIDDEN, a.PARENT_ID, a.COMMENT_PEOPLE,b.type as relationType
+    ID, TYPE, CONTENT, CREATE_TIME, SCORE, ISHIDDEN, PARENT_ID, CREATE_USER_ID, FLAG,b.type as relationType
   </sql>
   <select id="queryList" parameterType="java.util.Map" resultMap="commentResultMap">
     select 

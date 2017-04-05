@@ -31,6 +31,8 @@ public class Advertise {
 
     private String flag;
 
+    private String belong;
+
     public String getId() {
         return id;
     }
@@ -141,5 +143,13 @@ public class Advertise {
 
     public void setFlag(String flag) {
         this.flag = flag == null ? null : flag.trim();
+    }
+
+    public String getBelong() {
+        return belong;
+    }
+
+    public void setBelong(String belong) {
+        this.belong = belong == null ? null : belong.trim();
     }
 }

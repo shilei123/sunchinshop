@@ -1,8 +1,9 @@
 package cn.sqhl.shop.po;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
-public class AskQuestionType {
+public class FaqType {
     private String id;
 
     private String typeName;
@@ -11,9 +12,7 @@ public class AskQuestionType {
 
     private String typeCode;
 
-    private String typeOrder;
-
-    private String typeLevel;
+    private BigDecimal order;
 
     private String parentTypeId;
 
@@ -22,6 +21,8 @@ public class AskQuestionType {
     private String flag;
 
     private String belong;
+
+    private String level;
 
     public String getId() {
         return id;
@@ -55,20 +56,12 @@ public class AskQuestionType {
         this.typeCode = typeCode == null ? null : typeCode.trim();
     }
 
-    public String getTypeOrder() {
-        return typeOrder;
+    public BigDecimal getOrder() {
+        return order;
     }
 
-    public void setTypeOrder(String typeOrder) {
-        this.typeOrder = typeOrder == null ? null : typeOrder.trim();
-    }
-
-    public String getTypeLevel() {
-        return typeLevel;
-    }
-
-    public void setTypeLevel(String typeLevel) {
-        this.typeLevel = typeLevel == null ? null : typeLevel.trim();
+    public void setOrder(BigDecimal order) {
+        this.order = order;
     }
 
     public String getParentTypeId() {
@@ -101,5 +94,13 @@ public class AskQuestionType {
 
     public void setBelong(String belong) {
         this.belong = belong == null ? null : belong.trim();
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level == null ? null : level.trim();
     }
 }

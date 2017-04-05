@@ -1,17 +1,18 @@
 package cn.sqhl.shop.po;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
-public class Category {
+public class CateGory {
     private String id;
 
     private String cateName;
 
-    private String memo;
+    private String remark;
 
-    private String cateOrder;
+    private BigDecimal order;
 
-    private String levels;
+    private String level;
 
     private String logo;
 
@@ -47,28 +48,28 @@ public class Category {
         this.cateName = cateName == null ? null : cateName.trim();
     }
 
-    public String getMemo() {
-        return memo;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setMemo(String memo) {
-        this.memo = memo == null ? null : memo.trim();
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 
-    public String getCateOrder() {
-        return cateOrder;
+    public BigDecimal getOrder() {
+        return order;
     }
 
-    public void setCateOrder(String cateOrder) {
-        this.cateOrder = cateOrder == null ? null : cateOrder.trim();
+    public void setOrder(BigDecimal order) {
+        this.order = order;
     }
 
-    public String getLevels() {
-        return levels;
+    public String getLevel() {
+        return level;
     }
 
-    public void setLevels(String levels) {
-        this.levels = levels == null ? null : levels.trim();
+    public void setLevel(String level) {
+        this.level = level == null ? null : level.trim();
     }
 
     public String getLogo() {

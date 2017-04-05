@@ -9,7 +9,7 @@ public class Comment {
 
     private String content;
 
-    private Date contentTime;
+    private Date createTime;
 
     private Short score;
 
@@ -17,7 +17,7 @@ public class Comment {
 
     private String parentId;
 
-    private String commentPeople;
+    private String createUserId;
 
     private String flag;
 
@@ -45,12 +45,12 @@ public class Comment {
         this.content = content == null ? null : content.trim();
     }
 
-    public Date getContentTime() {
-        return contentTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setContentTime(Date contentTime) {
-        this.contentTime = contentTime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public Short getScore() {
@@ -77,12 +77,12 @@ public class Comment {
         this.parentId = parentId == null ? null : parentId.trim();
     }
 
-    public String getCommentPeople() {
-        return commentPeople;
+    public String getCreateUserId() {
+        return createUserId;
     }
 
-    public void setCommentPeople(String commentPeople) {
-        this.commentPeople = commentPeople == null ? null : commentPeople.trim();
+    public void setCreateUserId(String createUserId) {
+        this.createUserId = createUserId == null ? null : createUserId.trim();
     }
 
     public String getFlag() {

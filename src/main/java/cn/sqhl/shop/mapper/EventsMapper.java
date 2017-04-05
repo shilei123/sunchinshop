@@ -7,8 +7,10 @@ import org.apache.ibatis.annotations.Param;
 
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.core.PaginationInterceptor;
-import cn.sqhl.shop.vo.Dictionary;
+import cn.sqhl.shop.vo.Events;
 
-public interface DictionaryMapper {
-	List<Dictionary> queryDictionary(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
+public interface EventsMapper {
+	
+	List<Events> queryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
+	
 }

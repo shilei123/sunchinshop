@@ -9,11 +9,13 @@
     <result column="IMGLINK" jdbcType="VARCHAR" property="imglink" />
     <result column="ORDERNUMB" jdbcType="VARCHAR" property="ordernumb" />
     <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="ISUSE" jdbcType="CHAR" property="isuse" />
     <result column="KIND" jdbcType="VARCHAR" property="kind" />
     <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
     <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="BELONG" jdbcType="VARCHAR" property="belong" />
   </resultMap>
   <sql id="Base_Column_List">
     ID, NAME, MEMO, LINKKIND, IMGLINK, ORDERNUMB, TYPE, KIND, START_TIME, END_TIME, 

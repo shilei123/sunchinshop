@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.vo.Advertise;
-import cn.sqhl.shop.vo.EventsInfo;
+import cn.sqhl.shop.vo.Events;
+import cn.sqhl.shop.vo.EventsGoods;
 import cn.sqhl.shop.service.MarketingService;
 import cn.sqhl.shop.utils.security.SecurityCore;
 
@@ -137,7 +138,7 @@ public class MarketingController extends ContextInfo{
 						queryparam.put("isuse", isuse);
 					}
 					
-					List<EventsInfo> usereventlist=marketingService.queryEventList(page, queryparam);
+					List<Events> usereventlist=marketingService.queryEventList(page, queryparam);
 					if(usereventlist!=null && usereventlist.size()>0){
 						data=JSON.toJSONString(usereventlist);
 						message="查询成功";//
@@ -200,7 +201,7 @@ public class MarketingController extends ContextInfo{
 						queryparam.put("end_time", end_time);
 					}
 					
-					List<Object> usereventdetaillist=marketingService.queryEventDetailList(page, queryparam);
+					List<EventsGoods> usereventdetaillist=marketingService.queryEventDetailList(page, queryparam);
 					if(usereventdetaillist!=null && usereventdetaillist.size()>0){
 						data=JSON.toJSONString(usereventdetaillist);
 						message="查询成功";//

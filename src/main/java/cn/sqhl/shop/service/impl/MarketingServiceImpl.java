@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.mapper.AdvertiseMapper;
-import cn.sqhl.shop.mapper.EventsInfoMapper;
+import cn.sqhl.shop.mapper.EventsGoodsMapper;
+import cn.sqhl.shop.mapper.EventsMapper;
 import cn.sqhl.shop.vo.Advertise;
-import cn.sqhl.shop.vo.EventsInfo;
+import cn.sqhl.shop.vo.Events;
+import cn.sqhl.shop.vo.EventsGoods;
 import cn.sqhl.shop.service.MarketingService;
 
 @Service("maketingService")
@@ -20,7 +22,10 @@ public class MarketingServiceImpl implements MarketingService{
 	AdvertiseMapper advertiseMapper;
 	
 	@Autowired
-	EventsInfoMapper eventsInfoMapper;
+	EventsMapper eventsMapper;
+	
+	@Autowired
+	EventsGoodsMapper eventsGoodsMapper;
 	
 
 	@Override
@@ -29,12 +34,12 @@ public class MarketingServiceImpl implements MarketingService{
 	}
 
 	@Override
-	public List<EventsInfo> queryEventList(PageCond page, Object obj) {
-		return eventsInfoMapper.queryList(page,(Map<String, Object>)obj);
+	public List<Events> queryEventList(PageCond page, Object obj) {
+		return eventsMapper.queryList(page,(Map<String, Object>)obj);
 	}
 	
-	public List<Object> queryEventDetailList(PageCond page, Object obj) {
-		return eventsInfoMapper.queryEventDetailList(page,(Map<String, Object>)obj);
+	public List<EventsGoods> queryEventDetailList(PageCond page, Object obj) {
+		return eventsGoodsMapper.queryEventDetailList(page,(Map<String, Object>)obj);
 	}
 
 }

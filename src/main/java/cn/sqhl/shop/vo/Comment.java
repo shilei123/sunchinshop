@@ -1,15 +1,15 @@
 package cn.sqhl.shop.vo;
 
+import java.util.Date;
+
 public class Comment {
     private String id;
 
     private String type;
 
-    private String relationType;
-    
     private String content;
 
-    private String commentTime;
+    private String createTime;
 
     private Short score;
 
@@ -17,8 +17,12 @@ public class Comment {
 
     private String parentId;
 
-    private String commentPeople;
+    private String createUserId;
 
+    private String flag;
+
+    private String relationType;
+    
     public String getId() {
         return id;
     }
@@ -35,15 +39,7 @@ public class Comment {
         this.type = type == null ? null : type.trim();
     }
 
-    public String getRelationType() {
-		return relationType;
-	}
-
-	public void setRelationType(String relationType) {
-		this.relationType = relationType;
-	}
-
-	public String getContent() {
+    public String getContent() {
         return content;
     }
 
@@ -51,15 +47,15 @@ public class Comment {
         this.content = content == null ? null : content.trim();
     }
 
-    public String getCommentTime() {
-		return commentTime;
-	}
+    public String getCreateTime() {
+        return createTime;
+    }
 
-	public void setCommentTime(String commentTime) {
-		this.commentTime = commentTime;
-	}
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
 
-	public Short getScore() {
+    public Short getScore() {
         return score;
     }
 
@@ -83,11 +79,27 @@ public class Comment {
         this.parentId = parentId == null ? null : parentId.trim();
     }
 
-    public String getCommentPeople() {
-        return commentPeople;
+    public String getCreateUserId() {
+        return createUserId;
     }
 
-    public void setCommentPeople(String commentPeople) {
-        this.commentPeople = commentPeople == null ? null : commentPeople.trim();
+    public void setCreateUserId(String createUserId) {
+        this.createUserId = createUserId == null ? null : createUserId.trim();
     }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag == null ? null : flag.trim();
+    }
+
+	public String getRelationType() {
+		return relationType;
+	}
+
+	public void setRelationType(String relationType) {
+		this.relationType = relationType;
+	}
 }

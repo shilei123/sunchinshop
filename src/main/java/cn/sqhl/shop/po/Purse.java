@@ -40,6 +40,8 @@ public class Purse {
 
     private String belong;
 
+    private String flag;
+
     public String getId() {
         return id;
     }
@@ -182,5 +184,13 @@ public class Purse {
 
     public void setBelong(String belong) {
         this.belong = belong == null ? null : belong.trim();
+    }
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag == null ? null : flag.trim();
     }
 }

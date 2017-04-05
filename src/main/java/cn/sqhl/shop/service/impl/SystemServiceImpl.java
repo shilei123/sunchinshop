@@ -7,27 +7,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.sqhl.shop.core.PageCond;
-import cn.sqhl.shop.mapper.AskQuestionMapper;
-import cn.sqhl.shop.mapper.AskQuestionTypeMapper;
 import cn.sqhl.shop.mapper.CategoryPropertyValueMapper;
 import cn.sqhl.shop.mapper.GoodsPropertyValueMapper;
 import cn.sqhl.shop.mapper.BrandMapper;
-import cn.sqhl.shop.mapper.CategoryMapper;
+import cn.sqhl.shop.mapper.CateGoryMapper;
 import cn.sqhl.shop.mapper.DictionaryMapper;
+import cn.sqhl.shop.mapper.FaqMapper;
+import cn.sqhl.shop.mapper.FaqTypeMapper;
 import cn.sqhl.shop.service.SystemService;
-import cn.sqhl.shop.vo.AskQuestion;
-import cn.sqhl.shop.vo.AskQuestionType;
 import cn.sqhl.shop.vo.CategoryPropertyValue;
 import cn.sqhl.shop.vo.GoodsPropertyValue;
 import cn.sqhl.shop.vo.Brand;
-import cn.sqhl.shop.vo.Category;
+import cn.sqhl.shop.vo.CateGory;
 import cn.sqhl.shop.vo.Dictionary;
+import cn.sqhl.shop.vo.Faq;
+import cn.sqhl.shop.vo.FaqType;
 
 @Service("systemService")
 public class SystemServiceImpl implements SystemService{
 
 	@Autowired
-	private CategoryMapper categorymapper;
+	private CateGoryMapper cateGoryMapper;
 	
 	@Autowired
 	private DictionaryMapper dictionaryMapper;
@@ -42,14 +42,14 @@ public class SystemServiceImpl implements SystemService{
 	private CategoryPropertyValueMapper	categoryPropertyValueMapper;
 	
 	@Autowired
-	private AskQuestionTypeMapper askQuestionTypeMapper;
+	private FaqTypeMapper faqTypeMapper;
 	
 	@Autowired
-	private AskQuestionMapper askQuestionMapper;
+	private FaqMapper faqMapper;
 	
 	@Override
-	public List<Category> queryCategoryList(Object obj) {
-		return categorymapper.selectList((Map<String, Object>)obj);
+	public List<CateGory> queryCategoryList(Object obj) {
+		return cateGoryMapper.selectList((Map<String, Object>)obj);
 	}
 
 	@Override
@@ -73,13 +73,13 @@ public class SystemServiceImpl implements SystemService{
 	}
 
 	@Override
-	public List<AskQuestionType> queryFAQKindList(Object obj) {
-		return askQuestionTypeMapper.selectList((Map<String, Object>)obj);
+	public List<FaqType> queryFAQKindList(Object obj) {
+		return faqTypeMapper.selectList((Map<String, Object>)obj);
 	}
 
 	@Override
-	public List<AskQuestion> queryFAQList(PageCond page, Object obj) {
-		return askQuestionMapper.queryList(page, (Map<String, Object>)obj);
+	public List<Faq> queryFAQList(PageCond page, Object obj) {
+		return faqMapper.queryList(page, (Map<String, Object>)obj);
 	}
 
 }

@@ -189,7 +189,6 @@
   <resultMap id="UserCouponMap" type="cn.sqhl.shop.vo.UserCoupon">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
-    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
     <result column="COUPON_ID" jdbcType="VARCHAR" property="couponId" />
     <result column="COUPON_NAME" jdbcType="VARCHAR" property="couponName" />
     <result column="COUPON_BLANCE" jdbcType="DECIMAL" property="couponBlance" />
@@ -199,10 +198,12 @@
     <result column="ORDER_SN" jdbcType="VARCHAR" property="orderSn" />
     <result column="COUPON_STATUS" jdbcType="CHAR" property="couponStatus" />
     <result column="OPTION_TIME" jdbcType="TIMESTAMP" property="optionTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="OPTION_ADMINID" jdbcType="VARCHAR" property="optionAdminid" />
+    <result column="OPTION_REMARK" jdbcType="VARCHAR" property="optionRemark" />
   </resultMap>
   <sql id="UserCoupon_List">
-    a.ID, USER_ID, USER_NAME, COUPON_ID, COUPON_NAME, COUPON_BLANCE, COUPON_XF_BALANCE, 
-    COUPON_CREATDATE, COUPON_EXPIRYDATE, ORDER_SN, COUPON_STATUS, a.OPTION_TIME
+    ID, USER_ID, COUPON_ID, COUPON_NAME, COUPON_BLANCE, COUPON_XF_BALANCE, COUPON_CREATDATE, 
+    COUPON_EXPIRYDATE, ORDER_SN, COUPON_STATUS, OPTION_TIME, OPTION_ADMINID, OPTION_REMARK
   </sql>
   <select id="queryUserCouponList" resultMap="UserCouponMap" parameterType="java.util.Map">
     select 

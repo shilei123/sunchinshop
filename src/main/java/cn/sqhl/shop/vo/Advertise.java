@@ -15,6 +15,8 @@ public class Advertise {
 
     private String type;
 
+    private String isuse;
+
     private String kind;
 
     private String startTime;
@@ -24,6 +26,8 @@ public class Advertise {
     private String createTime;
 
     private String updateTime;
+
+    private String belong;
 
     public String getId() {
         return id;
@@ -80,7 +84,15 @@ public class Advertise {
     public void setType(String type) {
         this.type = type == null ? null : type.trim();
     }
-    
+
+    public String getIsuse() {
+        return isuse;
+    }
+
+    public void setIsuse(String isuse) {
+        this.isuse = isuse == null ? null : isuse.trim();
+    }
+
     public String getKind() {
         return kind;
     }
@@ -121,4 +133,11 @@ public class Advertise {
         this.updateTime = updateTime;
     }
 
+    public String getBelong() {
+        return belong;
+    }
+
+    public void setBelong(String belong) {
+        this.belong = belong == null ? null : belong.trim();
+    }
 }
