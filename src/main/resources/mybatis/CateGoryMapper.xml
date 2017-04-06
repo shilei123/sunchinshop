@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.sqhl.shop.mapper.CategoryMapper">
+<mapper namespace="cn.sqhl.shop.mapper.CateGoryMapper">
   <resultMap id="BaseResultMap" type="cn.sqhl.shop.vo.CateGory">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="CATE_NAME" jdbcType="VARCHAR" property="cateName" />
@@ -32,6 +32,6 @@
     <if test="map.level != null" >
     	and LEVELS=#{map.level,jdbcType=VARCHAR}
     </if>
-    order by CATE_ORDER desc
+    order by ORDER_ desc
   </select>
 </mapper>

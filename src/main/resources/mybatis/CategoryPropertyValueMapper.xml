@@ -26,16 +26,16 @@
     select 
     <include refid="Base_Column_List" />
        from sc_cate_prop_propval  b,
-       sc_property_propvalue c,
-       sc_property           d,
-       sc_propvalue          e
-	 where e.id = c.val_id
-	   and d.id = c.prop_id
-	   and b.proppropval_id = c.id
-	   and c.flag = d.flag
-	   and e.flag = 1
-	   and b.flag = c.flag
-	   and d.flag = e.flag
+       sc_prop_propval      c,
+       sc_property          d,
+       sc_propval           e
+	   where e.id = c.val_id
+	     and d.id = c.prop_id
+	     and b.ppv_id = c.id
+	     and c.flag = d.flag
+	     and e.flag = 1
+	     and b.flag = c.flag
+	     and d.flag = e.flag
     <if test="map.category_id !=null">
     	and b.cate_id=#{map.category_id,jdbcType=VARCHAR}
     </if>

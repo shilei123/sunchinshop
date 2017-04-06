@@ -286,7 +286,7 @@
   <select id="queryList" parameterType="java.util.Map" resultMap="PursResultMap">
     select 
     <include refid="Purs_Column_List" />
-    from SC_PURSE 
+    from SC_PURSE b
     where 1=1
 	<if test="map.Btime !=null">
     	<![CDATA[and b.CREATE_TIME>=#{map.Btime,jdbcType=VARCHAR,typeHandler=cn.sqhl.shop.core.DateTypeHandler}]]>

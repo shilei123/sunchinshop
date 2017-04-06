@@ -175,6 +175,6 @@
 	<if test="map.prentid !=null">
     	and PARENT_TYPE_ID=#{map.prentid,jdbcType=VARCHAR}
     </if>
-	order by TYPE_ORDER desc
+	order by ORDER_ desc
   </select>
 </mapper>

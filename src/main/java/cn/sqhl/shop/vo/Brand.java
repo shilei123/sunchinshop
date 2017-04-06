@@ -1,5 +1,7 @@
 package cn.sqhl.shop.vo;
 
+import java.util.Date;
+
 public class Brand {
     private String id;
 
@@ -7,9 +9,11 @@ public class Brand {
 
     private String brandLogo;
 
-    private String createTime;
+    private String flag;
 
-    private String createPeople;
+    private Date createTime;
+
+    private String createUserId;
 
     private String brandCode;
 
@@ -39,20 +43,28 @@ public class Brand {
         this.brandLogo = brandLogo == null ? null : brandLogo.trim();
     }
 
-    public String getCreateTime() {
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag == null ? null : flag.trim();
+    }
+
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-    public String getCreatePeople() {
-        return createPeople;
+    public String getCreateUserId() {
+        return createUserId;
     }
 
-    public void setCreatePeople(String createPeople) {
-        this.createPeople = createPeople == null ? null : createPeople.trim();
+    public void setCreateUserId(String createUserId) {
+        this.createUserId = createUserId == null ? null : createUserId.trim();
     }
 
     public String getBrandCode() {

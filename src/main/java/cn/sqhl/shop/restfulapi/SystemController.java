@@ -62,7 +62,8 @@ public class SystemController extends ContextInfo {
 					Map<String, Object> queryparam=new HashMap<String, Object>();
 					if(StringUtils.isNotEmpty(level)){
 						queryparam.put("level", level);
-					}if(StringUtils.isNotEmpty(parent_id)){
+					}
+					if(StringUtils.isNotEmpty(parent_id)){
 						queryparam.put("parent_id", parent_id);
 					}
 					
@@ -117,7 +118,8 @@ public class SystemController extends ContextInfo {
 					Map<String, Object> queryparam=new HashMap<String, Object>();
 					if(StringUtils.isNotEmpty(type)){
 						queryparam.put("type", type);
-					}if(StringUtils.isNotEmpty(pcode)){
+					}
+					if(StringUtils.isNotEmpty(pcode)){
 						queryparam.put("pcode", pcode);
 					}
 					

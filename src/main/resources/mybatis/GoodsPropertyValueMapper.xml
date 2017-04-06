@@ -27,15 +27,15 @@
   <select id="selectList" parameterType="java.util.Map" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-  from sc_goods_cate_prop_propval a,
+  from sc_goods_cate_prop_propval   a,
        sc_cate_prop_propval       b,
-       sc_property_propvalue      c,
+       sc_prop_propval            c,
        sc_property                d,
-       sc_propvalue               e
+       sc_propval                 e
  where e.id = c.val_id
    and d.id = c.prop_id
-   and b.proppropval_id = c.id
-   and a.cate_prop_propval_id = b.id
+   and b.ppv_id = c.id
+   and a.cppv_id = b.id
    and a.flag = b.flag
    and c.flag = d.flag
    and e.flag = 1

@@ -152,7 +152,7 @@
     <result column="relationType" jdbcType="VARCHAR" property="relationType" />
   </resultMap>
   <sql id="comment_Column_List">
-    ID, TYPE, CONTENT, CREATE_TIME, SCORE, ISHIDDEN, PARENT_ID, CREATE_USER_ID, FLAG,b.type as relationType
+     a.ID, a.TYPE, a.CONTENT, a.CREATE_TIME, SCORE, ISHIDDEN, PARENT_ID, a.CREATE_USER_ID, a.FLAG,b.type as relationType
   </sql>
   <select id="queryList" parameterType="java.util.Map" resultMap="commentResultMap">
     select 

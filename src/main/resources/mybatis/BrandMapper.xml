@@ -14,7 +14,7 @@
     <result column="BRAND_DESC" jdbcType="CLOB" property="brandDesc" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, BRAND_NAME, BRAND_LOGO, FLAG, CREATE_TIME, CREATE_USER_ID, BRAND_CODE
+     a.ID, BRAND_NAME, BRAND_LOGO, a.FLAG, a.CREATE_TIME, CREATE_USER_ID, BRAND_CODE
   </sql>
   <sql id="Blob_Column_List">
     BRAND_DESC

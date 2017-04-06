@@ -22,7 +22,7 @@
     from (
 	select * from SC_EVENTS where isuse=1 and flag=1
 	union
-	select * from SC_EVENTS where isuse is null and starttime is not null and endtime is not null and flag=1
+  	select * from SC_EVENTS where isuse is null and start_time is not null and end_time is not null and flag=1
 	)
     where 1=1
     <if test="map.event_name !=null">
@@ -32,10 +32,10 @@
     	and ID=#{map.event_id,jdbcType=VARCHAR}
     </if>
     <if test="map.start_time !=null">
-    	<![CDATA[and ENDTIME>=#{map.start_time,jdbcType=TIMESTAMP,typeHandler=cn.sqhl.shop.core.DateTypeHandler}]]>
+    	<![CDATA[and END_TIME>=#{map.start_time,jdbcType=TIMESTAMP,typeHandler=cn.sqhl.shop.core.DateTypeHandler}]]>
     </if>
     <if test="map.end_time !=null">
-    	<![CDATA[and STARTTIME<=#{map.end_time,jdbcType=TIMESTAMP,typeHandler=cn.sqhl.shop.core.DateTypeHandler}]]>
+    	<![CDATA[and START_TIME<=#{map.end_time,jdbcType=TIMESTAMP,typeHandler=cn.sqhl.shop.core.DateTypeHandler}]]>
     </if>
   </select>
 </mapper>

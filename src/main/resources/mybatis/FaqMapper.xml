@@ -243,8 +243,8 @@
     	and FAQ_TYPE_ID=#{map.kindid,jdbcType=VARCHAR}
     </if>
 	<if test="map.keyvalue !=null">
-    	and FAQ_CONTENT like '%#{map.keyvalue,jdbcType=VARCHAR}%'
+    	and FAQ_CONTENT like '%${map.keyvalue}%'
     </if>
-	order by FAQ_ORDER desc
+	order by ORDER_ desc
   </select>
 </mapper>

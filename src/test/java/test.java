@@ -74,15 +74,39 @@ public class test {
 //		basemap.put("servicecode", "3620170315047");//分类品牌查询
 
 
-		param.put("contactid", "");
-		param.put("userid", "");
-		param.put("type", "1");
-		param.put("pagesize", "10");
-		param.put("nowpage", "0");
-		basemap.put("servicecode", "3620170315013");//评论查询接口
+//		param.put("contactid", "");
+//		param.put("userid", "");
+//		param.put("type", "1");
+//		param.put("pagesize", "10");
+//		param.put("nowpage", "0");
+//		basemap.put("servicecode", "3620170315013");//评论查询接口
+		
+
+//		param.put("Btime", "");
+//		param.put("Etime", "");
+//		param.put("Bamount", "");
+//		param.put("Eamount", "");
+//		param.put("userid", "2");
+//		param.put("way", "");
+//		param.put("type", "");
+//		param.put("kind", "");
+//		param.put("status", "");
+//		param.put("pagesize", "10");
+//		param.put("nowpage", "0");
+//		basemap.put("servicecode", "3620170315015");//交易流水查询接口
 		
 		
+//		param.put("kindid", "");
+//		param.put("keyvalue", "回答");
+//		param.put("pagesize", "10");
+//		param.put("nowpage", "0");
+//		basemap.put("servicecode", "3620170315025");//常见问题查询接口
 		
+		
+//		param.put("prentid", "3");
+//		param.put("pagesize", "10");
+//		param.put("nowpage", "0");
+//		basemap.put("servicecode", "3620170315048");//常见问题分类查询接口
 		
 		basemap.put("data", JSON.toJSONString(param));
 		

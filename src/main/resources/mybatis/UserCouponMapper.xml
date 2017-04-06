@@ -202,8 +202,8 @@
     <result column="OPTION_REMARK" jdbcType="VARCHAR" property="optionRemark" />
   </resultMap>
   <sql id="UserCoupon_List">
-    ID, USER_ID, COUPON_ID, COUPON_NAME, COUPON_BLANCE, COUPON_XF_BALANCE, COUPON_CREATDATE, 
-    COUPON_EXPIRYDATE, ORDER_SN, COUPON_STATUS, OPTION_TIME, OPTION_ADMINID, OPTION_REMARK
+    a.ID, USER_ID, COUPON_ID, COUPON_NAME, COUPON_BLANCE, COUPON_XF_BALANCE, COUPON_CREATDATE, 
+    COUPON_EXPIRYDATE, ORDER_SN, COUPON_STATUS, a.OPTION_TIME, OPTION_ADMINID, OPTION_REMARK
   </sql>
   <select id="queryUserCouponList" resultMap="UserCouponMap" parameterType="java.util.Map">
     select 
