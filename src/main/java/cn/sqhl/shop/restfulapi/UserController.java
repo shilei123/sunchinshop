@@ -17,6 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.service.UserService;
 import cn.sqhl.shop.utils.security.SecurityCore;
+import cn.sqhl.shop.vo.BrowHistory;
+import cn.sqhl.shop.vo.Cart;
+import cn.sqhl.shop.vo.Collected;
+import cn.sqhl.shop.vo.SearcHistory;
 import cn.sqhl.shop.vo.UserCoupon;
 
 import com.alibaba.fastjson.JSON;
@@ -60,6 +64,218 @@ public class UserController extends ContextInfo{
 					List<UserCoupon> usercouponlist=userService.queryUserCouponList(page, queryparam);
 					if(usercouponlist!=null && usercouponlist.size()>0){
 						data=JSON.toJSONString(usercouponlist);
+						message="查询成功";//
+					}else{
+						data=null;
+						message="无对应数据";//
+					}
+					result="0";//成功
+				}
+			}
+		} catch (Exception e) {
+			result = "1";// 失败
+			message = "查询出错 ";// 错误原因
+			data = null;// 错误 data无返回值
+			logger.log(ERROR, "Exception:" + e.getCause().getClass() + ","
+					+ e.getCause().getMessage() + " info:" + e.toString());
+		}
+
+		basemap.put("ver", ver);
+		basemap.put("result", result);
+		basemap.put("message", message);
+		basemap.put("data", data);
+
+		Map signvalue = SecurityCore.buildRequestPara(basemap);
+
+		jreturn.putAll(signvalue);
+		
+		logger.log(INFO,"request Encrypt info :  "+jreturn.toString());
+		return jreturn;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/history/query")
+	public JSONObject queryBrowHistory(HttpServletRequest request) {
+		JSONObject jreturn = new JSONObject();
+		Map basemap = new HashMap();
+		Map requestmap=(HashMap)request.getAttribute("map");
+		try {
+			if(StringUtils.isNotEmpty(requestmap.get("data")+"")){
+				JSONObject requestparam=JSON.parseObject(requestmap.get("data").toString());
+				if(requestparam!=null && requestparam.size()>0){
+					String user_id=requestparam.getString("user_id");
+					
+					Integer pagesize=StringUtils.isNotEmpty(requestparam.getString("pagesize"))?(requestparam.getInteger("pagesize")):10;
+					Integer nowpage=StringUtils.isNotEmpty(requestparam.getString("nowpage"))?(requestparam.getInteger("nowpage")):0;
+				
+					PageCond page=new PageCond(pagesize*nowpage, pagesize);
+					Map<String, Object> queryparam=new HashMap<String, Object>();
+					if(StringUtils.isNotEmpty(user_id)){
+						queryparam.put("user_id", user_id);
+					}
+					
+					List<BrowHistory> browhistorylist=userService.queryBrowHistoryList(page, queryparam);
+					if(browhistorylist!=null && browhistorylist.size()>0){
+						data=JSON.toJSONString(browhistorylist);
+						message="查询成功";//
+					}else{
+						data=null;
+						message="无对应数据";//
+					}
+					result="0";//成功
+				}
+			}
+		} catch (Exception e) {
+			result = "1";// 失败
+			message = "查询出错 ";// 错误原因
+			data = null;// 错误 data无返回值
+			logger.log(ERROR, "Exception:" + e.getCause().getClass() + ","
+					+ e.getCause().getMessage() + " info:" + e.toString());
+		}
+
+		basemap.put("ver", ver);
+		basemap.put("result", result);
+		basemap.put("message", message);
+		basemap.put("data", data);
+
+		Map signvalue = SecurityCore.buildRequestPara(basemap);
+
+		jreturn.putAll(signvalue);
+		
+		logger.log(INFO,"request Encrypt info :  "+jreturn.toString());
+		return jreturn;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/collect/query")
+	public JSONObject queryCollected(HttpServletRequest request) {
+		JSONObject jreturn = new JSONObject();
+		Map basemap = new HashMap();
+		Map requestmap=(HashMap)request.getAttribute("map");
+		try {
+			if(StringUtils.isNotEmpty(requestmap.get("data")+"")){
+				JSONObject requestparam=JSON.parseObject(requestmap.get("data").toString());
+				if(requestparam!=null && requestparam.size()>0){
+					String user_id=requestparam.getString("user_id");
+					
+					Integer pagesize=StringUtils.isNotEmpty(requestparam.getString("pagesize"))?(requestparam.getInteger("pagesize")):10;
+					Integer nowpage=StringUtils.isNotEmpty(requestparam.getString("nowpage"))?(requestparam.getInteger("nowpage")):0;
+				
+					PageCond page=new PageCond(pagesize*nowpage, pagesize);
+					Map<String, Object> queryparam=new HashMap<String, Object>();
+					if(StringUtils.isNotEmpty(user_id)){
+						queryparam.put("user_id", user_id);
+					}
+					
+					List<Collected> collectedlist=userService.queryCollectedList(page, queryparam);
+					if(collectedlist!=null && collectedlist.size()>0){
+						data=JSON.toJSONString(collectedlist);
+						message="查询成功";//
+					}else{
+						data=null;
+						message="无对应数据";//
+					}
+					result="0";//成功
+				}
+			}
+		} catch (Exception e) {
+			result = "1";// 失败
+			message = "查询出错 ";// 错误原因
+			data = null;// 错误 data无返回值
+			logger.log(ERROR, "Exception:" + e.getCause().getClass() + ","
+					+ e.getCause().getMessage() + " info:" + e.toString());
+		}
+
+		basemap.put("ver", ver);
+		basemap.put("result", result);
+		basemap.put("message", message);
+		basemap.put("data", data);
+
+		Map signvalue = SecurityCore.buildRequestPara(basemap);
+
+		jreturn.putAll(signvalue);
+		
+		logger.log(INFO,"request Encrypt info :  "+jreturn.toString());
+		return jreturn;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/shopcart/query")
+	public JSONObject queryCart(HttpServletRequest request) {
+		JSONObject jreturn = new JSONObject();
+		Map basemap = new HashMap();
+		Map requestmap=(HashMap)request.getAttribute("map");
+		try {
+			if(StringUtils.isNotEmpty(requestmap.get("data")+"")){
+				JSONObject requestparam=JSON.parseObject(requestmap.get("data").toString());
+				if(requestparam!=null && requestparam.size()>0){
+					String user_id=requestparam.getString("user_id");
+					
+					Integer pagesize=StringUtils.isNotEmpty(requestparam.getString("pagesize"))?(requestparam.getInteger("pagesize")):10;
+					Integer nowpage=StringUtils.isNotEmpty(requestparam.getString("nowpage"))?(requestparam.getInteger("nowpage")):0;
+				
+					PageCond page=new PageCond(pagesize*nowpage, pagesize);
+					Map<String, Object> queryparam=new HashMap<String, Object>();
+					if(StringUtils.isNotEmpty(user_id)){
+						queryparam.put("user_id", user_id);
+					}
+					
+					List<Cart> cartlist=userService.queryCartList(page, queryparam);
+					if(cartlist!=null && cartlist.size()>0){
+						data=JSON.toJSONString(cartlist);
+						message="查询成功";//
+					}else{
+						data=null;
+						message="无对应数据";//
+					}
+					result="0";//成功
+				}
+			}
+		} catch (Exception e) {
+			result = "1";// 失败
+			message = "查询出错 ";// 错误原因
+			data = null;// 错误 data无返回值
+			logger.log(ERROR, "Exception:" + e.getCause().getClass() + ","
+					+ e.getCause().getMessage() + " info:" + e.toString());
+		}
+
+		basemap.put("ver", ver);
+		basemap.put("result", result);
+		basemap.put("message", message);
+		basemap.put("data", data);
+
+		Map signvalue = SecurityCore.buildRequestPara(basemap);
+
+		jreturn.putAll(signvalue);
+		
+		logger.log(INFO,"request Encrypt info :  "+jreturn.toString());
+		return jreturn;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/searchistory/query")
+	public JSONObject querySearchHistory(HttpServletRequest request) {
+		JSONObject jreturn = new JSONObject();
+		Map basemap = new HashMap();
+		Map requestmap=(HashMap)request.getAttribute("map");
+		try {
+			if(StringUtils.isNotEmpty(requestmap.get("data")+"")){
+				JSONObject requestparam=JSON.parseObject(requestmap.get("data").toString());
+				if(requestparam!=null && requestparam.size()>0){
+					String user_id=requestparam.getString("user_id");
+					
+					Integer pagesize=StringUtils.isNotEmpty(requestparam.getString("pagesize"))?(requestparam.getInteger("pagesize")):10;
+					Integer nowpage=StringUtils.isNotEmpty(requestparam.getString("nowpage"))?(requestparam.getInteger("nowpage")):0;
+				
+					PageCond page=new PageCond(pagesize*nowpage, pagesize);
+					Map<String, Object> queryparam=new HashMap<String, Object>();
+					if(StringUtils.isNotEmpty(user_id)){
+						queryparam.put("user_id", user_id);
+					}
+					
+					List<SearcHistory> searchistorylist=userService.querySearchHistoryList(page, queryparam);
+					if(searchistorylist!=null && searchistorylist.size()>0){
+						data=JSON.toJSONString(searchistorylist);
 						message="查询成功";//
 					}else{
 						data=null;

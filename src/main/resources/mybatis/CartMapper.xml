@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sqhl.shop.mapper.CartMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.Cart">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="GOODS_ID" jdbcType="VARCHAR" property="goodsId" />
+    <result column="CHILD_GOODS_ID" jdbcType="VARCHAR" property="childGoodsId" />
+    <result column="CART_COUNT" jdbcType="DECIMAL" property="cartCount" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="ADD_PRICE" jdbcType="DECIMAL" property="addPrice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USER_ID, GOODS_ID, CHILD_GOODS_ID, CART_COUNT, CREATE_TIME, ADD_PRICE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SC_CART
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SC_CART
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.sqhl.shop.po.Cart">
+    insert into SC_CART (ID, USER_ID, GOODS_ID, 
+      CHILD_GOODS_ID, CART_COUNT, CREATE_TIME, 
+      ADD_PRICE)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, 
+      #{childGoodsId,jdbcType=VARCHAR}, #{cartCount,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{addPrice,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.Cart">
+    insert into SC_CART
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="goodsId != null">
+        GOODS_ID,
+      </if>
+      <if test="childGoodsId != null">
+        CHILD_GOODS_ID,
+      </if>
+      <if test="cartCount != null">
+        CART_COUNT,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="addPrice != null">
+        ADD_PRICE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="childGoodsId != null">
+        #{childGoodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="cartCount != null">
+        #{cartCount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addPrice != null">
+        #{addPrice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.Cart">
+    update SC_CART
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        GOODS_ID = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="childGoodsId != null">
+        CHILD_GOODS_ID = #{childGoodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="cartCount != null">
+        CART_COUNT = #{cartCount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addPrice != null">
+        ADD_PRICE = #{addPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.Cart">
+    update SC_CART
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      GOODS_ID = #{goodsId,jdbcType=VARCHAR},
+      CHILD_GOODS_ID = #{childGoodsId,jdbcType=VARCHAR},
+      CART_COUNT = #{cartCount,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      ADD_PRICE = #{addPrice,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+
+  
+  <resultMap id="CartResultMap" type="cn.sqhl.shop.vo.Cart" >
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="GOODS_ID" jdbcType="VARCHAR" property="goodsId" />
+    <result column="CHILD_GOODS_ID" jdbcType="VARCHAR" property="childGoodsId" />
+    <result column="CART_COUNT" jdbcType="DECIMAL" property="cartCount" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="ADD_PRICE" jdbcType="DECIMAL" property="addPrice" />
+  </resultMap
+  <sql id="Cart_Column_List">
+  	  ID, USER_ID, GOODS_ID, CHILD_GOODS_ID, CART_COUNT, CREATE_TIME, ADD_PRICE
+    </sql>
+  <select id="queryCartList" parameterType="java.util.Map" resultMap="CartResultMap">
+    select 
+    <include refid="Cart_Column_List" />
+    from sc_goods a,sc_child_goods b,sc_cart c 
+	where a.id=b.goods_id and c.goods_id=a.id and c.child_goods_id=b.id
+    and ID = #{id,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sqhl.shop.mapper.AreaMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.Area">
+    <id column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="PARENT_CODE" jdbcType="VARCHAR" property="parentCode" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="PROVINCE" jdbcType="VARCHAR" property="province" />
+    <result column="CITY" jdbcType="VARCHAR" property="city" />
+    <result column="DISTRICT" jdbcType="VARCHAR" property="district" />
+    <result column="FULL_NAME" jdbcType="VARCHAR" property="fullName" />
+    <result column="LEV" jdbcType="VARCHAR" property="lev" />
+    <result column="PINYIN" jdbcType="VARCHAR" property="pinyin" />
+    <result column="JIANPIN" jdbcType="VARCHAR" property="jianpin" />
+    <result column="CITYCODE" jdbcType="VARCHAR" property="citycode" />
+    <result column="ZIPCODE" jdbcType="VARCHAR" property="zipcode" />
+    <result column="LNG" jdbcType="VARCHAR" property="lng" />
+    <result column="LAT" jdbcType="VARCHAR" property="lat" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CODE, PARENT_CODE, NAME, PROVINCE, CITY, DISTRICT, FULL_NAME, LEV, PINYIN, JIANPIN, 
+    CITYCODE, ZIPCODE, LNG, LAT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SC_AREA
+    where CODE = #{code,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SC_AREA
+    where CODE = #{code,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.sqhl.shop.po.Area">
+    insert into SC_AREA (CODE, PARENT_CODE, NAME, 
+      PROVINCE, CITY, DISTRICT, 
+      FULL_NAME, LEV, PINYIN, 
+      JIANPIN, CITYCODE, ZIPCODE, 
+      LNG, LAT)
+    values (#{code,jdbcType=VARCHAR}, #{parentCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, 
+      #{fullName,jdbcType=VARCHAR}, #{lev,jdbcType=VARCHAR}, #{pinyin,jdbcType=VARCHAR}, 
+      #{jianpin,jdbcType=VARCHAR}, #{citycode,jdbcType=VARCHAR}, #{zipcode,jdbcType=VARCHAR}, 
+      #{lng,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.Area">
+    insert into SC_AREA
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        CODE,
+      </if>
+      <if test="parentCode != null">
+        PARENT_CODE,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="province != null">
+        PROVINCE,
+      </if>
+      <if test="city != null">
+        CITY,
+      </if>
+      <if test="district != null">
+        DISTRICT,
+      </if>
+      <if test="fullName != null">
+        FULL_NAME,
+      </if>
+      <if test="lev != null">
+        LEV,
+      </if>
+      <if test="pinyin != null">
+        PINYIN,
+      </if>
+      <if test="jianpin != null">
+        JIANPIN,
+      </if>
+      <if test="citycode != null">
+        CITYCODE,
+      </if>
+      <if test="zipcode != null">
+        ZIPCODE,
+      </if>
+      <if test="lng != null">
+        LNG,
+      </if>
+      <if test="lat != null">
+        LAT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null">
+        #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="lev != null">
+        #{lev,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyin != null">
+        #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="jianpin != null">
+        #{jianpin,jdbcType=VARCHAR},
+      </if>
+      <if test="citycode != null">
+        #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.Area">
+    update SC_AREA
+    <set>
+      <if test="parentCode != null">
+        PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        PROVINCE = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        DISTRICT = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null">
+        FULL_NAME = #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="lev != null">
+        LEV = #{lev,jdbcType=VARCHAR},
+      </if>
+      <if test="pinyin != null">
+        PINYIN = #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="jianpin != null">
+        JIANPIN = #{jianpin,jdbcType=VARCHAR},
+      </if>
+      <if test="citycode != null">
+        CITYCODE = #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null">
+        ZIPCODE = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        LNG = #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null">
+        LAT = #{lat,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CODE = #{code,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.Area">
+    update SC_AREA
+    set PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      PROVINCE = #{province,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      DISTRICT = #{district,jdbcType=VARCHAR},
+      FULL_NAME = #{fullName,jdbcType=VARCHAR},
+      LEV = #{lev,jdbcType=VARCHAR},
+      PINYIN = #{pinyin,jdbcType=VARCHAR},
+      JIANPIN = #{jianpin,jdbcType=VARCHAR},
+      CITYCODE = #{citycode,jdbcType=VARCHAR},
+      ZIPCODE = #{zipcode,jdbcType=VARCHAR},
+      LNG = #{lng,jdbcType=VARCHAR},
+      LAT = #{lat,jdbcType=VARCHAR}
+    where CODE = #{code,jdbcType=VARCHAR}
+  </update>
+</mapper>

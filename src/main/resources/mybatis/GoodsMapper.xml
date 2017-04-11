@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sqhl.shop.mapper.GoodsMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.vo.Goods">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="BRAND_ID" jdbcType="VARCHAR" property="brandId" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="SUB_TITLE" jdbcType="VARCHAR" property="subTitle" />
+    <result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
+    <result column="STOP_TIME" jdbcType="TIMESTAMP" property="stopTime" />
+    <result column="GOODS_CODE" jdbcType="VARCHAR" property="goodsCode" />
+    <result column="ISUSE" jdbcType="CHAR" property="isuse" />
+    <result column="EMPTY_STORE" jdbcType="CHAR" property="emptyStore" />
+    <result column="PUTAWAY" jdbcType="CHAR" property="putaway" />
+    <result column="VIRTUAL" jdbcType="CHAR" property="virtual" />
+    <result column="PURCHASE_PRICE" jdbcType="DECIMAL" property="purchasePrice" />
+    <result column="MARKET_PRICE" jdbcType="DECIMAL" property="marketPrice" />
+    <result column="SALE_PRICE" jdbcType="DECIMAL" property="salePrice" />
+    <result column="PROMOTION_PRICE" jdbcType="DECIMAL" property="promotionPrice" />
+    <result column="GOODS_NO" jdbcType="VARCHAR" property="goodsNo" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
+    <result column="FLAG" jdbcType="CHAR" property="flag" />
+    <result column="BELONG" jdbcType="VARCHAR" property="belong" />
+    <result column="FREIGHT_TYPE" jdbcType="CHAR" property="freightType" />
+    <result column="FREIGHT_ID" jdbcType="VARCHAR" property="freightId" />
+    <result column="PUBLISH_TYPE" jdbcType="CHAR" property="publishType" />
+    <result column="PUBLISH_TIME" jdbcType="TIMESTAMP" property="publishTime" />
+    <result column="GOODS_STS" jdbcType="CHAR" property="goodsSts" />
+    <result column="AUDIT_STS" jdbcType="CHAR" property="auditSts" />
+    <result column="CATE_ID" jdbcType="VARCHAR" property="cateId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.sqhl.shop.vo.GoodsWithBLOBs">
+    <result column="DETAIL" jdbcType="CLOB" property="detail" />
+    <result column="PARAMS" jdbcType="CLOB" property="params" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, BRAND_ID, TITLE, SUB_TITLE, GOODS_NAME, STOP_TIME, GOODS_CODE, ISUSE, EMPTY_STORE, 
+    PUTAWAY, VIRTUAL, PURCHASE_PRICE, MARKET_PRICE, SALE_PRICE, PROMOTION_PRICE, GOODS_NO, 
+    CREATE_TIME, CREATE_USER_ID, FLAG, BELONG, FREIGHT_TYPE, FREIGHT_ID, PUBLISH_TYPE, 
+    PUBLISH_TIME, GOODS_STS, AUDIT_STS, CATE_ID
+  </sql>
+  <sql id="Blob_Column_List">
+    DETAIL, PARAMS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from SC_GOODS
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>
