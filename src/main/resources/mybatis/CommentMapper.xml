@@ -150,9 +150,16 @@
     <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
     <result column="FLAG" jdbcType="CHAR" property="flag" />
     <result column="relationType" jdbcType="VARCHAR" property="relationType" />
+    <result column="pv_name" jdbcType="VARCHAR" property="pvname" />
+    <result column="ref_id" jdbcType="VARCHAR" property="refid" />
   </resultMap>
   <sql id="comment_Column_List">
-     a.ID, a.TYPE, a.CONTENT, a.CREATE_TIME, SCORE, ISHIDDEN, PARENT_ID, a.CREATE_USER_ID, a.FLAG,b.type as relationType
+     a.ID, a.TYPE, a.CONTENT, a.CREATE_TIME, SCORE, ISHIDDEN, PARENT_ID, a.CREATE_USER_ID, a.FLAG,b.type as relationType,
+     case when b.type = 1 then 
+       (select pv_name from vw_goods_prop_value c where c.goods_id=b.ref_id and c.child_goods_id=b.goods_id) 
+       else '' 
+     end as pv_name,
+     b.ref_id
   </sql>
   <select id="queryList" parameterType="java.util.Map" resultMap="commentResultMap">
     select 

@@ -20,6 +20,7 @@ import cn.sqhl.shop.service.SystemService;
 import cn.sqhl.shop.utils.security.SecurityCore;
 import cn.sqhl.shop.vo.CategoryPropertyValue;
 import cn.sqhl.shop.vo.GoodsPropertyValue;
+import cn.sqhl.shop.vo.Area;
 import cn.sqhl.shop.vo.Brand;
 import cn.sqhl.shop.vo.CateGory;
 import cn.sqhl.shop.vo.Dictionary;
@@ -538,6 +539,119 @@ public class SystemController extends ContextInfo {
 					List<Faq> faqlist=systemService.queryFAQList(page, queryparam);
 					if(faqlist!=null && faqlist.size()>0){
 						data=JSON.toJSONString(faqlist);
+						message="查询成功";//
+					}else{
+						data=null;
+						message="无对应数据";//
+					}
+					result="0";//成功
+				}
+			}
+		} catch (Exception e) {
+			result = "1";// 失败
+			message = "查询出错 ";// 错误原因
+			data = null;// 错误 data无返回值
+			logger.log(ERROR, "Exception:" + e.getCause().getClass() + ","
+					+ e.getCause().getMessage() + " info:" + e.toString());
+		}
+
+		basemap.put("ver", ver);
+		basemap.put("result", result);
+		basemap.put("message", message);
+		basemap.put("data", data);
+
+		Map signvalue = SecurityCore.buildRequestPara(basemap);
+
+		jreturn.putAll(signvalue);
+		
+		logger.log(INFO,"request Encrypt info :  "+jreturn.toString());
+		return jreturn;
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping("/Provincecity/query")
+	public JSONObject queryProvincecityquery(HttpServletRequest request) {
+		//TODO 待补全
+		JSONObject jreturn = new JSONObject();
+		Map basemap = new HashMap();
+		Map requestmap=(HashMap)request.getAttribute("map");
+		try {
+			if(StringUtils.isNotEmpty(requestmap.get("data")+"")){
+				JSONObject requestparam=JSON.parseObject(requestmap.get("data").toString());
+				if(requestparam!=null && requestparam.size()>0){
+					
+					String parentid=requestparam.getString("parentid");
+					
+					Integer pagesize=StringUtils.isNotEmpty(requestparam.getString("pagesize"))?(requestparam.getInteger("pagesize")):10;
+					Integer nowpage=StringUtils.isNotEmpty(requestparam.getString("nowpage"))?(requestparam.getInteger("nowpage")):0;
+				
+					PageCond page=new PageCond(pagesize*nowpage, pagesize);
+					Map<String, Object> queryparam=new HashMap<String, Object>();
+					if(StringUtils.isNotEmpty(parentid)){
+						queryparam.put("parentid", parentid);
+					}
+					
+					List<Area> faqlist=systemService.queryAreaList(page, queryparam);
+					if(faqlist!=null && faqlist.size()>0){
+						data=JSON.toJSONString(faqlist);
+						message="查询成功";//
+					}else{
+						data=null;
+						message="无对应数据";//
+					}
+					result="0";//成功
+				}
+			}
+		} catch (Exception e) {
+			result = "1";// 失败
+			message = "查询出错 ";// 错误原因
+			data = null;// 错误 data无返回值
+			logger.log(ERROR, "Exception:" + e.getCause().getClass() + ","
+					+ e.getCause().getMessage() + " info:" + e.toString());
+		}
+
+		basemap.put("ver", ver);
+		basemap.put("result", result);
+		basemap.put("message", message);
+		basemap.put("data", data);
+
+		Map signvalue = SecurityCore.buildRequestPara(basemap);
+
+		jreturn.putAll(signvalue);
+		
+		logger.log(INFO,"request Encrypt info :  "+jreturn.toString());
+		return jreturn;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/sms/edit")
+	public JSONObject querySMSEdit(HttpServletRequest request) {
+		//TODO 待补全
+		JSONObject jreturn = new JSONObject();
+		Map basemap = new HashMap();
+		Map requestmap=(HashMap)request.getAttribute("map");
+		try {
+			if(StringUtils.isNotEmpty(requestmap.get("data")+"")){
+				JSONObject requestparam=JSON.parseObject(requestmap.get("data").toString());
+				if(requestparam!=null && requestparam.size()>0){
+					
+					String kindid=requestparam.getString("kindid");
+					String keyvalue=requestparam.getString("keyvalue");
+					
+					Integer pagesize=StringUtils.isNotEmpty(requestparam.getString("pagesize"))?(requestparam.getInteger("pagesize")):10;
+					Integer nowpage=StringUtils.isNotEmpty(requestparam.getString("nowpage"))?(requestparam.getInteger("nowpage")):0;
+				
+					PageCond page=new PageCond(pagesize*nowpage, pagesize);
+					Map<String, Object> queryparam=new HashMap<String, Object>();
+					if(StringUtils.isNotEmpty(kindid)){
+						queryparam.put("kindid", kindid);
+					}if(StringUtils.isNotEmpty(keyvalue)){
+						queryparam.put("keyvalue", keyvalue);
+					}
+					
+					int i=systemService.insertSMS(queryparam);
+					if(i>0){
 						message="查询成功";//
 					}else{
 						data=null;

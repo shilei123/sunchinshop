@@ -1,7 +1,5 @@
 package cn.sqhl.shop.vo;
 
-import java.util.Date;
-
 public class Comment {
     private String id;
 
@@ -22,6 +20,10 @@ public class Comment {
     private String flag;
 
     private String relationType;
+    
+    private String pvname;
+    
+    private String refid;
     
     public String getId() {
         return id;
@@ -101,5 +103,21 @@ public class Comment {
 
 	public void setRelationType(String relationType) {
 		this.relationType = relationType;
+	}
+
+	public String getPvname() {
+		return pvname;
+	}
+
+	public void setPvname(String pvname) {
+		this.pvname = pvname;
+	}
+
+	public String getRefid() {
+		return refid;
+	}
+
+	public void setRefid(String refid) {
+		this.refid = refid;
 	}
 }

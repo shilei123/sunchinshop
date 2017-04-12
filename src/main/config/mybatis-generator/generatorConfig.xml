@@ -80,11 +80,6 @@
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
-		<table tableName="" domainObjectName=""
-			enableCountByExample="false" enableUpdateByExample="false"
-			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false"></table>
-		 -->
 		<table tableName="SC_SEARCHISTORY" domainObjectName="SearcHistory"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
@@ -102,6 +97,15 @@
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
 		<table tableName="sc_area" domainObjectName="Area"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+		<table tableName="" domainObjectName=""
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+		 -->
+		 <table tableName="sc_sms" domainObjectName="SMS"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>

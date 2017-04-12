@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.mapper.CategoryPropertyValueMapper;
 import cn.sqhl.shop.mapper.GoodsPropertyValueMapper;
+import cn.sqhl.shop.mapper.SMSMapper;
+import cn.sqhl.shop.po.SMS;
+import cn.sqhl.shop.mapper.AreaMapper;
 import cn.sqhl.shop.mapper.BrandMapper;
 import cn.sqhl.shop.mapper.CateGoryMapper;
 import cn.sqhl.shop.mapper.DictionaryMapper;
@@ -17,6 +20,7 @@ import cn.sqhl.shop.mapper.FaqTypeMapper;
 import cn.sqhl.shop.service.SystemService;
 import cn.sqhl.shop.vo.CategoryPropertyValue;
 import cn.sqhl.shop.vo.GoodsPropertyValue;
+import cn.sqhl.shop.vo.Area;
 import cn.sqhl.shop.vo.Brand;
 import cn.sqhl.shop.vo.CateGory;
 import cn.sqhl.shop.vo.Dictionary;
@@ -46,6 +50,12 @@ public class SystemServiceImpl implements SystemService{
 	
 	@Autowired
 	private FaqMapper faqMapper;
+	
+	@Autowired
+	private AreaMapper areaMapper;
+	
+	@Autowired
+	private SMSMapper sMSMapper;
 	
 	@Override
 	public List<CateGory> queryCategoryList(Object obj) {
@@ -80,6 +90,16 @@ public class SystemServiceImpl implements SystemService{
 	@Override
 	public List<Faq> queryFAQList(PageCond page, Object obj) {
 		return faqMapper.queryList(page, (Map<String, Object>)obj);
+	}
+
+	@Override
+	public List<Area> queryAreaList(PageCond page, Object obj) {
+		return areaMapper.queryList(page, (Map<String, Object>)obj);
+	}
+
+	@Override
+	public int insertSMS(Object obj) {
+		return sMSMapper.insertSelective((SMS)obj);
 	}
 
 }
