@@ -71,8 +71,8 @@
     from vw_goods_child_price a,SC_BROWHISTORY b
     where b.goods_id=a.id
     and a.flag=1 
-    <if test="map.user_id != null">
-    	and b.user_id=#{map.user_id,jdbcType=VARCHAR}
+    <if test="map.userid != null">
+    	and b.user_id=#{map.userid,jdbcType=VARCHAR}
     </if>
   </select>
   
@@ -95,8 +95,8 @@
     from vw_goods_child_price a,SC_COLLECTED b 
     where b.goods_id=a.id
     and a.flag=1 
-    <if test="map.user_id != null">
-    	and b.user_id=#{map.user_id,jdbcType=VARCHAR}
+    <if test="map.userid != null">
+    	and b.user_id=#{map.userid,jdbcType=VARCHAR}
     </if>
   </select>
 </mapper>
