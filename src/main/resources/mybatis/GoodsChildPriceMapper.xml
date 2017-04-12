@@ -6,7 +6,7 @@
     <result column="TITLE" jdbcType="VARCHAR" property="title" />
     <result column="SUB_TITLE" jdbcType="VARCHAR" property="subTitle" />
     <result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
-    <result column="STOP_TIME" jdbcType="TIMESTAMP" property="stopTime" />
+    <result column="STOP_TIME" jdbcType="TIMESTAMP" property="stopTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
     <result column="GOODS_CODE" jdbcType="VARCHAR" property="goodsCode" />
     <result column="ISUSE" jdbcType="CHAR" property="isuse" />
     <result column="EMPTY_STORE" jdbcType="CHAR" property="emptyStore" />
@@ -19,7 +19,7 @@
     <result column="FREIGHT_TYPE" jdbcType="CHAR" property="freightType" />
     <result column="FREIGHT_ID" jdbcType="VARCHAR" property="freightId" />
     <result column="PUBLISH_TYPE" jdbcType="CHAR" property="publishType" />
-    <result column="PUBLISH_TIME" jdbcType="TIMESTAMP" property="publishTime" />
+    <result column="PUBLISH_TIME" jdbcType="TIMESTAMP" property="publishTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
     <result column="GOODS_STS" jdbcType="CHAR" property="goodsSts" />
     <result column="AUDIT_STS" jdbcType="CHAR" property="auditSts" />
     <result column="CATE_ID" jdbcType="VARCHAR" property="cateId" />
@@ -54,6 +54,11 @@
     </sql>
     
   <resultMap extends="BaseResultMap" id="BrowHistoryResultMap" type="cn.sqhl.shop.vo.BrowHistory">
+  		<id column="ID" jdbcType="VARCHAR" property="id" />
+	    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+	    <result column="GOODS_ID" jdbcType="VARCHAR" property="goodsId" />
+	    <result column="CHILD_GOODS_ID" jdbcType="VARCHAR" property="childGoodsId" />
+	    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
   </resultMap>
   <sql id="BrowHistory_Column_List">
   	  b.ID, b.USER_ID, b.GOODS_ID, b.CHILD_GOODS_ID, b.CREATE_TIME
@@ -66,9 +71,18 @@
     from vw_goods_child_price a,SC_BROWHISTORY b
     where b.goods_id=a.id
     and a.flag=1 
+    <if test="map.user_id != null">
+    	and b.user_id=#{map.user_id,jdbcType=VARCHAR}
+    </if>
   </select>
   
   <resultMap extends="BaseResultMap" id="CollectedResultMap" type="cn.sqhl.shop.vo.Collected">
+	  	<id column="ID" jdbcType="VARCHAR" property="id" />
+	    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+	    <result column="GOODS_ID" jdbcType="VARCHAR" property="goodsId" />
+	    <result column="CHILD_GOODS_ID" jdbcType="VARCHAR" property="childGoodsId" />
+	    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+	    <result column="ADD_PRICE" jdbcType="DECIMAL" property="addPrice" />
   </resultMap>
   <sql id="Collected_Column_List">
   	  b.ID, USER_ID, b.GOODS_ID, b.CHILD_GOODS_ID, b.CREATE_TIME, b.ADD_PRICE
@@ -81,5 +95,8 @@
     from vw_goods_child_price a,SC_COLLECTED b 
     where b.goods_id=a.id
     and a.flag=1 
+    <if test="map.user_id != null">
+    	and b.user_id=#{map.user_id,jdbcType=VARCHAR}
+    </if>
   </select>
 </mapper>

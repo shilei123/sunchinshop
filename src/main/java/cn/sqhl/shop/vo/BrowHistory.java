@@ -1,6 +1,5 @@
 package cn.sqhl.shop.vo;
 
-import java.util.Date;
 
 public class BrowHistory extends GoodsChildPrice{
     private String id;
@@ -11,7 +10,7 @@ public class BrowHistory extends GoodsChildPrice{
 
     private String childGoodsId;
 
-    private Date createTime;
+    private String createTime;
 
     public String getId() {
         return id;
@@ -45,11 +44,11 @@ public class BrowHistory extends GoodsChildPrice{
         this.childGoodsId = childGoodsId == null ? null : childGoodsId.trim();
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 }

@@ -1,7 +1,6 @@
 package cn.sqhl.shop.vo;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class Collected extends GoodsChildPrice{
     private String id;
@@ -12,7 +11,7 @@ public class Collected extends GoodsChildPrice{
 
     private String childGoodsId;
 
-    private Date createTime;
+    private String createTime;
 
     private BigDecimal addPrice;
 
@@ -48,11 +47,11 @@ public class Collected extends GoodsChildPrice{
         this.childGoodsId = childGoodsId == null ? null : childGoodsId.trim();
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 

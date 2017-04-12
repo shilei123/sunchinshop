@@ -3,7 +3,9 @@ package cn.sqhl.shop.vo;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class GoodsChildPrice {
+import org.apache.commons.lang.StringUtils;
+
+public class GoodsPrice {
 
     private String brandId;
 
@@ -28,6 +30,7 @@ public class GoodsChildPrice {
     private BigDecimal purchasePrice;
 
     private String goodsNo;
+    
     private String flag;
 
     private String belong;
@@ -46,32 +49,11 @@ public class GoodsChildPrice {
 
     private String cateId;
 
-    private BigDecimal goodsMprice;
+    private String goodsMprice;
 
-    private BigDecimal goodsSprice;
+    private String goodsSprice;
 
-    private BigDecimal goodsPprice;
-
-    private BigDecimal gcSprice;
-
-    private BigDecimal gcMprice;
-
-    private BigDecimal gcPprice;
-
-    private BigDecimal gcMaxSprice;
-
-    private BigDecimal gcMinSprice;
-
-    private BigDecimal gcMaxMprice;
-
-    private BigDecimal gcMinMprice;
-
-    private BigDecimal gcMaxPprice;
-
-    private BigDecimal gcMinPprice;
-
-    private String childgoodsid;
-
+    private String goodsPprice;
 
     public String getBrandId() {
         return brandId;
@@ -241,108 +223,28 @@ public class GoodsChildPrice {
         this.cateId = cateId == null ? null : cateId.trim();
     }
 
-    public BigDecimal getGoodsMprice() {
+    public String getGoodsMprice() {
         return goodsMprice;
     }
 
-    public void setGoodsMprice(BigDecimal goodsMprice) {
+    public void setGoodsMprice(String goodsMprice) {
         this.goodsMprice = goodsMprice;
     }
 
-    public BigDecimal getGoodsSprice() {
+    public String getGoodsSprice() {
         return goodsSprice;
     }
 
-    public void setGoodsSprice(BigDecimal goodsSprice) {
+    public void setGoodsSprice(String goodsSprice) {
         this.goodsSprice = goodsSprice;
     }
 
-    public BigDecimal getGoodsPprice() {
+    public String getGoodsPprice() {
         return goodsPprice;
     }
 
-    public void setGoodsPprice(BigDecimal goodsPprice) {
+    public void setGoodsPprice(String goodsPprice) {
         this.goodsPprice = goodsPprice;
     }
-
-    public BigDecimal getGcSprice() {
-        return gcSprice;
-    }
-
-    public void setGcSprice(BigDecimal gcSprice) {
-        this.gcSprice = gcSprice;
-    }
-
-    public BigDecimal getGcMprice() {
-        return gcMprice;
-    }
-
-    public void setGcMprice(BigDecimal gcMprice) {
-        this.gcMprice = gcMprice;
-    }
-
-    public BigDecimal getGcPprice() {
-        return gcPprice;
-    }
-
-    public void setGcPprice(BigDecimal gcPprice) {
-        this.gcPprice = gcPprice;
-    }
-
-    public BigDecimal getGcMaxSprice() {
-        return gcMaxSprice;
-    }
-
-    public void setGcMaxSprice(BigDecimal gcMaxSprice) {
-        this.gcMaxSprice = gcMaxSprice;
-    }
-
-    public BigDecimal getGcMinSprice() {
-        return gcMinSprice;
-    }
-
-    public void setGcMinSprice(BigDecimal gcMinSprice) {
-        this.gcMinSprice = gcMinSprice;
-    }
-
-    public BigDecimal getGcMaxMprice() {
-        return gcMaxMprice;
-    }
-
-    public void setGcMaxMprice(BigDecimal gcMaxMprice) {
-        this.gcMaxMprice = gcMaxMprice;
-    }
-
-    public BigDecimal getGcMinMprice() {
-        return gcMinMprice;
-    }
-
-    public void setGcMinMprice(BigDecimal gcMinMprice) {
-        this.gcMinMprice = gcMinMprice;
-    }
-
-    public BigDecimal getGcMaxPprice() {
-        return gcMaxPprice;
-    }
-
-    public void setGcMaxPprice(BigDecimal gcMaxPprice) {
-        this.gcMaxPprice = gcMaxPprice;
-    }
-
-    public BigDecimal getGcMinPprice() {
-        return gcMinPprice;
-    }
-
-    public void setGcMinPprice(BigDecimal gcMinPprice) {
-        this.gcMinPprice = gcMinPprice;
-    }
-
-	public String getChildgoodsid() {
-		return childgoodsid;
-	}
-
-	public void setChildgoodsid(String childgoodsid) {
-		this.childgoodsid = childgoodsid;
-	}
 
 }

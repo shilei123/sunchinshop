@@ -1,5 +1,6 @@
 package cn.sqhl.shop.restfulapi;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,8 +19,10 @@ import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.service.UserService;
 import cn.sqhl.shop.utils.security.SecurityCore;
 import cn.sqhl.shop.vo.BrowHistory;
+import cn.sqhl.shop.vo.BrowHistoryGoods;
 import cn.sqhl.shop.vo.Cart;
 import cn.sqhl.shop.vo.Collected;
+import cn.sqhl.shop.vo.CollectedGoods;
 import cn.sqhl.shop.vo.SearcHistory;
 import cn.sqhl.shop.vo.UserCoupon;
 
@@ -115,8 +118,14 @@ public class UserController extends ContextInfo{
 					}
 					
 					List<BrowHistory> browhistorylist=userService.queryBrowHistoryList(page, queryparam);
+					
+					List<BrowHistoryGoods> bhg=new ArrayList<BrowHistoryGoods>();
 					if(browhistorylist!=null && browhistorylist.size()>0){
-						data=JSON.toJSONString(browhistorylist);
+						for(int i=0;i<browhistorylist.size();i++){
+							bhg.add(BrowHistoryGoods.newBrowHistoryGoods(browhistorylist.get(i)));
+						}
+						
+						data=JSON.toJSONString(bhg);
 						message="查询成功";//
 					}else{
 						data=null;
@@ -168,8 +177,12 @@ public class UserController extends ContextInfo{
 					}
 					
 					List<Collected> collectedlist=userService.queryCollectedList(page, queryparam);
+					List<CollectedGoods> bhg=new ArrayList<CollectedGoods>();
 					if(collectedlist!=null && collectedlist.size()>0){
-						data=JSON.toJSONString(collectedlist);
+						for(int i=0;i<collectedlist.size();i++){
+							bhg.add(CollectedGoods.newCollectedGoods(collectedlist.get(i)));
+						}
+						data=JSON.toJSONString(bhg);
 						message="查询成功";//
 					}else{
 						data=null;
@@ -274,7 +287,9 @@ public class UserController extends ContextInfo{
 					}
 					
 					List<SearcHistory> searchistorylist=userService.querySearchHistoryList(page, queryparam);
+					
 					if(searchistorylist!=null && searchistorylist.size()>0){
+						
 						data=JSON.toJSONString(searchistorylist);
 						message="查询成功";//
 					}else{
