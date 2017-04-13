@@ -220,4 +220,37 @@
       BELONG = #{belong,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
+  
+  
+  <resultMap id="AddressResultMap" type="cn.sqhl.shop.vo.Address">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="PROVINCE" jdbcType="VARCHAR" property="province" />
+    <result column="CITY" jdbcType="VARCHAR" property="city" />
+    <result column="COUNTY" jdbcType="VARCHAR" property="county" />
+    <result column="ADDRESS_DETAIL" jdbcType="VARCHAR" property="addressDetail" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="POST_CODE" jdbcType="CHAR" property="postCode" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="TEL" jdbcType="VARCHAR" property="tel" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="ISUSE" jdbcType="CHAR" property="isuse" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
+    <result column="FLAG" jdbcType="CHAR" property="flag" />
+    <result column="BELONG" jdbcType="VARCHAR" property="belong" />
+  </resultMap>
+  <sql id="Address_Column_List">
+    ID, USER_ID, PROVINCE, CITY, COUNTY, ADDRESS_DETAIL, NAME, POST_CODE, PHONE, TEL, 
+    EMAIL, ISUSE, CREATE_TIME, CREATE_USER_ID, FLAG, BELONG
+  </sql>
+  <select id="queryAddressList" parameterType="java.util.Map" resultMap="AddressResultMap">
+    select 
+    <include refid="Address_Column_List" />
+    from SC_ADDRESS
+    where flag=1
+    <if test="map.userid">
+    	USER_ID=#{map.userid,jdbcType=VARCHAR}
+    </if>
+  </select>
 </mapper>

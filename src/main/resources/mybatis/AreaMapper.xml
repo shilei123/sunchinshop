@@ -196,4 +196,36 @@
       LAT = #{lat,jdbcType=VARCHAR}
     where CODE = #{code,jdbcType=VARCHAR}
   </update>
+  
+  
+  <resultMap id="AreaResultMap" type="cn.sqhl.shop.vo.Area">
+    <id column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="PARENT_CODE" jdbcType="VARCHAR" property="parentCode" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="PROVINCE" jdbcType="VARCHAR" property="province" />
+    <result column="CITY" jdbcType="VARCHAR" property="city" />
+    <result column="DISTRICT" jdbcType="VARCHAR" property="district" />
+    <result column="FULL_NAME" jdbcType="VARCHAR" property="fullName" />
+    <result column="LEV" jdbcType="VARCHAR" property="lev" />
+    <result column="PINYIN" jdbcType="VARCHAR" property="pinyin" />
+    <result column="JIANPIN" jdbcType="VARCHAR" property="jianpin" />
+    <result column="CITYCODE" jdbcType="VARCHAR" property="citycode" />
+    <result column="ZIPCODE" jdbcType="VARCHAR" property="zipcode" />
+    <result column="LNG" jdbcType="VARCHAR" property="lng" />
+    <result column="LAT" jdbcType="VARCHAR" property="lat" />
+  </resultMap>
+  <sql id="Area_Column_List">
+    CODE, PARENT_CODE, NAME, PROVINCE, CITY, DISTRICT, FULL_NAME, LEV, PINYIN, JIANPIN, 
+    CITYCODE, ZIPCODE, LNG, LAT
+  </sql>
+  <select id="queryList" parameterType="java.util.Map" resultMap="AreaResultMap">
+    select 
+    <include refid="Area_Column_List" />
+    from SC_AREA
+    where 1=1
+    <if test="map.parentid">
+    	PARENT_CODE=#{map.parentid,jdbcType=VARCHAR}
+    </if>
+  </select>
+  </select>
 </mapper>

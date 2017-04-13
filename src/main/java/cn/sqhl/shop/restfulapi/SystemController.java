@@ -636,18 +636,23 @@ public class SystemController extends ContextInfo {
 				JSONObject requestparam=JSON.parseObject(requestmap.get("data").toString());
 				if(requestparam!=null && requestparam.size()>0){
 					
-					String kindid=requestparam.getString("kindid");
-					String keyvalue=requestparam.getString("keyvalue");
+					String receiveid=requestparam.getString("receiveid");
+					String receivephone=requestparam.getString("receivephone");
+					String receivename=requestparam.getString("receivename");
+					String smscontent=requestparam.getString("smscontent");
+					String smstype=requestparam.getString("smstype");
 					
-					Integer pagesize=StringUtils.isNotEmpty(requestparam.getString("pagesize"))?(requestparam.getInteger("pagesize")):10;
-					Integer nowpage=StringUtils.isNotEmpty(requestparam.getString("nowpage"))?(requestparam.getInteger("nowpage")):0;
-				
-					PageCond page=new PageCond(pagesize*nowpage, pagesize);
 					Map<String, Object> queryparam=new HashMap<String, Object>();
-					if(StringUtils.isNotEmpty(kindid)){
-						queryparam.put("kindid", kindid);
-					}if(StringUtils.isNotEmpty(keyvalue)){
-						queryparam.put("keyvalue", keyvalue);
+					if(StringUtils.isNotEmpty(receiveid)){
+						queryparam.put("receiveid", receiveid);
+					}if(StringUtils.isNotEmpty(receivephone)){
+						queryparam.put("receivephone", receivephone);
+					}if(StringUtils.isNotEmpty(receivename)){
+						queryparam.put("receivename", receivename);
+					}if(StringUtils.isNotEmpty(smscontent)){
+						queryparam.put("smscontent", smscontent);
+					}if(StringUtils.isNotEmpty(smstype)){
+						queryparam.put("smstype", smstype);
 					}
 					
 					int i=systemService.insertSMS(queryparam);

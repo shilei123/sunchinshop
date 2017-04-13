@@ -27,7 +27,7 @@ public class Address {
 
     private String isuse;
 
-    private Date createTime;
+    private String createTime;
 
     private String createUserId;
 
@@ -131,11 +131,11 @@ public class Address {
         this.isuse = isuse == null ? null : isuse.trim();
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 

@@ -80,19 +80,19 @@ public class GoodsController extends ContextInfo{
 			if(StringUtils.isNotEmpty(requestmap.get("data")+"")){
 				JSONObject requestparam=JSON.parseObject(requestmap.get("data").toString());
 				if(requestparam!=null && requestparam.size()>0){
-					String level=requestparam.getString("level");
-					String parent_id=requestparam.getString("parent_id");
+					String keyvalue=requestparam.getString("keyvalue");
+					String kindid=requestparam.getString("kindid");
 					
 					Integer pagesize=StringUtils.isNotEmpty(requestparam.getString("pagesize"))?(requestparam.getInteger("pagesize")):10;
 					Integer nowpage=StringUtils.isNotEmpty(requestparam.getString("nowpage"))?(requestparam.getInteger("nowpage")):0;
 				
 					PageCond page=new PageCond(pagesize*nowpage, pagesize);
 					Map<String, Object> queryparam=new HashMap<String, Object>();
-					if(StringUtils.isNotEmpty(level)){
-						queryparam.put("level", level);
+					if(StringUtils.isNotEmpty(keyvalue)){
+						queryparam.put("keyvalue", keyvalue);
 					}
-					if(StringUtils.isNotEmpty(parent_id)){
-						queryparam.put("parent_id", parent_id);
+					if(StringUtils.isNotEmpty(kindid)){
+						queryparam.put("kindid", kindid);
 					}
 					
 					List<GoodsChildPrice> goodslist=goodsService.queryGoodsList(page,queryparam);

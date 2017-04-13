@@ -28,6 +28,7 @@ public class GoodsChildPrice {
     private BigDecimal purchasePrice;
 
     private String goodsNo;
+    
     private String flag;
 
     private String belong;

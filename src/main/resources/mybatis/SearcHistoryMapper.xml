@@ -83,6 +83,10 @@
 
   
   <resultMap id="BaseResultMap" type="cn.sqhl.shop.vo.SearchHistory">
+  	<id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="SEARCH_CONTENT" jdbcType="VARCHAR" property="searchContent" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
 	ID, USER_ID, SEARCH_CONTENT, CREATE_TIME

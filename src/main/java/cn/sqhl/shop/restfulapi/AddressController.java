@@ -32,7 +32,7 @@ public class AddressController extends ContextInfo{
 	
 	@ResponseBody
 	@RequestMapping("/query")
-	public JSONObject queryGoodsList(HttpServletRequest request) {
+	public JSONObject queryAddressList(HttpServletRequest request) {
 		JSONObject jreturn = new JSONObject();
 		Map basemap = new HashMap();
 		Map requestmap=(HashMap)request.getAttribute("map");
