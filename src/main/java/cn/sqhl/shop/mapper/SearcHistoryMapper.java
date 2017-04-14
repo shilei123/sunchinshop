@@ -22,5 +22,5 @@ public interface SearcHistoryMapper {
 
     int updateByPrimaryKey(SearcHistory record);
 
-	public List<cn.sqhl.shop.vo.SearcHistory> querySearchHistoryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page, Map<String,Object> obj);
+	public List<cn.sqhl.shop.vo.SearcHistory> querySearchHistoryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
 }

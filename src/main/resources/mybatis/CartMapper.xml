@@ -157,7 +157,7 @@
     <result column="child_no" jdbcType="VARCHAR" property="childno" />
     <result column="c_flag" jdbcType="VARCHAR" property="cflag" />
     <result column="pv_name" jdbcType="VARCHAR" property="pvname" />
-  </resultMap
+  </resultMap>
   <sql id="Cart_Column_List">
   	  a.title,a.sub_title,a.goods_name,a.stop_time,a.goods_code,a.isuse,a.empty_store,a.putaway,a.virtual,a.purchase_price,
   	  a.market_price,a.sale_price,a.promotion_price,a.goods_no,a.flag,a.freight_type,a.freight_id,a.publish_type,

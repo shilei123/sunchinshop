@@ -106,15 +106,15 @@ public class UserController extends ContextInfo{
 			if(StringUtils.isNotEmpty(requestmap.get("data")+"")){
 				JSONObject requestparam=JSON.parseObject(requestmap.get("data").toString());
 				if(requestparam!=null && requestparam.size()>0){
-					String user_id=requestparam.getString("user_id");
+					String userid=requestparam.getString("userid");
 					
 					Integer pagesize=StringUtils.isNotEmpty(requestparam.getString("pagesize"))?(requestparam.getInteger("pagesize")):10;
 					Integer nowpage=StringUtils.isNotEmpty(requestparam.getString("nowpage"))?(requestparam.getInteger("nowpage")):0;
 				
 					PageCond page=new PageCond(pagesize*nowpage, pagesize);
 					Map<String, Object> queryparam=new HashMap<String, Object>();
-					if(StringUtils.isNotEmpty(user_id)){
-						queryparam.put("user_id", user_id);
+					if(StringUtils.isNotEmpty(userid)){
+						queryparam.put("userid", userid);
 					}
 					
 					List<BrowHistory> browhistorylist=userService.queryBrowHistoryList(page, queryparam);
@@ -165,15 +165,15 @@ public class UserController extends ContextInfo{
 			if(StringUtils.isNotEmpty(requestmap.get("data")+"")){
 				JSONObject requestparam=JSON.parseObject(requestmap.get("data").toString());
 				if(requestparam!=null && requestparam.size()>0){
-					String user_id=requestparam.getString("user_id");
+					String userid=requestparam.getString("userid");
 					
 					Integer pagesize=StringUtils.isNotEmpty(requestparam.getString("pagesize"))?(requestparam.getInteger("pagesize")):10;
 					Integer nowpage=StringUtils.isNotEmpty(requestparam.getString("nowpage"))?(requestparam.getInteger("nowpage")):0;
 				
 					PageCond page=new PageCond(pagesize*nowpage, pagesize);
 					Map<String, Object> queryparam=new HashMap<String, Object>();
-					if(StringUtils.isNotEmpty(user_id)){
-						queryparam.put("user_id", user_id);
+					if(StringUtils.isNotEmpty(userid)){
+						queryparam.put("userid", userid);
 					}
 					
 					List<Collected> collectedlist=userService.queryCollectedList(page, queryparam);
@@ -222,15 +222,15 @@ public class UserController extends ContextInfo{
 			if(StringUtils.isNotEmpty(requestmap.get("data")+"")){
 				JSONObject requestparam=JSON.parseObject(requestmap.get("data").toString());
 				if(requestparam!=null && requestparam.size()>0){
-					String user_id=requestparam.getString("user_id");
+					String userid=requestparam.getString("userid");
 					
 					Integer pagesize=StringUtils.isNotEmpty(requestparam.getString("pagesize"))?(requestparam.getInteger("pagesize")):10;
 					Integer nowpage=StringUtils.isNotEmpty(requestparam.getString("nowpage"))?(requestparam.getInteger("nowpage")):0;
 				
 					PageCond page=new PageCond(pagesize*nowpage, pagesize);
 					Map<String, Object> queryparam=new HashMap<String, Object>();
-					if(StringUtils.isNotEmpty(user_id)){
-						queryparam.put("user_id", user_id);
+					if(StringUtils.isNotEmpty(userid)){
+						queryparam.put("userid", userid);
 					}
 					
 					List<Cart> cartlist=userService.queryCartList(page, queryparam);
@@ -275,15 +275,15 @@ public class UserController extends ContextInfo{
 			if(StringUtils.isNotEmpty(requestmap.get("data")+"")){
 				JSONObject requestparam=JSON.parseObject(requestmap.get("data").toString());
 				if(requestparam!=null && requestparam.size()>0){
-					String user_id=requestparam.getString("user_id");
+					String userid=requestparam.getString("userid");
 					
 					Integer pagesize=StringUtils.isNotEmpty(requestparam.getString("pagesize"))?(requestparam.getInteger("pagesize")):10;
 					Integer nowpage=StringUtils.isNotEmpty(requestparam.getString("nowpage"))?(requestparam.getInteger("nowpage")):0;
 				
 					PageCond page=new PageCond(pagesize*nowpage, pagesize);
 					Map<String, Object> queryparam=new HashMap<String, Object>();
-					if(StringUtils.isNotEmpty(user_id)){
-						queryparam.put("user_id", user_id);
+					if(StringUtils.isNotEmpty(userid)){
+						queryparam.put("userid", userid);
 					}
 					
 					List<SearcHistory> searchistorylist=userService.querySearchHistoryList(page, queryparam);

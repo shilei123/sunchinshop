@@ -22,5 +22,5 @@ public interface AddressMapper {
 
     int updateByPrimaryKey(Address record);
     
-    List<cn.sqhl.shop.vo.Address> queryAddressList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page, Map<String,Object> obj);
+    List<cn.sqhl.shop.vo.Address> queryAddressList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
 }

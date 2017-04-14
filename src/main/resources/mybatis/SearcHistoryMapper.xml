@@ -82,18 +82,18 @@
 
 
   
-  <resultMap id="BaseResultMap" type="cn.sqhl.shop.vo.SearchHistory">
+  <resultMap id="SearchHistoryResultMap" type="cn.sqhl.shop.vo.SearcHistory">
   	<id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
     <result column="SEARCH_CONTENT" jdbcType="VARCHAR" property="searchContent" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
-  <sql id="Base_Column_List">
+  <sql id="SearchHistory_Column_List">
 	ID, USER_ID, SEARCH_CONTENT, CREATE_TIME
   </sql>
-  <select id="querySearchHistoryList" parameterType="java.util.Map" resultMap="BaseResultMap">
+  <select id="querySearchHistoryList" parameterType="java.util.Map" resultMap="SearchHistoryResultMap">
     select 
-    <include refid="Base_Column_List" />
+    <include refid="SearchHistory_Column_List" />
     from SC_SEARCHISTORY b
     where 1=1
     <if test="map.userid != null">

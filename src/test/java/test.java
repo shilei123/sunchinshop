@@ -108,6 +108,55 @@ public class test {
 //		param.put("nowpage", "0");
 //		basemap.put("servicecode", "3620170315048");//常见问题分类查询接口
 		
+		
+//		param.put("userid", "1");
+//		param.put("pagesize", "10");
+//		param.put("nowpage", "0");
+//		basemap.put("servicecode", "3620170315037");//浏览历史查询接口
+		
+		
+//		param.put("userid", "1");
+//		param.put("pagesize", "10");
+//		param.put("nowpage", "0");
+//		basemap.put("servicecode", "3620170315039");//收藏查询接口
+		
+//		param.put("userid", "1");
+//		param.put("pagesize", "10");
+//		param.put("nowpage", "0");
+//		basemap.put("servicecode", "3620170315043");//购物车查询接口
+		
+//		param.put("userid", "1");
+//		param.put("pagesize", "10");
+//		param.put("nowpage", "0");
+//		basemap.put("servicecode", "3620170315049");//商品搜索历史查询接口
+		
+//		param.put("kindid", "0b3874d6-ff0a-4637-99b8-e50b2dd937c7");
+//		param.put("keyvalue", "");
+//		param.put("pagesize", "10");
+//		param.put("nowpage", "0");
+//		basemap.put("servicecode", "3620170315002");//商品列表查询接口
+		
+//		param.put("userid", "user1");
+//		param.put("pagesize", "10");
+//		param.put("nowpage", "0");
+//		basemap.put("servicecode", "3620170315011");//收货地址查询接口 
+		
+//		param.put("parentid", "0");
+//		param.put("pagesize", "10");
+//		param.put("nowpage", "0");
+//		basemap.put("servicecode", "3620170315020");//省市县查询接口  
+		
+
+		param.put("receiveid", "1");
+		param.put("receivephone", "18101954697");
+		param.put("receivename", "senl");
+		param.put("smscontent", "欢迎注册成为***会员~");
+		param.put("smstype", "1");
+		param.put("pagesize", "10");
+		param.put("nowpage", "0");
+		basemap.put("servicecode", "3620170315024");//短信发送接口
+		
+		
 		basemap.put("data", JSON.toJSONString(param));
 		
 		Map signvalue=SecurityCore.buildRequestPara(basemap);

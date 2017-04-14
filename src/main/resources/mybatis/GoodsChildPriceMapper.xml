@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.sqhl.shop.mapper.GoodsChildPriceMapper">
   <resultMap id="BaseResultMap" type="cn.sqhl.shop.vo.GoodsChildPrice">
+  	<id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="BRAND_ID" jdbcType="VARCHAR" property="brandId" />
     <result column="TITLE" jdbcType="VARCHAR" property="title" />
     <result column="SUB_TITLE" jdbcType="VARCHAR" property="subTitle" />
@@ -13,7 +14,7 @@
     <result column="PUTAWAY" jdbcType="CHAR" property="putaway" />
     <result column="VIRTUAL" jdbcType="CHAR" property="virtual" />
     <result column="PURCHASE_PRICE" jdbcType="DECIMAL" property="purchasePrice" />
-    <result column="GOODS_NO" jdbcType="VARCHAR" property="goodsNo" />\
+    <result column="GOODS_NO" jdbcType="VARCHAR" property="goodsNo" />
     <result column="FLAG" jdbcType="CHAR" property="flag" />
     <result column="BELONG" jdbcType="VARCHAR" property="belong" />
     <result column="FREIGHT_TYPE" jdbcType="CHAR" property="freightType" />
@@ -37,7 +38,20 @@
     <result column="GC_MIN_PPRICE" jdbcType="DECIMAL" property="gcMinPprice" />
     <result column="childgoodsid" jdbcType="VARCHAR" property="childgoodsid" />
   </resultMap>
-   <sql id="Base_Column_List">
+  <resultMap extends="BaseResultMap" id="BrowHistoryResultMap" type="cn.sqhl.shop.vo.BrowHistory">
+	    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+	    <result column="GOODS_ID" jdbcType="VARCHAR" property="goodsId" />
+	    <result column="CHILD_GOODS_ID" jdbcType="VARCHAR" property="childGoodsId" />
+	    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="CollectedResultMap" type="cn.sqhl.shop.vo.Collected">
+	    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+	    <result column="GOODS_ID" jdbcType="VARCHAR" property="goodsId" />
+	    <result column="CHILD_GOODS_ID" jdbcType="VARCHAR" property="childGoodsId" />
+	    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+	    <result column="ADD_PRICE" jdbcType="DECIMAL" property="addPrice" />
+  </resultMap>
+  <sql id="Base_Column_List">
   	  BRAND_ID, TITLE, 
       SUB_TITLE, GOODS_NAME, STOP_TIME, 
       GOODS_CODE, ISUSE, EMPTY_STORE, 
@@ -51,21 +65,18 @@
       GC_MAX_SPRICE, GC_MIN_SPRICE, GC_MAX_MPRICE, 
       GC_MIN_MPRICE, GC_MAX_PPRICE, GC_MIN_PPRICE, 
       a.GOODS_ID as childgoodsid
-    </sql>
-    
-  <resultMap extends="BaseResultMap" id="BrowHistoryResultMap" type="cn.sqhl.shop.vo.BrowHistory">
-  		<id column="ID" jdbcType="VARCHAR" property="id" />
-	    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
-	    <result column="GOODS_ID" jdbcType="VARCHAR" property="goodsId" />
-	    <result column="CHILD_GOODS_ID" jdbcType="VARCHAR" property="childGoodsId" />
-	    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
-  </resultMap>
-  <sql id="BrowHistory_Column_List">
-  	  b.ID, b.USER_ID, b.GOODS_ID, b.CHILD_GOODS_ID, b.CREATE_TIME
   </sql>
+  <sql id="BrowHistory_Column_List">
+  	   b.USER_ID, b.GOODS_ID, b.CHILD_GOODS_ID, b.CREATE_TIME
+  </sql>
+  <sql id="Collected_Column_List">
+  	   b.USER_ID, b.GOODS_ID, b.CHILD_GOODS_ID, b.CREATE_TIME, b.ADD_PRICE
+  </sql> 
+  
   <select id="queryBrowHistoryList" parameterType="java.util.Map" resultMap="BrowHistoryResultMap">
     select 
-    <includ refid="Base_Column_List">
+    b.ID,
+    <include refid="Base_Column_List" />
     ,
     <include refid="BrowHistory_Column_List" />
     from vw_goods_child_price a,SC_BROWHISTORY b
@@ -76,20 +87,10 @@
     </if>
   </select>
   
-  <resultMap extends="BaseResultMap" id="CollectedResultMap" type="cn.sqhl.shop.vo.Collected">
-	  	<id column="ID" jdbcType="VARCHAR" property="id" />
-	    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
-	    <result column="GOODS_ID" jdbcType="VARCHAR" property="goodsId" />
-	    <result column="CHILD_GOODS_ID" jdbcType="VARCHAR" property="childGoodsId" />
-	    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
-	    <result column="ADD_PRICE" jdbcType="DECIMAL" property="addPrice" />
-  </resultMap>
-  <sql id="Collected_Column_List">
-  	  b.ID, USER_ID, b.GOODS_ID, b.CHILD_GOODS_ID, b.CREATE_TIME, b.ADD_PRICE
-    </sql>
   <select id="queryCollectedList" parameterType="java.util.Map" resultMap="CollectedResultMap">
     select 
-    <include refid="Base_Column_List">
+    b.ID,
+    <include refid="Base_Column_List" />
     ,
     <include refid="Collected_Column_List" />
     from vw_goods_child_price a,SC_COLLECTED b 

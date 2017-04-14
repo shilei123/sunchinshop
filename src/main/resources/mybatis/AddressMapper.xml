@@ -249,8 +249,8 @@
     <include refid="Address_Column_List" />
     from SC_ADDRESS
     where flag=1
-    <if test="map.userid">
-    	USER_ID=#{map.userid,jdbcType=VARCHAR}
+    <if test="map.userid != null">
+    	and USER_ID=#{map.userid,jdbcType=VARCHAR}
     </if>
   </select>
 </mapper>

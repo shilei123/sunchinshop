@@ -98,8 +98,8 @@ public class SystemServiceImpl implements SystemService{
 	}
 
 	@Override
-	public int insertSMS(Object obj) {
-		return sMSMapper.insertSelective((SMS)obj);
+	public int insertSMS(SMS obj) {
+		return sMSMapper.insertSelective(obj);
 	}
 
 }

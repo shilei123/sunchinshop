@@ -5,6 +5,7 @@ import java.util.List;
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.vo.CategoryPropertyValue;
 import cn.sqhl.shop.vo.GoodsPropertyValue;
+import cn.sqhl.shop.vo.SMS;
 import cn.sqhl.shop.vo.Area;
 import cn.sqhl.shop.vo.Brand;
 import cn.sqhl.shop.vo.CateGory;
@@ -30,5 +31,5 @@ public interface SystemService {
 	
 	public List<Area> queryAreaList(PageCond page,Object obj);
 	
-	public int insertSMS(Object obj);
+	public int insertSMS(cn.sqhl.shop.po.SMS obj);
 }

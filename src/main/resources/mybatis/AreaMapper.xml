@@ -223,9 +223,8 @@
     <include refid="Area_Column_List" />
     from SC_AREA
     where 1=1
-    <if test="map.parentid">
-    	PARENT_CODE=#{map.parentid,jdbcType=VARCHAR}
+    <if test="map.parentid != null">
+    	and PARENT_CODE=#{map.parentid,jdbcType=VARCHAR}
     </if>
-  </select>
   </select>
 </mapper>

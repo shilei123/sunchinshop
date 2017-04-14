@@ -2,8 +2,7 @@ package cn.sqhl.shop.vo;
 
 
 public class BrowHistory extends GoodsChildPrice{
-    private String id;
-
+    
     private String userId;
 
     private String goodsId;
@@ -11,14 +10,6 @@ public class BrowHistory extends GoodsChildPrice{
     private String childGoodsId;
 
     private String createTime;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
 
     public String getUserId() {
         return userId;

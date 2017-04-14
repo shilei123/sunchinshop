@@ -10,5 +10,5 @@ import cn.sqhl.shop.core.PaginationInterceptor;
 import cn.sqhl.shop.vo.GoodsChildPrice;
 
 public interface GoodsMapper {
-	public List<GoodsChildPrice> queryGoodsList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page, Map<String,Object> obj);
+	public List<GoodsChildPrice> queryGoodsList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
 }

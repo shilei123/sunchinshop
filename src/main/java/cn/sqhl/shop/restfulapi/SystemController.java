@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,6 +21,7 @@ import cn.sqhl.shop.service.SystemService;
 import cn.sqhl.shop.utils.security.SecurityCore;
 import cn.sqhl.shop.vo.CategoryPropertyValue;
 import cn.sqhl.shop.vo.GoodsPropertyValue;
+import cn.sqhl.shop.po.SMS;
 import cn.sqhl.shop.vo.Area;
 import cn.sqhl.shop.vo.Brand;
 import cn.sqhl.shop.vo.CateGory;
@@ -654,20 +656,24 @@ public class SystemController extends ContextInfo {
 					}if(StringUtils.isNotEmpty(smstype)){
 						queryparam.put("smstype", smstype);
 					}
-					
-					int i=systemService.insertSMS(queryparam);
+					JSONObject js=new JSONObject();
+					js.putAll(queryparam);
+//					SMS smsobj=js.toJavaObject(SMS.class);
+					SMS smsobj=JSONObject.parseObject(js.toJSONString(), SMS.class);
+					smsobj.setId(UUID.randomUUID().toString());
+					int i=systemService.insertSMS(smsobj);
 					if(i>0){
-						message="查询成功";//
+						message="操作成功";//
 					}else{
 						data=null;
-						message="无对应数据";//
+						message="操作失败";//
 					}
 					result="0";//成功
 				}
 			}
 		} catch (Exception e) {
 			result = "1";// 失败
-			message = "查询出错 ";// 错误原因
+			message = "操作出错 ";// 错误原因
 			data = null;// 错误 data无返回值
 			logger.log(ERROR, "Exception:" + e.getCause().getClass() + ","
 					+ e.getCause().getMessage() + " info:" + e.toString());

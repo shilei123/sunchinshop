@@ -11,7 +11,7 @@ import cn.sqhl.shop.vo.BrowHistory;
 import cn.sqhl.shop.vo.Collected;
 
 public interface GoodsChildPriceMapper {
-	public List<BrowHistory> queryBrowHistoryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page, Map<String,Object> obj);
+	public List<BrowHistory> queryBrowHistoryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
 	
-	public List<Collected> queryCollectedList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page, Map<String,Object> obj);
+	public List<Collected> queryCollectedList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
 }

@@ -3,8 +3,7 @@ package cn.sqhl.shop.vo;
 import java.math.BigDecimal;
 
 public class Collected extends GoodsChildPrice{
-    private String id;
-
+	
     private String userId;
 
     private String goodsId;
@@ -14,14 +13,6 @@ public class Collected extends GoodsChildPrice{
     private String createTime;
 
     private BigDecimal addPrice;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
 
     public String getUserId() {
         return userId;
