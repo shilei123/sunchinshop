@@ -1,11 +1,11 @@
 package cn.sqhl.shop.vo;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import org.apache.commons.lang.StringUtils;
 
 public class BrowHistoryGoods extends GoodsPrice{
-    private String id;
 
     private String userId;
 
@@ -74,14 +74,6 @@ public class BrowHistoryGoods extends GoodsPrice{
 		return gp;
 	}
     
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
-
     public String getUserId() {
         return userId;
     }

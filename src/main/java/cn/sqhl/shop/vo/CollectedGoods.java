@@ -6,7 +6,6 @@ import java.util.Date;
 import org.apache.commons.lang.StringUtils;
 
 public class CollectedGoods extends GoodsPrice{
-    private String id;
 
     private String userId;
 
@@ -78,14 +77,6 @@ public class CollectedGoods extends GoodsPrice{
 		return gp;
 	}
     
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
-    }
-
     public String getUserId() {
         return userId;
     }

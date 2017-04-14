@@ -1,5 +1,6 @@
 package cn.sqhl.shop.restfulapi;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.service.GoodsService;
+import cn.sqhl.shop.vo.CollectedGoods;
 import cn.sqhl.shop.vo.GoodsChildPrice;
+import cn.sqhl.shop.vo.GoodsPrice;
 import cn.sqhl.shop.utils.security.SecurityCore;
 
 import com.alibaba.fastjson.JSON;
@@ -96,8 +99,12 @@ public class GoodsController extends ContextInfo{
 					}
 					
 					List<GoodsChildPrice> goodslist=goodsService.queryGoodsList(page,queryparam);
+					List<GoodsPrice> bhg=new ArrayList<GoodsPrice>();
 					if(goodslist!=null && goodslist.size()>0){
-						data=JSON.toJSONString(goodslist);
+						for(int i=0;i<goodslist.size();i++){
+							bhg.add(GoodsPrice.newGoodsPrice(goodslist.get(i)));
+						}
+						data=JSON.toJSONString(bhg);
 						message="查询成功";//
 					}else{
 						data=null;

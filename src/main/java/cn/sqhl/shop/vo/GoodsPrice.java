@@ -7,6 +7,8 @@ import org.apache.commons.lang.StringUtils;
 
 public class GoodsPrice {
 
+	private String id;
+	
     private String brandId;
 
     private String title;
@@ -54,6 +56,61 @@ public class GoodsPrice {
     private String goodsSprice;
 
     private String goodsPprice;
+    
+    public static GoodsPrice newGoodsPrice(GoodsChildPrice gcp) throws InstantiationException, IllegalAccessException {
+    	GoodsPrice gp =GoodsPrice.class.newInstance();
+    	gp.setId(gcp.getId());
+    	gp.setBrandId(gcp.getBrandId());
+		gp.setTitle(gcp.getTitle());
+		gp.setSubTitle(gcp.getSubTitle());
+		gp.setGoodsName(gcp.getGoodsName());
+		gp.setStopTime(gcp.getStopTime());
+		gp.setGoodsCode(gcp.getGoodsCode());
+		gp.setIsuse(gcp.getIsuse());
+		gp.setEmptyStore(gcp.getEmptyStore());
+		gp.setPutaway(gcp.getPutaway());
+		gp.setVirtual(gcp.getVirtual());
+		gp.setPurchasePrice(gcp.getPurchasePrice());
+		gp.setGoodsNo(gcp.getGoodsNo());
+		gp.setFlag(gcp.getFlag());
+		gp.setBelong(gcp.getBelong());
+		gp.setFreightType(gcp.getFreightType());
+		gp.setFreightId(gcp.getFreightId());
+		gp.setPublishType(gcp.getPublishType());
+		gp.setPublishTime(gcp.getPublishTime());
+		gp.setGoodsSts(gcp.getGoodsSts());
+		gp.setAuditSts(gcp.getAuditSts());
+		gp.setCateId(gcp.getCateId());
+		if(StringUtils.isNotEmpty(gcp.getChildgoodsid())){
+			if(gcp.getGoodsMprice() != null && StringUtils.isNotEmpty(gcp.getGoodsMprice()+"")){
+				if(gcp.getGcMprice() !=null && StringUtils.isNotEmpty(gcp.getGcMprice()+"")){
+					gp.setGoodsMprice(gcp.getGcMprice()+"");
+				}
+				if(gcp.getGcSprice() !=null && StringUtils.isNotEmpty(gcp.getGcSprice()+"")){
+					gp.setGoodsSprice(gcp.getGcSprice()+"");
+				}
+				if(gcp.getGcPprice() !=null && StringUtils.isNotEmpty(gcp.getGcPprice()+"")){
+					gp.setGoodsPprice(gcp.getGcPprice()+"");
+				}
+			}else{
+				gp.setGoodsMprice(gcp.getGcMinMprice()+" ~ "+gcp.getGcMaxMprice());
+				gp.setGoodsSprice(gcp.getGcMinSprice()+" ~ "+gcp.getGcMaxSprice());
+				gp.setGoodsPprice(gcp.getGcMinPprice()+" ~ "+gcp.getGcMaxPprice());
+			}
+		}else{
+			if(gcp.getGoodsMprice() !=null && StringUtils.isNotEmpty(gcp.getGoodsMprice()+"")){
+				gp.setGoodsMprice(gcp.getGoodsMprice()+"");
+			}
+			if(gcp.getGoodsSprice() !=null && StringUtils.isNotEmpty(gcp.getGoodsSprice()+"")){
+				gp.setGoodsSprice(gcp.getGoodsSprice()+"");
+			}
+			if(gcp.getGoodsPprice() !=null && StringUtils.isNotEmpty(gcp.getGoodsPprice()+"")){
+				gp.setGoodsPprice(gcp.getGoodsPprice()+"");
+			}
+		}
+		return gp;
+	}
+    
 
     public String getBrandId() {
         return brandId;
@@ -246,5 +303,15 @@ public class GoodsPrice {
     public void setGoodsPprice(String goodsPprice) {
         this.goodsPprice = goodsPprice;
     }
+
+
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 }
