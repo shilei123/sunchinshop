@@ -19,8 +19,8 @@ import com.alibaba.fastjson.JSONObject;
 
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.service.AddressService;
+import cn.sqhl.shop.to.Address;
 import cn.sqhl.shop.utils.security.SecurityCore;
-import cn.sqhl.shop.vo.Address;
 
 @Controller
 @RequestMapping("/address")

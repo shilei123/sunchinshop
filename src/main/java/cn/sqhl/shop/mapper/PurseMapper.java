@@ -22,6 +22,6 @@ public interface PurseMapper {
 
     int updateByPrimaryKey(Purse record);
     
-    List<cn.sqhl.shop.vo.Purse> queryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
+    List<cn.sqhl.shop.to.Purse> queryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
 
 }

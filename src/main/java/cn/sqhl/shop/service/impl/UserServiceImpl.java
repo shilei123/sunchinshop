@@ -13,12 +13,12 @@ import cn.sqhl.shop.mapper.GoodsMapper;
 import cn.sqhl.shop.mapper.SearcHistoryMapper;
 import cn.sqhl.shop.mapper.UserCouponMapper;
 import cn.sqhl.shop.service.UserService;
-import cn.sqhl.shop.vo.BrowHistory;
-import cn.sqhl.shop.vo.Cart;
-import cn.sqhl.shop.vo.Collected;
-import cn.sqhl.shop.vo.Goods;
-import cn.sqhl.shop.vo.SearcHistory;
-import cn.sqhl.shop.vo.UserCoupon;
+import cn.sqhl.shop.to.BrowHistory;
+import cn.sqhl.shop.to.Cart;
+import cn.sqhl.shop.to.Collected;
+import cn.sqhl.shop.to.Goods;
+import cn.sqhl.shop.to.SearcHistory;
+import cn.sqhl.shop.to.UserCoupon;
 
 @Service("userService")
 public class UserServiceImpl implements UserService{

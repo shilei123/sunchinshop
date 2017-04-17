@@ -222,7 +222,7 @@
   </update>
   
   
-  <resultMap id="AddressResultMap" type="cn.sqhl.shop.vo.Address">
+  <resultMap id="AddressResultMap" type="cn.sqhl.shop.to.Address">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
     <result column="PROVINCE" jdbcType="VARCHAR" property="province" />

@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.core.PaginationInterceptor;
-import cn.sqhl.shop.vo.GoodsChildPrice;
+import cn.sqhl.shop.to.GoodsChildPrice;
 
 public interface GoodsMapper {
 	public List<GoodsChildPrice> queryGoodsList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);

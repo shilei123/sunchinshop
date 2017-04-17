@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Param;
 
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.core.PaginationInterceptor;
-import cn.sqhl.shop.vo.BrowHistory;
-import cn.sqhl.shop.vo.Collected;
+import cn.sqhl.shop.to.BrowHistory;
+import cn.sqhl.shop.to.Collected;
 
 public interface GoodsChildPriceMapper {
 	public List<BrowHistory> queryBrowHistoryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);

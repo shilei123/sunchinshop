@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.sqhl.shop.core.PageCond;
-import cn.sqhl.shop.vo.Advertise;
-import cn.sqhl.shop.vo.Events;
-import cn.sqhl.shop.vo.EventsGoods;
 import cn.sqhl.shop.service.MarketingService;
+import cn.sqhl.shop.to.Advertise;
+import cn.sqhl.shop.to.Events;
+import cn.sqhl.shop.to.EventsGoods;
 import cn.sqhl.shop.utils.security.SecurityCore;
 
 import com.alibaba.fastjson.JSON;

@@ -118,7 +118,7 @@
 
 
   
-  <resultMap id="CartResultMap" type="cn.sqhl.shop.vo.Cart">
+  <resultMap id="CartResultMap" type="cn.sqhl.shop.to.Cart">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
     <result column="GOODS_ID" jdbcType="VARCHAR" property="goodsId" />

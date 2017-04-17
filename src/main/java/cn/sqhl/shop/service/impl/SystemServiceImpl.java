@@ -18,14 +18,14 @@ import cn.sqhl.shop.mapper.DictionaryMapper;
 import cn.sqhl.shop.mapper.FaqMapper;
 import cn.sqhl.shop.mapper.FaqTypeMapper;
 import cn.sqhl.shop.service.SystemService;
-import cn.sqhl.shop.vo.CategoryPropertyValue;
-import cn.sqhl.shop.vo.GoodsPropertyValue;
-import cn.sqhl.shop.vo.Area;
-import cn.sqhl.shop.vo.Brand;
-import cn.sqhl.shop.vo.CateGory;
-import cn.sqhl.shop.vo.Dictionary;
-import cn.sqhl.shop.vo.Faq;
-import cn.sqhl.shop.vo.FaqType;
+import cn.sqhl.shop.to.Area;
+import cn.sqhl.shop.to.Brand;
+import cn.sqhl.shop.to.CateGory;
+import cn.sqhl.shop.to.CategoryPropertyValue;
+import cn.sqhl.shop.to.Dictionary;
+import cn.sqhl.shop.to.Faq;
+import cn.sqhl.shop.to.FaqType;
+import cn.sqhl.shop.to.GoodsPropertyValue;
 
 @Service("systemService")
 public class SystemServiceImpl implements SystemService{

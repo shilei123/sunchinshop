@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.mapper.GoodsMapper;
-import cn.sqhl.shop.vo.Goods;
-import cn.sqhl.shop.vo.GoodsChildPrice;
 import cn.sqhl.shop.service.GoodsService;
+import cn.sqhl.shop.to.Goods;
+import cn.sqhl.shop.to.GoodsChildPrice;
 
 @Service("goodsService")
 public class GoodsServiceImpl implements GoodsService{

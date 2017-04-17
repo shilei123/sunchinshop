@@ -10,10 +10,10 @@ import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.mapper.AdvertiseMapper;
 import cn.sqhl.shop.mapper.EventsGoodsMapper;
 import cn.sqhl.shop.mapper.EventsMapper;
-import cn.sqhl.shop.vo.Advertise;
-import cn.sqhl.shop.vo.Events;
-import cn.sqhl.shop.vo.EventsGoods;
 import cn.sqhl.shop.service.MarketingService;
+import cn.sqhl.shop.to.Advertise;
+import cn.sqhl.shop.to.Events;
+import cn.sqhl.shop.to.EventsGoods;
 
 @Service("maketingService")
 public class MarketingServiceImpl implements MarketingService{

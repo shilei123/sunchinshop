@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.mapper.AddressMapper;
-import cn.sqhl.shop.vo.Address;
 import cn.sqhl.shop.service.AddressService;
+import cn.sqhl.shop.to.Address;
 
 @Service("addressService")
 public class AddressServiceImpl implements AddressService{

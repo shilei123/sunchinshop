@@ -3,7 +3,7 @@ package cn.sqhl.shop.service;
 import java.util.List;
 
 import cn.sqhl.shop.core.PageCond;
-import cn.sqhl.shop.vo.Comment;
+import cn.sqhl.shop.to.Comment;
 
 
 public interface CommentService {

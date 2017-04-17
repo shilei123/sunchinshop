@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.core.PaginationInterceptor;
-import cn.sqhl.shop.vo.Advertise;
+import cn.sqhl.shop.to.Advertise;
 
 public interface AdvertiseMapper {
 	List<Advertise> queryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);

@@ -186,7 +186,7 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   
-  <resultMap id="UserCouponMap" type="cn.sqhl.shop.vo.UserCoupon">
+  <resultMap id="UserCouponMap" type="cn.sqhl.shop.to.UserCoupon">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
     <result column="COUPON_ID" jdbcType="VARCHAR" property="couponId" />

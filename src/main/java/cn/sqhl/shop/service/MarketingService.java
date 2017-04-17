@@ -3,9 +3,9 @@ package cn.sqhl.shop.service;
 import java.util.List;
 
 import cn.sqhl.shop.core.PageCond;
-import cn.sqhl.shop.vo.Advertise;
-import cn.sqhl.shop.vo.Events;
-import cn.sqhl.shop.vo.EventsGoods;
+import cn.sqhl.shop.to.Advertise;
+import cn.sqhl.shop.to.Events;
+import cn.sqhl.shop.to.EventsGoods;
 
 
 public interface MarketingService {

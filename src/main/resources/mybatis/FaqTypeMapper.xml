@@ -151,7 +151,7 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   
-  <resultMap id="FAQTypeResultMap" type="cn.sqhl.shop.vo.FaqType">
+  <resultMap id="FAQTypeResultMap" type="cn.sqhl.shop.to.FaqType">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="TYPE_NAME" jdbcType="VARCHAR" property="typeName" />
     <result column="TYPE_DESC" jdbcType="VARCHAR" property="typeDesc" />

@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import cn.sqhl.shop.vo.CategoryPropertyValue;
+import cn.sqhl.shop.to.CategoryPropertyValue;
 
 public interface CategoryPropertyValueMapper {
 	List<CategoryPropertyValue> selectList(@Param("map") Map<String, Object> map);

@@ -22,5 +22,5 @@ public interface AreaMapper {
 
     int updateByPrimaryKey(Area record);
     
-    List<cn.sqhl.shop.vo.Area> queryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
+    List<cn.sqhl.shop.to.Area> queryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
 }

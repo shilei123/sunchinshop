@@ -3,8 +3,8 @@ package cn.sqhl.shop.service;
 import java.util.List;
 
 import cn.sqhl.shop.core.PageCond;
-import cn.sqhl.shop.vo.Goods;
-import cn.sqhl.shop.vo.GoodsChildPrice;
+import cn.sqhl.shop.to.Goods;
+import cn.sqhl.shop.to.GoodsChildPrice;
 
 
 public interface GoodsService {

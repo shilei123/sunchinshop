@@ -22,6 +22,6 @@ public interface UserCouponMapper {
 
     int updateByPrimaryKey(UserCoupon record);
     
-    List<cn.sqhl.shop.vo.UserCoupon> queryUserCouponList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
+    List<cn.sqhl.shop.to.UserCoupon> queryUserCouponList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
 
 }

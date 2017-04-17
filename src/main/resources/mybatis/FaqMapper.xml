@@ -208,7 +208,7 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   
-  <resultMap id="faqResultMap" type="cn.sqhl.shop.vo.Faq">
+  <resultMap id="faqResultMap" type="cn.sqhl.shop.to.Faq">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="FAQ_TITLE" jdbcType="VARCHAR" property="faqTitle" />
     <result column="FAQ_TYPE_ID" jdbcType="VARCHAR" property="faqTypeId" />
@@ -222,7 +222,7 @@
     <result column="BELONG" jdbcType="VARCHAR" property="belong" />
     <result column="FAQ_TYPE" jdbcType="CHAR" property="faqType" />
   </resultMap>
-  <resultMap extends="faqResultMap" id="faqWithBLOBs" type="cn.sqhl.shop.vo.Faq">
+  <resultMap extends="faqResultMap" id="faqWithBLOBs" type="cn.sqhl.shop.to.Faq">
     <result column="FAQ_CONTENT" jdbcType="CLOB" property="faqContent" />
   </resultMap>
   <sql id="faq_Column_List">

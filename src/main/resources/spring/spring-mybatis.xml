@@ -110,7 +110,7 @@
 		</property>
 		<!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
 		<property name="mapperLocations" value="classpath:mybatis/*.xml" />
-		<property name="typeAliasesPackage" value="cn.sqhl.shop.vo"></property>
+		<property name="typeAliasesPackage" value="cn.sqhl.shop.po,cn.sqhl.shop.to,cn.sqhl.shop.bo"></property>
 		<property name="configLocation" value="classpath:mybatis.xml"/>
 	</bean>
 

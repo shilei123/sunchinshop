@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.service.GoodsService;
-import cn.sqhl.shop.vo.CollectedGoods;
-import cn.sqhl.shop.vo.GoodsChildPrice;
-import cn.sqhl.shop.vo.GoodsPrice;
+import cn.sqhl.shop.to.CollectedGoods;
+import cn.sqhl.shop.to.GoodsChildPrice;
+import cn.sqhl.shop.to.GoodsPrice;
 import cn.sqhl.shop.utils.security.SecurityCore;
 
 import com.alibaba.fastjson.JSON;

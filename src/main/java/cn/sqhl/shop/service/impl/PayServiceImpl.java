@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.mapper.PurseMapper;
 import cn.sqhl.shop.service.PayService;
-import cn.sqhl.shop.vo.Purse;
+import cn.sqhl.shop.to.Purse;
 
 @Service("payService")
 public class PayServiceImpl implements PayService{

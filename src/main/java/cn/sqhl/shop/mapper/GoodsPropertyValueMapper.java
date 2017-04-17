@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
-import cn.sqhl.shop.vo.GoodsPropertyValue;
+import cn.sqhl.shop.to.GoodsPropertyValue;
 
 public interface GoodsPropertyValueMapper {
 	List<GoodsPropertyValue> selectList(@Param("map") Map<String, Object> map);

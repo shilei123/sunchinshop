@@ -257,7 +257,7 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   
-  <resultMap id="PursResultMap" type="cn.sqhl.shop.vo.Purse">
+  <resultMap id="PursResultMap" type="cn.sqhl.shop.to.Purse">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="TRADE_TYPE" jdbcType="CHAR" property="tradeType" />
     <result column="TRADE_AMOUNT" jdbcType="DECIMAL" property="tradeAmount" />

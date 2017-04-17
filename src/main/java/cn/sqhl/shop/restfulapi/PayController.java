@@ -19,8 +19,8 @@ import com.alibaba.fastjson.JSONObject;
 
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.service.PayService;
+import cn.sqhl.shop.to.Purse;
 import cn.sqhl.shop.utils.security.SecurityCore;
-import cn.sqhl.shop.vo.Purse;
 
 @Controller
 @RequestMapping("/pay")

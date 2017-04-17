@@ -139,7 +139,7 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   
-  <resultMap id="commentResultMap" type="cn.sqhl.shop.vo.Comment">
+  <resultMap id="commentResultMap" type="cn.sqhl.shop.to.Comment">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="TYPE" jdbcType="CHAR" property="type" />
     <result column="CONTENT" jdbcType="VARCHAR" property="content" />

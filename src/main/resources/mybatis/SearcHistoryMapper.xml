@@ -82,7 +82,7 @@
 
 
   
-  <resultMap id="SearchHistoryResultMap" type="cn.sqhl.shop.vo.SearcHistory">
+  <resultMap id="SearchHistoryResultMap" type="cn.sqhl.shop.to.SearcHistory">
   	<id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
     <result column="SEARCH_CONTENT" jdbcType="VARCHAR" property="searchContent" />

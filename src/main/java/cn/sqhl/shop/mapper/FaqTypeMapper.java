@@ -19,6 +19,6 @@ public interface FaqTypeMapper {
 
     int updateByPrimaryKey(FaqType record);
     
-    List<cn.sqhl.shop.vo.FaqType> selectList(@Param("map") Map<String, Object> map);
+    List<cn.sqhl.shop.to.FaqType> selectList(@Param("map") Map<String, Object> map);
 
 }

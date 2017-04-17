@@ -198,7 +198,7 @@
   </update>
   
   
-  <resultMap id="AreaResultMap" type="cn.sqhl.shop.vo.Area">
+  <resultMap id="AreaResultMap" type="cn.sqhl.shop.to.Area">
     <id column="CODE" jdbcType="VARCHAR" property="code" />
     <result column="PARENT_CODE" jdbcType="VARCHAR" property="parentCode" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.sqhl.shop.mapper.BrandMapper">
-  <resultMap id="BaseResultMap" type="cn.sqhl.shop.vo.Brand">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.to.Brand">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="BRAND_NAME" jdbcType="VARCHAR" property="brandName" />
     <result column="BRAND_LOGO" jdbcType="VARCHAR" property="brandLogo" />
@@ -10,7 +10,7 @@
     <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
     <result column="BRAND_CODE" jdbcType="VARCHAR" property="brandCode" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.sqhl.shop.vo.Brand">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.sqhl.shop.to.Brand">
     <result column="BRAND_DESC" jdbcType="CLOB" property="brandDesc" />
   </resultMap>
   <sql id="Base_Column_List">

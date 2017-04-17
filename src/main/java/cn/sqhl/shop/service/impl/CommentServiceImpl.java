@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.mapper.CommentMapper;
 import cn.sqhl.shop.service.CommentService;
-import cn.sqhl.shop.vo.Comment;
+import cn.sqhl.shop.to.Comment;
 
 @Service("commentService")
 public class CommentServiceImpl implements CommentService{

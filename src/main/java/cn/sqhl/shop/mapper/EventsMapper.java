@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.core.PaginationInterceptor;
-import cn.sqhl.shop.vo.Events;
+import cn.sqhl.shop.to.Events;
 
 public interface EventsMapper {
 	

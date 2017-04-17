@@ -24,6 +24,6 @@ public interface FaqMapper {
 
     int updateByPrimaryKey(Faq record);
     
-    List<cn.sqhl.shop.vo.Faq> queryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
+    List<cn.sqhl.shop.to.Faq> queryList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
 
 }

@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.service.UserService;
+import cn.sqhl.shop.to.BrowHistory;
+import cn.sqhl.shop.to.BrowHistoryGoods;
+import cn.sqhl.shop.to.Cart;
+import cn.sqhl.shop.to.Collected;
+import cn.sqhl.shop.to.CollectedGoods;
+import cn.sqhl.shop.to.SearcHistory;
+import cn.sqhl.shop.to.UserCoupon;
 import cn.sqhl.shop.utils.security.SecurityCore;
-import cn.sqhl.shop.vo.BrowHistory;
-import cn.sqhl.shop.vo.BrowHistoryGoods;
-import cn.sqhl.shop.vo.Cart;
-import cn.sqhl.shop.vo.Collected;
-import cn.sqhl.shop.vo.CollectedGoods;
-import cn.sqhl.shop.vo.SearcHistory;
-import cn.sqhl.shop.vo.UserCoupon;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

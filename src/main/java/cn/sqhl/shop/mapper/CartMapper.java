@@ -22,6 +22,6 @@ public interface CartMapper {
 
     int updateByPrimaryKey(Cart record);
     
-    public List<cn.sqhl.shop.vo.Cart> queryCartList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
+    public List<cn.sqhl.shop.to.Cart> queryCartList(@Param(PaginationInterceptor.PAGE_PARAM_KEY) PageCond page,@Param("map") Map<String, Object> map);
 	
 }
