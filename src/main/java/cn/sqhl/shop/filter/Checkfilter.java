@@ -7,21 +7,15 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.servlet.FilterChain;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import cn.sqhl.shop.bo.User;
-
 public class Checkfilter extends OncePerRequestFilter {
 
-	protected ServletContext scontext;
-	
 	protected List urllist=null;
 	
 	protected void initFilterBean() throws ServletException {
@@ -51,14 +45,8 @@ public class Checkfilter extends OncePerRequestFilter {
 			}else{
 				response.sendRedirect("/interface/result.do");//返回没有权限
 			}
-		}else{//其他请求直接通过
-			HttpSession session =request.getSession();
-			User user=(User)session.getAttribute("user");
-			if(user!=null){				
-				chain.doFilter(request, response);
-			}else{
-				response.sendRedirect("/jsp/login.jsp");//返回注册页面
-			}
+		}else{
+			response.sendRedirect("/interface/result.do");//返回没有权限
 		}
 	}
 

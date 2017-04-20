@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.sqhl.shop.bo.User;
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.mapper.CartMapper;
 import cn.sqhl.shop.mapper.GoodsChildPriceMapper;
@@ -58,6 +59,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<SearcHistory> querySearchHistoryList(PageCond page, Object obj) {
 		return searcHistoryMapper.querySearchHistoryList(page, (Map<String,Object>)obj);
+	}
+
+	@Override
+	public User queryUserByAccount(Object obj) {
+		return null;
 	}
 
 }

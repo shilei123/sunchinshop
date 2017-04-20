@@ -2,6 +2,7 @@ package cn.sqhl.shop.service;
 
 import java.util.List;
 
+import cn.sqhl.shop.bo.User;
 import cn.sqhl.shop.core.PageCond;
 import cn.sqhl.shop.to.BrowHistory;
 import cn.sqhl.shop.to.Cart;
@@ -20,4 +21,6 @@ public interface UserService {
 	public List<Cart> queryCartList(PageCond page,Object obj);
 	
 	public List<SearcHistory> querySearchHistoryList(PageCond page,Object obj);
+	
+	public User queryUserByAccount(Object obj);
 }
