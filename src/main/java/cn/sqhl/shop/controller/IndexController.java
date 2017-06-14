@@ -27,6 +27,8 @@ public class IndexController {
 	public String LoginPage(HttpServletRequest request) {
 		
 		
+		
+		
 		return "/jsp/authority/signin";
 	}
 
