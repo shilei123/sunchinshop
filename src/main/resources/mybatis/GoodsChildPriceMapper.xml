@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sqhl.shop.mapper.GoodsChildPriceMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.to.GoodsChildPrice">
+  	<id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="BRAND_ID" jdbcType="VARCHAR" property="brandId" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="SUB_TITLE" jdbcType="VARCHAR" property="subTitle" />
+    <result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
+    <result column="STOP_TIME" jdbcType="TIMESTAMP" property="stopTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="GOODS_CODE" jdbcType="VARCHAR" property="goodsCode" />
+    <result column="ISUSE" jdbcType="CHAR" property="isuse" />
+    <result column="EMPTY_STORE" jdbcType="CHAR" property="emptyStore" />
+    <result column="PUTAWAY" jdbcType="CHAR" property="putaway" />
+    <result column="VIRTUAL" jdbcType="CHAR" property="virtual" />
+    <result column="PURCHASE_PRICE" jdbcType="DECIMAL" property="purchasePrice" />
+    <result column="GOODS_NO" jdbcType="VARCHAR" property="goodsNo" />
+    <result column="FLAG" jdbcType="CHAR" property="flag" />
+    <result column="BELONG" jdbcType="VARCHAR" property="belong" />
+    <result column="FREIGHT_TYPE" jdbcType="CHAR" property="freightType" />
+    <result column="FREIGHT_ID" jdbcType="VARCHAR" property="freightId" />
+    <result column="PUBLISH_TYPE" jdbcType="CHAR" property="publishType" />
+    <result column="PUBLISH_TIME" jdbcType="TIMESTAMP" property="publishTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="GOODS_STS" jdbcType="CHAR" property="goodsSts" />
+    <result column="AUDIT_STS" jdbcType="CHAR" property="auditSts" />
+    <result column="CATE_ID" jdbcType="VARCHAR" property="cateId" />
+    <result column="GOODS_MPRICE" jdbcType="DECIMAL" property="goodsMprice" />
+    <result column="GOODS_SPRICE" jdbcType="DECIMAL" property="goodsSprice" />
+    <result column="GOODS_PPRICE" jdbcType="DECIMAL" property="goodsPprice" />
+    <result column="GC_SPRICE" jdbcType="DECIMAL" property="gcSprice" />
+    <result column="GC_MPRICE" jdbcType="DECIMAL" property="gcMprice" />
+    <result column="GC_PPRICE" jdbcType="DECIMAL" property="gcPprice" />
+    <result column="GC_MAX_SPRICE" jdbcType="DECIMAL" property="gcMaxSprice" />
+    <result column="GC_MIN_SPRICE" jdbcType="DECIMAL" property="gcMinSprice" />
+    <result column="GC_MAX_MPRICE" jdbcType="DECIMAL" property="gcMaxMprice" />
+    <result column="GC_MIN_MPRICE" jdbcType="DECIMAL" property="gcMinMprice" />
+    <result column="GC_MAX_PPRICE" jdbcType="DECIMAL" property="gcMaxPprice" />
+    <result column="GC_MIN_PPRICE" jdbcType="DECIMAL" property="gcMinPprice" />
+    <result column="childgoodsid" jdbcType="VARCHAR" property="childgoodsid" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="BrowHistoryResultMap" type="cn.sqhl.shop.to.BrowHistory">
+	    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+	    <result column="GOODS_ID" jdbcType="VARCHAR" property="goodsId" />
+	    <result column="CHILD_GOODS_ID" jdbcType="VARCHAR" property="childGoodsId" />
+	    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="CollectedResultMap" type="cn.sqhl.shop.to.Collected">
+	    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+	    <result column="GOODS_ID" jdbcType="VARCHAR" property="goodsId" />
+	    <result column="CHILD_GOODS_ID" jdbcType="VARCHAR" property="childGoodsId" />
+	    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+	    <result column="ADD_PRICE" jdbcType="DECIMAL" property="addPrice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+  	  BRAND_ID, TITLE, 
+      SUB_TITLE, GOODS_NAME, STOP_TIME, 
+      GOODS_CODE, ISUSE, EMPTY_STORE, 
+      PUTAWAY, VIRTUAL, PURCHASE_PRICE, 
+      GOODS_NO, 
+      FLAG, BELONG, FREIGHT_TYPE, 
+      FREIGHT_ID, PUBLISH_TYPE, PUBLISH_TIME, 
+      GOODS_STS, AUDIT_STS, CATE_ID, 
+      GOODS_MPRICE, GOODS_SPRICE, GOODS_PPRICE, 
+      GC_SPRICE, GC_MPRICE, GC_PPRICE, 
+      GC_MAX_SPRICE, GC_MIN_SPRICE, GC_MAX_MPRICE, 
+      GC_MIN_MPRICE, GC_MAX_PPRICE, GC_MIN_PPRICE, 
+      a.GOODS_ID as childgoodsid
+  </sql>
+  <sql id="BrowHistory_Column_List">
+  	   b.USER_ID, b.GOODS_ID, b.CHILD_GOODS_ID, b.CREATE_TIME
+  </sql>
+  <sql id="Collected_Column_List">
+  	   b.USER_ID, b.GOODS_ID, b.CHILD_GOODS_ID, b.CREATE_TIME, b.ADD_PRICE
+  </sql> 
+  
+  <select id="queryBrowHistoryList" parameterType="java.util.Map" resultMap="BrowHistoryResultMap">
+    select 
+    b.ID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="BrowHistory_Column_List" />
+    from vw_goods_child_price a,SC_BROWHISTORY b
+    where b.goods_id=a.id
+    and a.flag=1 
+    <if test="map.userid != null">
+    	and b.user_id=#{map.userid,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <select id="queryCollectedList" parameterType="java.util.Map" resultMap="CollectedResultMap">
+    select 
+    b.ID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Collected_Column_List" />
+    from vw_goods_child_price a,SC_COLLECTED b 
+    where b.goods_id=a.id
+    and a.flag=1 
+    <if test="map.userid != null">
+    	and b.user_id=#{map.userid,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sqhl.shop.mapper.CategoryPropertyValueMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.to.CategoryPropertyValue">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="category_id" jdbcType="VARCHAR" property="category_id" />
+    <result column="goods_cate_ppv" jdbcType="VARCHAR" property="goods_cate_ppv" />
+    <result column="property_code" jdbcType="VARCHAR" property="property_code" />
+    <result column="property_id" jdbcType="VARCHAR" property="property_id" />
+    <result column="property" jdbcType="VARCHAR" property="property" />
+    <result column="propertyvalue_id" jdbcType="VARCHAR" property="propertyvalue_id" />
+    <result column="propertyvalue_code" jdbcType="VARCHAR" property="propertyvalue_code" />
+    <result column="propertyvalue" jdbcType="VARCHAR" property="propertyvalue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    b.id as id,
+	b.cate_id as category_id,
+	d.id as property_id,
+	d.prop_code as property_code,
+	d.prop_name as property,
+	e.id as propertyvalue_id,
+	e.val_code as propertyvalue_code,
+	e.val_name as propertyvalue
+  </sql>
+  <select id="selectList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+       from sc_cate_prop_propval  b,
+       sc_prop_propval      c,
+       sc_property          d,
+       sc_propval           e
+	   where e.id = c.val_id
+	     and d.id = c.prop_id
+	     and b.ppv_id = c.id
+	     and c.flag = d.flag
+	     and e.flag = 1
+	     and b.flag = c.flag
+	     and d.flag = e.flag
+    <if test="map.category_id !=null">
+    	and b.cate_id=#{map.category_id,jdbcType=VARCHAR}
+    </if>
+	order by d.id desc
+  </select>
+</mapper>

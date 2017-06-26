@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sqhl.shop.mapper.AddressMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.Address">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="PROVINCE" jdbcType="VARCHAR" property="province" />
+    <result column="CITY" jdbcType="VARCHAR" property="city" />
+    <result column="COUNTY" jdbcType="VARCHAR" property="county" />
+    <result column="ADDRESS_DETAIL" jdbcType="VARCHAR" property="addressDetail" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="POST_CODE" jdbcType="CHAR" property="postCode" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="TEL" jdbcType="VARCHAR" property="tel" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="ISUSE" jdbcType="CHAR" property="isuse" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
+    <result column="FLAG" jdbcType="CHAR" property="flag" />
+    <result column="BELONG" jdbcType="VARCHAR" property="belong" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USER_ID, PROVINCE, CITY, COUNTY, ADDRESS_DETAIL, NAME, POST_CODE, PHONE, TEL, 
+    EMAIL, ISUSE, CREATE_TIME, CREATE_USER_ID, FLAG, BELONG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SC_ADDRESS
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SC_ADDRESS
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.sqhl.shop.po.Address">
+    insert into SC_ADDRESS (ID, USER_ID, PROVINCE, 
+      CITY, COUNTY, ADDRESS_DETAIL, 
+      NAME, POST_CODE, PHONE, 
+      TEL, EMAIL, ISUSE, CREATE_TIME, 
+      CREATE_USER_ID, FLAG, BELONG
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{addressDetail,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{postCode,jdbcType=CHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{isuse,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUserId,jdbcType=VARCHAR}, #{flag,jdbcType=CHAR}, #{belong,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.Address">
+    insert into SC_ADDRESS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="province != null">
+        PROVINCE,
+      </if>
+      <if test="city != null">
+        CITY,
+      </if>
+      <if test="county != null">
+        COUNTY,
+      </if>
+      <if test="addressDetail != null">
+        ADDRESS_DETAIL,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="postCode != null">
+        POST_CODE,
+      </if>
+      <if test="phone != null">
+        PHONE,
+      </if>
+      <if test="tel != null">
+        TEL,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="isuse != null">
+        ISUSE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID,
+      </if>
+      <if test="flag != null">
+        FLAG,
+      </if>
+      <if test="belong != null">
+        BELONG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null">
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetail != null">
+        #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null">
+        #{postCode,jdbcType=CHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isuse != null">
+        #{isuse,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=CHAR},
+      </if>
+      <if test="belong != null">
+        #{belong,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.Address">
+    update SC_ADDRESS
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        PROVINCE = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null">
+        COUNTY = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetail != null">
+        ADDRESS_DETAIL = #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null">
+        POST_CODE = #{postCode,jdbcType=CHAR},
+      </if>
+      <if test="phone != null">
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="isuse != null">
+        ISUSE = #{isuse,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        FLAG = #{flag,jdbcType=CHAR},
+      </if>
+      <if test="belong != null">
+        BELONG = #{belong,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.Address">
+    update SC_ADDRESS
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      PROVINCE = #{province,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      COUNTY = #{county,jdbcType=VARCHAR},
+      ADDRESS_DETAIL = #{addressDetail,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      POST_CODE = #{postCode,jdbcType=CHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      TEL = #{tel,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      ISUSE = #{isuse,jdbcType=CHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      FLAG = #{flag,jdbcType=CHAR},
+      BELONG = #{belong,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <resultMap id="AddressResultMap" type="cn.sqhl.shop.to.Address">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="PROVINCE" jdbcType="VARCHAR" property="province" />
+    <result column="CITY" jdbcType="VARCHAR" property="city" />
+    <result column="COUNTY" jdbcType="VARCHAR" property="county" />
+    <result column="ADDRESS_DETAIL" jdbcType="VARCHAR" property="addressDetail" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="POST_CODE" jdbcType="CHAR" property="postCode" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="TEL" jdbcType="VARCHAR" property="tel" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="ISUSE" jdbcType="CHAR" property="isuse" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
+    <result column="FLAG" jdbcType="CHAR" property="flag" />
+    <result column="BELONG" jdbcType="VARCHAR" property="belong" />
+  </resultMap>
+  <sql id="Address_Column_List">
+    ID, USER_ID, PROVINCE, CITY, COUNTY, ADDRESS_DETAIL, NAME, POST_CODE, PHONE, TEL, 
+    EMAIL, ISUSE, CREATE_TIME, CREATE_USER_ID, FLAG, BELONG
+  </sql>
+  <select id="queryAddressList" parameterType="java.util.Map" resultMap="AddressResultMap">
+    select 
+    <include refid="Address_Column_List" />
+    from SC_ADDRESS
+    where flag=1
+    <if test="map.userid != null">
+    	and USER_ID=#{map.userid,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

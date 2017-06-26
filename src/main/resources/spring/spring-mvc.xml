@@ -5,9 +5,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 http://www.springframework.org/schema/context 
-http://www.springframework.org/schema/context/spring-context.xsd 
+http://www.springframework.org/schema/context/spring-context-4.3.xsd 
 http://www.springframework.org/schema/mvc 
-http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
 	<!-- spring 与 spring mvc中定义的bean不在同一个container，彼此不能直接访问，
 		所以如果spring-mvc 的controller需要访问 config.properties 时需要加上下面这行配置 -->
@@ -40,6 +40,13 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:prefix="/" p:suffix=".jsp" />
+
+	<mvc:interceptors>
+		 <mvc:interceptor>
+		 	<mvc:mapping path="/**"/>
+         	<bean class="cn.sqhl.shop.interceptor.WebInterceptor"></bean>
+         </mvc:interceptor>
+	</mvc:interceptors>
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
