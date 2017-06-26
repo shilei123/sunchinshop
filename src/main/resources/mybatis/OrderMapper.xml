@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sqhl.shop.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.Order">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ORDER_CODE" jdbcType="VARCHAR" property="orderCode" />
+    <result column="NUM" jdbcType="DECIMAL" property="num" />
+    <result column="DELIVERY_MODE" jdbcType="CHAR" property="deliveryMode" />
+    <result column="ORDER_STATUS" jdbcType="CHAR" property="orderStatus" />
+    <result column="ISSPLIT" jdbcType="CHAR" property="issplit" />
+    <result column="SPLIT_TIME" jdbcType="TIMESTAMP" property="splitTime" />
+    <result column="INVOICE" jdbcType="CHAR" property="invoice" />
+    <result column="INVOICE_RECORD_ID" jdbcType="VARCHAR" property="invoiceRecordId" />
+    <result column="ADDRESS_ID" jdbcType="VARCHAR" property="addressId" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="PAY_MODE" jdbcType="CHAR" property="payMode" />
+    <result column="COMMISION_CHARGE" jdbcType="DECIMAL" property="commisionCharge" />
+    <result column="TOTAL_PRICE" jdbcType="DECIMAL" property="totalPrice" />
+    <result column="ORDER_PRICE" jdbcType="DECIMAL" property="orderPrice" />
+    <result column="ACTUAL_PRICE" jdbcType="DECIMAL" property="actualPrice" />
+    <result column="PARENT_ORDER_ID" jdbcType="VARCHAR" property="parentOrderId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
+    <result column="FLAG" jdbcType="CHAR" property="flag" />
+    <result column="BELONG" jdbcType="VARCHAR" property="belong" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ORDER_CODE, NUM, DELIVERY_MODE, ORDER_STATUS, ISSPLIT, SPLIT_TIME, INVOICE, INVOICE_RECORD_ID, 
+    ADDRESS_ID, REMARK, PAY_MODE, COMMISION_CHARGE, TOTAL_PRICE, ORDER_PRICE, ACTUAL_PRICE, 
+    PARENT_ORDER_ID, CREATE_TIME, CREATE_USER_ID, FLAG, BELONG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SC_ORDER
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SC_ORDER
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.sqhl.shop.po.Order">
+    insert into SC_ORDER (ID, ORDER_CODE, NUM, 
+      DELIVERY_MODE, ORDER_STATUS, ISSPLIT, 
+      SPLIT_TIME, INVOICE, INVOICE_RECORD_ID, 
+      ADDRESS_ID, REMARK, PAY_MODE, 
+      COMMISION_CHARGE, TOTAL_PRICE, ORDER_PRICE, 
+      ACTUAL_PRICE, PARENT_ORDER_ID, CREATE_TIME, 
+      CREATE_USER_ID, FLAG, BELONG
+      )
+    values (#{id,jdbcType=VARCHAR}, #{orderCode,jdbcType=VARCHAR}, #{num,jdbcType=DECIMAL}, 
+      #{deliveryMode,jdbcType=CHAR}, #{orderStatus,jdbcType=CHAR}, #{issplit,jdbcType=CHAR}, 
+      #{splitTime,jdbcType=TIMESTAMP}, #{invoice,jdbcType=CHAR}, #{invoiceRecordId,jdbcType=VARCHAR}, 
+      #{addressId,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{payMode,jdbcType=CHAR}, 
+      #{commisionCharge,jdbcType=DECIMAL}, #{totalPrice,jdbcType=DECIMAL}, #{orderPrice,jdbcType=DECIMAL}, 
+      #{actualPrice,jdbcType=DECIMAL}, #{parentOrderId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUserId,jdbcType=VARCHAR}, #{flag,jdbcType=CHAR}, #{belong,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.Order">
+    insert into SC_ORDER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="orderCode != null">
+        ORDER_CODE,
+      </if>
+      <if test="num != null">
+        NUM,
+      </if>
+      <if test="deliveryMode != null">
+        DELIVERY_MODE,
+      </if>
+      <if test="orderStatus != null">
+        ORDER_STATUS,
+      </if>
+      <if test="issplit != null">
+        ISSPLIT,
+      </if>
+      <if test="splitTime != null">
+        SPLIT_TIME,
+      </if>
+      <if test="invoice != null">
+        INVOICE,
+      </if>
+      <if test="invoiceRecordId != null">
+        INVOICE_RECORD_ID,
+      </if>
+      <if test="addressId != null">
+        ADDRESS_ID,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="payMode != null">
+        PAY_MODE,
+      </if>
+      <if test="commisionCharge != null">
+        COMMISION_CHARGE,
+      </if>
+      <if test="totalPrice != null">
+        TOTAL_PRICE,
+      </if>
+      <if test="orderPrice != null">
+        ORDER_PRICE,
+      </if>
+      <if test="actualPrice != null">
+        ACTUAL_PRICE,
+      </if>
+      <if test="parentOrderId != null">
+        PARENT_ORDER_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID,
+      </if>
+      <if test="flag != null">
+        FLAG,
+      </if>
+      <if test="belong != null">
+        BELONG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCode != null">
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryMode != null">
+        #{deliveryMode,jdbcType=CHAR},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=CHAR},
+      </if>
+      <if test="issplit != null">
+        #{issplit,jdbcType=CHAR},
+      </if>
+      <if test="splitTime != null">
+        #{splitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invoice != null">
+        #{invoice,jdbcType=CHAR},
+      </if>
+      <if test="invoiceRecordId != null">
+        #{invoiceRecordId,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null">
+        #{addressId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="payMode != null">
+        #{payMode,jdbcType=CHAR},
+      </if>
+      <if test="commisionCharge != null">
+        #{commisionCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderPrice != null">
+        #{orderPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="actualPrice != null">
+        #{actualPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="parentOrderId != null">
+        #{parentOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=CHAR},
+      </if>
+      <if test="belong != null">
+        #{belong,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.Order">
+    update SC_ORDER
+    <set>
+      <if test="orderCode != null">
+        ORDER_CODE = #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+        NUM = #{num,jdbcType=DECIMAL},
+      </if>
+      <if test="deliveryMode != null">
+        DELIVERY_MODE = #{deliveryMode,jdbcType=CHAR},
+      </if>
+      <if test="orderStatus != null">
+        ORDER_STATUS = #{orderStatus,jdbcType=CHAR},
+      </if>
+      <if test="issplit != null">
+        ISSPLIT = #{issplit,jdbcType=CHAR},
+      </if>
+      <if test="splitTime != null">
+        SPLIT_TIME = #{splitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invoice != null">
+        INVOICE = #{invoice,jdbcType=CHAR},
+      </if>
+      <if test="invoiceRecordId != null">
+        INVOICE_RECORD_ID = #{invoiceRecordId,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null">
+        ADDRESS_ID = #{addressId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="payMode != null">
+        PAY_MODE = #{payMode,jdbcType=CHAR},
+      </if>
+      <if test="commisionCharge != null">
+        COMMISION_CHARGE = #{commisionCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null">
+        TOTAL_PRICE = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderPrice != null">
+        ORDER_PRICE = #{orderPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="actualPrice != null">
+        ACTUAL_PRICE = #{actualPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="parentOrderId != null">
+        PARENT_ORDER_ID = #{parentOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        FLAG = #{flag,jdbcType=CHAR},
+      </if>
+      <if test="belong != null">
+        BELONG = #{belong,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.Order">
+    update SC_ORDER
+    set ORDER_CODE = #{orderCode,jdbcType=VARCHAR},
+      NUM = #{num,jdbcType=DECIMAL},
+      DELIVERY_MODE = #{deliveryMode,jdbcType=CHAR},
+      ORDER_STATUS = #{orderStatus,jdbcType=CHAR},
+      ISSPLIT = #{issplit,jdbcType=CHAR},
+      SPLIT_TIME = #{splitTime,jdbcType=TIMESTAMP},
+      INVOICE = #{invoice,jdbcType=CHAR},
+      INVOICE_RECORD_ID = #{invoiceRecordId,jdbcType=VARCHAR},
+      ADDRESS_ID = #{addressId,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      PAY_MODE = #{payMode,jdbcType=CHAR},
+      COMMISION_CHARGE = #{commisionCharge,jdbcType=DECIMAL},
+      TOTAL_PRICE = #{totalPrice,jdbcType=DECIMAL},
+      ORDER_PRICE = #{orderPrice,jdbcType=DECIMAL},
+      ACTUAL_PRICE = #{actualPrice,jdbcType=DECIMAL},
+      PARENT_ORDER_ID = #{parentOrderId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+      FLAG = #{flag,jdbcType=CHAR},
+      BELONG = #{belong,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

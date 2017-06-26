@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sqhl.shop.mapper.BrandMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.vo.Brand">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="BRAND_NAME" jdbcType="VARCHAR" property="brandName" />
+    <result column="BRAND_LOGO" jdbcType="VARCHAR" property="brandLogo" />
+    <result column="FLAG" jdbcType="CHAR" property="flag" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="CREATE_USER_ID" jdbcType="VARCHAR" property="createUserId" />
+    <result column="BRAND_CODE" jdbcType="VARCHAR" property="brandCode" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.sqhl.shop.vo.Brand">
+    <result column="BRAND_DESC" jdbcType="CLOB" property="brandDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+     a.ID, BRAND_NAME, BRAND_LOGO, a.FLAG, a.CREATE_TIME, CREATE_USER_ID, BRAND_CODE
+  </sql>
+  <sql id="Blob_Column_List">
+    BRAND_DESC
+  </sql>
+  <select id="queryList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SC_BRAND a,SC_CATE_BRAND b WHERE A.ID=B.BRAND_ID
+    and a.flag=1 and b.flag=a.flag
+    <if test="map.brand_id !=null">
+    	and a.id=#{map.brand_id,jdbcType=VARCHAR}
+    </if>
+    <if test="map.brand_name !=null">
+    	and a.BRAND_NAME like '%#{map.brand_name,jdbcType=VARCHAR}%'
+    </if>
+    <if test="map.cate_id !=null">
+    	and b.cate_id=#{map.cate_id,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

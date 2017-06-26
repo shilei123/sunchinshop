@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sqhl.shop.mapper.CartMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.Cart">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="GOODS_ID" jdbcType="VARCHAR" property="goodsId" />
+    <result column="CHILD_GOODS_ID" jdbcType="VARCHAR" property="childGoodsId" />
+    <result column="CART_COUNT" jdbcType="DECIMAL" property="cartCount" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="ADD_PRICE" jdbcType="DECIMAL" property="addPrice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USER_ID, GOODS_ID, CHILD_GOODS_ID, CART_COUNT, CREATE_TIME, ADD_PRICE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SC_CART
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SC_CART
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.sqhl.shop.po.Cart">
+    insert into SC_CART (ID, USER_ID, GOODS_ID, 
+      CHILD_GOODS_ID, CART_COUNT, CREATE_TIME, 
+      ADD_PRICE)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, 
+      #{childGoodsId,jdbcType=VARCHAR}, #{cartCount,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{addPrice,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.Cart">
+    insert into SC_CART
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="goodsId != null">
+        GOODS_ID,
+      </if>
+      <if test="childGoodsId != null">
+        CHILD_GOODS_ID,
+      </if>
+      <if test="cartCount != null">
+        CART_COUNT,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="addPrice != null">
+        ADD_PRICE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="childGoodsId != null">
+        #{childGoodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="cartCount != null">
+        #{cartCount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addPrice != null">
+        #{addPrice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.Cart">
+    update SC_CART
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        GOODS_ID = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="childGoodsId != null">
+        CHILD_GOODS_ID = #{childGoodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="cartCount != null">
+        CART_COUNT = #{cartCount,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addPrice != null">
+        ADD_PRICE = #{addPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.Cart">
+    update SC_CART
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      GOODS_ID = #{goodsId,jdbcType=VARCHAR},
+      CHILD_GOODS_ID = #{childGoodsId,jdbcType=VARCHAR},
+      CART_COUNT = #{cartCount,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      ADD_PRICE = #{addPrice,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+
+  
+  <resultMap id="CartResultMap" type="cn.sqhl.shop.vo.Cart">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="GOODS_ID" jdbcType="VARCHAR" property="goodsId" />
+    <result column="CHILD_GOODS_ID" jdbcType="VARCHAR" property="childGoodsId" />
+    <result column="CART_COUNT" jdbcType="DECIMAL" property="cartCount" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="ADD_PRICE" jdbcType="DECIMAL" property="addPrice" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="sub_title" jdbcType="VARCHAR" property="subtitle" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsname" />
+    <result column="stop_time" jdbcType="VARCHAR" property="stoptime" />
+    <result column="goods_code" jdbcType="VARCHAR" property="goodscode" />
+    <result column="isuse" jdbcType="VARCHAR" property="isuse" />
+    <result column="empty_store" jdbcType="VARCHAR" property="emptystore" />
+    <result column="putaway" jdbcType="VARCHAR" property="putaway" />
+    <result column="virtual" jdbcType="VARCHAR" property="virtual" />
+    <result column="purchase_price" jdbcType="DECIMAL" property="purchaseprice" />
+    <result column="market_price" jdbcType="DECIMAL" property="marketprice" />
+    <result column="sale_price" jdbcType="DECIMAL" property="saleprice" />
+    <result column="promotion_price" jdbcType="DECIMAL" property="promotionprice" />
+    <result column="goods_no" jdbcType="VARCHAR" property="goodsno" />
+    <result column="flag" jdbcType="VARCHAR" property="flag" />
+    <result column="freight_type" jdbcType="VARCHAR" property="freighttype" />
+    <result column="freight_id" jdbcType="VARCHAR" property="freightid" />
+    <result column="publish_type" jdbcType="VARCHAR" property="publishtype" />
+    <result column="publish_time" jdbcType="VARCHAR" property="publishtime" />
+    <result column="goods_sts" jdbcType="VARCHAR" property="goodssts" />
+    <result column="audit_sts" jdbcType="VARCHAR" property="auditsts" />
+    <result column="cate_id" jdbcType="VARCHAR" property="cateid" />
+    <result column="child_code" jdbcType="VARCHAR" property="childcode" />
+    <result column="child_name" jdbcType="VARCHAR" property="childname" />
+    <result column="c_purchase_price" jdbcType="DECIMAL" property="cpurchaseprice" />
+    <result column="c_market_price" jdbcType="DECIMAL" property="cmarketprice" />
+    <result column="c_sale_price" jdbcType="DECIMAL" property="csaleprice" />
+    <result column="c_promotion_price" jdbcType="DECIMAL" property="cpromotionprice" />
+    <result column="child_no" jdbcType="VARCHAR" property="childno" />
+    <result column="c_flag" jdbcType="VARCHAR" property="cflag" />
+    <result column="pv_name" jdbcType="VARCHAR" property="pvname" />
+  </resultMap>
+  <sql id="Cart_Column_List">
+  	  a.title,a.sub_title,a.goods_name,a.stop_time,a.goods_code,a.isuse,a.empty_store,a.putaway,a.virtual,a.purchase_price,
+  	  a.market_price,a.sale_price,a.promotion_price,a.goods_no,a.flag,a.freight_type,a.freight_id,a.publish_type,
+  	  a.publish_time,a.goods_sts,a.audit_sts,a.cate_id,b.child_code,b.child_name,b.purchase_price c_purchase_price,
+  	  b.market_price c_market_price,b.sale_price c_sale_price,b.promotion_price c_promotion_price,b.child_no,b.flag c_flag,
+  	  c.user_id,c.goods_id,c.child_goods_id,c.cart_count,c.add_price,c.create_time,d.pv_name
+    </sql>
+  <select id="queryCartList" parameterType="java.util.Map" resultMap="CartResultMap">
+    select 
+    <include refid="Cart_Column_List" />
+    from sc_goods a,sc_child_goods b,sc_cart c ,vw_goods_prop_value d
+	where a.id=b.goods_id and c.goods_id=a.id and c.child_goods_id=b.id 
+	and d.goods_id=c.goods_id and d.child_goods_id=c.child_goods_id
+	<if test="map.userid != null">
+        and c.USER_ID = #{map.userid,jdbcType=VARCHAR}
+      </if>
+  </select>
+</mapper>
