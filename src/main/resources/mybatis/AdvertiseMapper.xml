@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sqhl.shop.mapper.AdvertiseMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.to.Advertise">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="MEMO" jdbcType="VARCHAR" property="memo" />
+    <result column="LINKKIND" jdbcType="VARCHAR" property="linkkind" />
+    <result column="IMGLINK" jdbcType="VARCHAR" property="imglink" />
+    <result column="ORDERNUMB" jdbcType="VARCHAR" property="ordernumb" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="ISUSE" jdbcType="CHAR" property="isuse" />
+    <result column="KIND" jdbcType="VARCHAR" property="kind" />
+    <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" typeHandler="cn.sqhl.shop.core.DateTypeHandler"/>
+    <result column="BELONG" jdbcType="VARCHAR" property="belong" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME, MEMO, LINKKIND, IMGLINK, ORDERNUMB, TYPE, KIND, START_TIME, END_TIME, 
+    CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="queryList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from 
+	(
+	select * from SC_ADVERTISE where isuse=1 and flag=1
+  	union
+ 	select * from SC_ADVERTISE where isuse is null and start_time is not null and end_time is not null and flag=1
+	)
+    where 1=1
+    <if test="map.kind !=null">
+    	and LINKKIND=#{map.kind,jdbcType=VARCHAR}
+    </if>
+    <if test="map.location !=null">
+    	and TYPE=#{map.location,jdbcType=VARCHAR}
+    </if>
+    <if test="map.type !=null ">
+   		and kind=#{map.type,jdbcType=VARCHAR}
+    </if>
+    <if test="map.start_time !=null">
+    	<![CDATA[and END_TIME>=#{map.start_time,jdbcType=TIMESTAMP,typeHandler=cn.sqhl.shop.core.DateTypeHandler}]]>
+    </if>
+    <if test="map.end_time !=null">
+    	<![CDATA[and START_TIME<=#{map.end_time,jdbcType=TIMESTAMP,typeHandler=cn.sqhl.shop.core.DateTypeHandler}]]>
+    </if>
+  </select>
+</mapper>

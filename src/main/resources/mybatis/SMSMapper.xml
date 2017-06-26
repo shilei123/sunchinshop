@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sqhl.shop.mapper.SMSMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.SMS">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="RECEIVE_ID" jdbcType="VARCHAR" property="receiveId" />
+    <result column="RECEIVE_NAME" jdbcType="VARCHAR" property="receiveName" />
+    <result column="RECEIVE_PHONE" jdbcType="VARCHAR" property="receivePhone" />
+    <result column="SMS_CONTENT" jdbcType="VARCHAR" property="smsContent" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="STS" jdbcType="CHAR" property="sts" />
+    <result column="SEND_ID" jdbcType="VARCHAR" property="sendId" />
+    <result column="SEND_NAME" jdbcType="VARCHAR" property="sendName" />
+    <result column="SEND_TIME" jdbcType="TIMESTAMP" property="sendTime" />
+    <result column="SMS_TYPE" jdbcType="VARCHAR" property="smsType" />
+    <result column="BELONG" jdbcType="VARCHAR" property="belong" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, RECEIVE_ID, RECEIVE_NAME, RECEIVE_PHONE, SMS_CONTENT, CREATE_TIME, STS, SEND_ID, 
+    SEND_NAME, SEND_TIME, SMS_TYPE, BELONG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SC_SMS
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SC_SMS
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.sqhl.shop.po.SMS">
+    insert into SC_SMS (ID, RECEIVE_ID, RECEIVE_NAME, 
+      RECEIVE_PHONE, SMS_CONTENT, CREATE_TIME, 
+      STS, SEND_ID, SEND_NAME, 
+      SEND_TIME, SMS_TYPE, BELONG
+      )
+    values (#{id,jdbcType=VARCHAR}, #{receiveId,jdbcType=VARCHAR}, #{receiveName,jdbcType=VARCHAR}, 
+      #{receivePhone,jdbcType=VARCHAR}, #{smsContent,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{sts,jdbcType=CHAR}, #{sendId,jdbcType=VARCHAR}, #{sendName,jdbcType=VARCHAR}, 
+      #{sendTime,jdbcType=TIMESTAMP}, #{smsType,jdbcType=VARCHAR}, #{belong,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.SMS">
+    insert into SC_SMS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="receiveId != null">
+        RECEIVE_ID,
+      </if>
+      <if test="receiveName != null">
+        RECEIVE_NAME,
+      </if>
+      <if test="receivePhone != null">
+        RECEIVE_PHONE,
+      </if>
+      <if test="smsContent != null">
+        SMS_CONTENT,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="sts != null">
+        STS,
+      </if>
+      <if test="sendId != null">
+        SEND_ID,
+      </if>
+      <if test="sendName != null">
+        SEND_NAME,
+      </if>
+      <if test="sendTime != null">
+        SEND_TIME,
+      </if>
+      <if test="smsType != null">
+        SMS_TYPE,
+      </if>
+      <if test="belong != null">
+        BELONG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null">
+        #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveName != null">
+        #{receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="receivePhone != null">
+        #{receivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="smsContent != null">
+        #{smsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sts != null">
+        #{sts,jdbcType=CHAR},
+      </if>
+      <if test="sendId != null">
+        #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendName != null">
+        #{sendName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null">
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="smsType != null">
+        #{smsType,jdbcType=VARCHAR},
+      </if>
+      <if test="belong != null">
+        #{belong,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.SMS">
+    update SC_SMS
+    <set>
+      <if test="receiveId != null">
+        RECEIVE_ID = #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveName != null">
+        RECEIVE_NAME = #{receiveName,jdbcType=VARCHAR},
+      </if>
+      <if test="receivePhone != null">
+        RECEIVE_PHONE = #{receivePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="smsContent != null">
+        SMS_CONTENT = #{smsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sts != null">
+        STS = #{sts,jdbcType=CHAR},
+      </if>
+      <if test="sendId != null">
+        SEND_ID = #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendName != null">
+        SEND_NAME = #{sendName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null">
+        SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="smsType != null">
+        SMS_TYPE = #{smsType,jdbcType=VARCHAR},
+      </if>
+      <if test="belong != null">
+        BELONG = #{belong,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.SMS">
+    update SC_SMS
+    set RECEIVE_ID = #{receiveId,jdbcType=VARCHAR},
+      RECEIVE_NAME = #{receiveName,jdbcType=VARCHAR},
+      RECEIVE_PHONE = #{receivePhone,jdbcType=VARCHAR},
+      SMS_CONTENT = #{smsContent,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      STS = #{sts,jdbcType=CHAR},
+      SEND_ID = #{sendId,jdbcType=VARCHAR},
+      SEND_NAME = #{sendName,jdbcType=VARCHAR},
+      SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+      SMS_TYPE = #{smsType,jdbcType=VARCHAR},
+      BELONG = #{belong,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

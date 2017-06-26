@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sqhl.shop.mapper.EventsGoodsMapper">
+  <resultMap id="BaseResultMap" type="cn.sqhl.shop.po.EventsGoods">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="EVENTS_ID" jdbcType="VARCHAR" property="eventsId" />
+    <result column="GOODS_ID" jdbcType="VARCHAR" property="goodsId" />
+    <result column="GOODS_CHILD_ID" jdbcType="VARCHAR" property="goodsChildId" />
+    <result column="EVENTS_MONEY" jdbcType="DECIMAL" property="eventsMoney" />
+    <result column="SCOPE" jdbcType="CHAR" property="scope" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, EVENTS_ID, GOODS_ID, GOODS_CHILD_ID, EVENTS_MONEY, SCOPE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from SC_EVENTS_GOODS
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from SC_EVENTS_GOODS
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.sqhl.shop.po.EventsGoods">
+    insert into SC_EVENTS_GOODS (ID, EVENTS_ID, GOODS_ID, 
+      GOODS_CHILD_ID, EVENTS_MONEY, SCOPE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{eventsId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, 
+      #{goodsChildId,jdbcType=VARCHAR}, #{eventsMoney,jdbcType=DECIMAL}, #{scope,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.sqhl.shop.po.EventsGoods">
+    insert into SC_EVENTS_GOODS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="eventsId != null">
+        EVENTS_ID,
+      </if>
+      <if test="goodsId != null">
+        GOODS_ID,
+      </if>
+      <if test="goodsChildId != null">
+        GOODS_CHILD_ID,
+      </if>
+      <if test="eventsMoney != null">
+        EVENTS_MONEY,
+      </if>
+      <if test="scope != null">
+        SCOPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="eventsId != null">
+        #{eventsId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsChildId != null">
+        #{goodsChildId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventsMoney != null">
+        #{eventsMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="scope != null">
+        #{scope,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.sqhl.shop.po.EventsGoods">
+    update SC_EVENTS_GOODS
+    <set>
+      <if test="eventsId != null">
+        EVENTS_ID = #{eventsId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        GOODS_ID = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsChildId != null">
+        GOODS_CHILD_ID = #{goodsChildId,jdbcType=VARCHAR},
+      </if>
+      <if test="eventsMoney != null">
+        EVENTS_MONEY = #{eventsMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="scope != null">
+        SCOPE = #{scope,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.sqhl.shop.po.EventsGoods">
+    update SC_EVENTS_GOODS
+    set EVENTS_ID = #{eventsId,jdbcType=VARCHAR},
+      GOODS_ID = #{goodsId,jdbcType=VARCHAR},
+      GOODS_CHILD_ID = #{goodsChildId,jdbcType=VARCHAR},
+      EVENTS_MONEY = #{eventsMoney,jdbcType=DECIMAL},
+      SCOPE = #{scope,jdbcType=CHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
